@@ -685,10 +685,10 @@ async function handleLogin() {
     showStatus('Access granted! Redirecting...', 'success');
     
     // Simulate authentication delay
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    localStorage.setItem('krdSpell', storedPAT);
-    window.location.href = 'tasks.html';
+    setTimeout(() => {
+  localStorage.setItem('krdSpell', storedPAT);
+  window.location.href = 'tasks.html';
+}, 3000);
   } else {
     showStatus('Invalid access code. Please try again.', 'error');
     passwordEl.value = '';
