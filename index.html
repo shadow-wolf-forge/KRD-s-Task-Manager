@@ -670,7 +670,7 @@ function setLoading(loading) {
   }
 }
 
-// Enhanced login function with chain unlock animation
+// Enhanced login function
 async function handleLogin() {
   const pass = passwordEl.value.trim();
   
@@ -682,18 +682,13 @@ async function handleLogin() {
   
   if (pass === correctPassword) {
     setLoading(true);
-    showStatus('Access granted! Unlocking security...', 'success');
+    showStatus('Access granted! Redirecting...', 'success');
     
-    // Start the epic unlock sequence
-    await performUnlockSequence();
+    // Simulate authentication delay
+    await new Promise(resolve => setTimeout(resolve, 1500));
     
     localStorage.setItem('krdSpell', storedPAT);
-    
-    // Final dramatic pause before redirect
-    setTimeout(() => {
-      window.location.href = 'tasks.html';
-    }, 1000);
-    
+    window.location.href = 'tasks.html';
   } else {
     showStatus('Invalid access code. Please try again.', 'error');
     passwordEl.value = '';
@@ -705,68 +700,6 @@ async function handleLogin() {
       document.querySelector('.login-container').style.animation = 'containerEntry 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
     }, 500);
   }
-}
-
-// Epic unlock sequence
-async function performUnlockSequence() {
-  const loginContainer = document.getElementById('loginContainer');
-  const chainLocks = document.getElementById('chainLocks');
-  const masterLock = document.getElementById('masterLock');
-  const sparkles = document.getElementById('sparkles');
-  const chains = document.querySelectorAll('.chain');
-  
-  // Step 1: Master lock unlocks first
-  masterLock.classList.add('unlocking');
-  
-  await sleep(300);
-  
-  // Step 2: Chains break one by one with staggered timing
-  for (let i = 0; i < chains.length; i++) {
-    chains[i].classList.add('unlocking');
-    await sleep(200);
-  }
-  
-  await sleep(200);
-  
-  // Step 3: Container unlock animation
-  loginContainer.classList.add('unlocking');
-  
-  // Step 4: Create success sparkles
-  createSparkles();
-  sparkles.classList.add('active');
-  
-  await sleep(800);
-  
-  // Step 5: Hide all chain elements
-  chainLocks.style.display = 'none';
-}
-
-// Create sparkle explosion effect
-function createSparkles() {
-  const sparklesContainer = document.getElementById('sparkles');
-  const sparkleCount = 12;
-  
-  for (let i = 0; i < sparkleCount; i++) {
-    const sparkle = document.createElement('div');
-    sparkle.className = 'sparkle';
-    
-    // Random position around the container
-    const angle = (i / sparkleCount) * 360;
-    const radius = 100 + Math.random() * 50;
-    const x = 50 + Math.cos(angle * Math.PI / 180) * (radius / 2);
-    const y = 50 + Math.sin(angle * Math.PI / 180) * (radius / 2);
-    
-    sparkle.style.left = x + '%';
-    sparkle.style.top = y + '%';
-    sparkle.style.animationDelay = (Math.random() * 0.3) + 's';
-    
-    sparklesContainer.appendChild(sparkle);
-  }
-}
-
-// Utility function for delays
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 // Event listeners
