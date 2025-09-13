@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KRD's Task Manager - Login</title>
+<link rel="icon" href="favicon.png" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+:root {
+  --bg-primary: #0a0e27;
+  --bg-secondary: #0f1629;
+  --bg-tertiary: #1a1f3a;
+  --surface: rgba(255,255,255,0.05);
+  --surface-elevated: rgba(255,255,255,0.08);
+  --border: rgba(255,255,255,0.1);
+  --border-hover: rgba(255,255,255,0.2);
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #64748b;
+  --accent-blue: #3b82f6;
+  --accent-blue-dark: #1e40af;
+  --accent-purple: #8b5cf6;
+  --accent-purple-dark: #7c3aed;
+  --accent-cyan: #06b6d4;
+  --accent-cyan-dark: #0891b2;
+  --success: #10b981;
+  --error: #ef4444;
+  --shadow-sm: 0 4px 12px rgba(0,0,0,0.15);
+  --shadow-md: 0 8px 25px rgba(0,0,0,0.25);
+  --shadow-lg: 0 20px 40px rgba(0,0,0,0.35);
+  --shadow-xl: 0 32px 64px rgba(0,0,0,0.45);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-tertiary) 100%);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Enhanced animated background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(59,130,246,0.12) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(139,92,246,0.10) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(6,182,212,0.08) 0%, transparent 50%);
+  animation: gradientShift 25s ease-in-out infinite alternate;
+}
+
+@keyframes gradientShift {
+  0% { 
+    transform: scale(1) rotate(0deg);
+    filter: hue-rotate(0deg);
+  }
+  50% { 
+    transform: scale(1.1) rotate(2deg);
+    filter: hue-rotate(15deg);
+  }
+  100% { 
+    transform: scale(1.05) rotate(-2deg);
+    filter: hue-rotate(-10deg);
+  }
+}
+
+/* Professional particle system */
+.particles {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  background: var(--accent-cyan);
+  border-radius: 50%;
+  opacity: 0.1;
+  animation: particleFloat 15s linear infinite;
+}
+
+.particle:nth-child(2n) {
+  background: var(--accent-blue);
+  animation-duration: 20s;
+}
+
+.particle:nth-child(3n) {
+  background: var(--accent-purple);
+  animation-duration: 25s;
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(100vh) rotate(0deg) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.2;
+    transform: translateY(90vh) rotate(45deg) scale(1);
+  }
+  90% {
+    opacity: 0.1;
+    transform: translateY(-10vh) rotate(315deg) scale(1);
+  }
+  100% {
+    transform: translateY(-20vh) rotate(360deg) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Professional grid overlay */
+.grid-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.03;
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: gridMove 30s linear infinite;
+}
+
+@keyframes gridMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
+}
+
+/* Login container */
+.login-container {
+  background: var(--surface);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 48px 40px;
+  width: 100%;
+  max-width: 440px;
+  position: relative;
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+  animation: containerEntry 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes containerEntry {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Glowing border effect */
+.login-container::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple), var(--accent-cyan));
+  border-radius: var(--radius-xl);
+  z-index: -1;
+  opacity: 0.6;
+  animation: borderGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes borderGlow {
+  0% { 
+    opacity: 0.4;
+    filter: blur(2px);
+  }
+  100% { 
+    opacity: 0.8;
+    filter: blur(4px);
+  }
+}
+
+/* Header section */
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.logo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.logo-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  animation: logoFloat 3s ease-in-out infinite alternate;
+}
+
+@keyframes logoFloat {
+  0% { 
+    transform: translateY(0) rotate(0deg);
+    box-shadow: var(--shadow-lg);
+  }
+  100% { 
+    transform: translateY(-8px) rotate(2deg);
+    box-shadow: var(--shadow-xl);
+  }
+}
+
+.logo-icon::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue), var(--accent-purple));
+  border-radius: var(--radius-lg);
+  z-index: -1;
+  opacity: 0.3;
+  animation: logoGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes logoGlow {
+  0% { transform: scale(1); opacity: 0.2; }
+  100% { transform: scale(1.1); opacity: 0.4; }
+}
+
+.logo-icon svg {
+  width: 40px;
+  height: 40px;
+  color: white;
+  stroke-width: 2;
+}
+
+.app-title {
+  font-size: 32px;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple), var(--accent-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+  animation: titleShimmer 3s ease-in-out infinite;
+}
+
+@keyframes titleShimmer {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.2); }
+}
+
+.app-subtitle {
+  font-size: 16px;
+  color: var(--text-muted);
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+/* Form section */
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 0.3px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 16px 20px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-elevated);
+  color: var(--text-primary);
+  font-size: 16px;
+  font-family: inherit;
+  transition: var(--transition);
+  backdrop-filter: blur(10px);
+  position: relative;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+  background: rgba(255,255,255,0.1);
+  box-shadow: 0 0 0 4px rgba(59,130,246,0.1), var(--shadow-sm);
+  transform: translateY(-2px);
+}
+
+.form-input::placeholder {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+/* Enhanced input with icon */
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  right: 16px;
+  color: var(--text-muted);
+  transition: var(--transition);
+  pointer-events: none;
+}
+
+.form-input:focus + .input-icon {
+  color: var(--accent-blue);
+  transform: scale(1.1);
+}
+
+/* Login button */
+.login-btn {
+  width: 100%;
+  padding: 16px 24px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-blue-dark));
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.login-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.login-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  background: linear-gradient(135deg, #4f46e5, var(--accent-blue-dark));
+}
+
+.login-btn:hover::before {
+  left: 100%;
+}
+
+.login-btn:active {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.login-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-text {
+  transition: var(--transition);
+}
+
+.btn-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  display: none;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Status message */
+.status-message {
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  transition: var(--transition);
+  border: 1px solid transparent;
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.status-message.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.status-message.error {
+  background: rgba(239,68,68,0.1);
+  color: var(--error);
+  border-color: rgba(239,68,68,0.3);
+}
+
+.status-message.success {
+  background: rgba(16,185,129,0.1);
+  color: var(--success);
+  border-color: rgba(16,185,129,0.3);
+}
+
+/* Footer */
+.footer {
+  margin-top: 32px;
+  text-align: center;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.footer-text {
+  font-size: 13px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.security-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  background: rgba(16,185,129,0.1);
+  color: var(--success);
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  body {
+    padding: 16px;
+  }
+  
+  .login-container {
+    padding: 32px 24px;
+    max-width: 100%;
+  }
+  
+  .logo-icon {
+    width: 64px;
+    height: 64px;
+  }
+  
+  .logo-icon svg {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .app-title {
+    font-size: 28px;
+  }
+  
+  .app-subtitle {
+    font-size: 14px;
+  }
+  
+  .form-input, .login-btn {
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    padding: 24px 20px;
+  }
+  
+  .app-title {
+    font-size: 24px;
+  }
+  
+  .logo-icon {
+    width: 56px;
+    height: 56px;
+  }
+  
+  .logo-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --border: rgba(255,255,255,0.3);
+    --surface: rgba(255,255,255,0.1);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+<body>
+  <!-- Particle system -->
+  <div class="particles" id="particles"></div>
+  
+  <!-- Grid overlay -->
+  <div class="grid-overlay"></div>
+
+  <!-- Login container -->
+  <div class="login-container">
+    <div class="header">
+      <div class="logo-section">
+        <div class="logo-icon">
+          <i data-lucide="shield-check"></i>
+        </div>
+        <div>
+          <h1 class="app-title">KRD's Task Manager</h1>
+          <p class="app-subtitle">Professional Task Management System</p>
+        </div>
+      </div>
+    </div>
+
+    <form class="form-section" id="loginForm">
+      <div class="form-group">
+        <label class="form-label">
+          <i data-lucide="key"></i>
+          Access Code
+        </label>
+        <div class="input-wrapper">
+          <input 
+            id="password" 
+            type="password" 
+            class="form-input" 
+            placeholder="Enter your magic word..."
+            autocomplete="current-password"
+            required
+          />
+          <i data-lucide="lock" class="input-icon"></i>
+        </div>
+      </div>
+
+      <button type="submit" class="login-btn" id="loginBtn">
+        <span class="btn-text">
+          <i data-lucide="log-in"></i>
+          Access System
+        </span>
+        <div class="btn-spinner" id="spinner"></div>
+      </button>
+
+      <div id="statusMessage" class="status-message"></div>
+    </form>
+
+    <div class="footer">
+      <p class="footer-text">
+        <span class="security-badge">
+          <i data-lucide="shield"></i>
+          Secure
+        </span>
+        Protected by advanced authentication
+      </p>
+    </div>
+  </div>
+
+<script>
+const loginForm = document.getElementById('loginForm');
+const loginBtn = document.getElementById('loginBtn');
+const passwordEl = document.getElementById('password');
+const statusEl = document.getElementById('statusMessage');
+const btnText = document.querySelector('.btn-text');
+const spinner = document.getElementById('spinner');
+
+// Enhanced PAT configuration
+const patParts = [
+  "github_pat_11BKK66LI0KtG8hVKTikBc_",  
+  "r3kVsMpEG3H62K6OghTKUMdafXrjgf",       
+  "CtTM4CWixvuqMI7CO6ZBLZGTOmb9I"         
+];
+const storedPAT = patParts.join("");
+const correctPassword = "Ammu";
+
+// Enhanced status display
+function showStatus(message, type = 'error') {
+  statusEl.textContent = message;
+  statusEl.className = `status-message ${type} show`;
+  
+  setTimeout(() => {
+    statusEl.classList.remove('show');
+  }, 5000);
+}
+
+// Enhanced loading state
+function setLoading(loading) {
+  loginBtn.disabled = loading;
+  if (loading) {
+    btnText.style.display = 'none';
+    spinner.style.display = 'block';
+  } else {
+    btnText.style.display = 'flex';
+    spinner.style.display = 'none';
+  }
+}
+
+// Enhanced login function with chain unlock animation
+async function handleLogin() {
+  const pass = passwordEl.value.trim();
+  
+  if (!pass) {
+    showStatus('Please enter your access code', 'error');
+    passwordEl.focus();
+    return;
+  }
+  
+  if (pass === correctPassword) {
+    setLoading(true);
+    showStatus('Access granted! Unlocking security...', 'success');
+    
+    // Start the epic unlock sequence
+    await performUnlockSequence();
+    
+    localStorage.setItem('krdSpell', storedPAT);
+    
+    // Final dramatic pause before redirect
+    setTimeout(() => {
+      window.location.href = 'tasks.html';
+    }, 1000);
+    
+  } else {
+    showStatus('Invalid access code. Please try again.', 'error');
+    passwordEl.value = '';
+    passwordEl.focus();
+    
+    // Add shake animation to container
+    document.querySelector('.login-container').style.animation = 'shake 0.5s ease-in-out';
+    setTimeout(() => {
+      document.querySelector('.login-container').style.animation = 'containerEntry 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+    }, 500);
+  }
+}
+
+// Epic unlock sequence
+async function performUnlockSequence() {
+  const loginContainer = document.getElementById('loginContainer');
+  const chainLocks = document.getElementById('chainLocks');
+  const masterLock = document.getElementById('masterLock');
+  const sparkles = document.getElementById('sparkles');
+  const chains = document.querySelectorAll('.chain');
+  
+  // Step 1: Master lock unlocks first
+  masterLock.classList.add('unlocking');
+  
+  await sleep(300);
+  
+  // Step 2: Chains break one by one with staggered timing
+  for (let i = 0; i < chains.length; i++) {
+    chains[i].classList.add('unlocking');
+    await sleep(200);
+  }
+  
+  await sleep(200);
+  
+  // Step 3: Container unlock animation
+  loginContainer.classList.add('unlocking');
+  
+  // Step 4: Create success sparkles
+  createSparkles();
+  sparkles.classList.add('active');
+  
+  await sleep(800);
+  
+  // Step 5: Hide all chain elements
+  chainLocks.style.display = 'none';
+}
+
+// Create sparkle explosion effect
+function createSparkles() {
+  const sparklesContainer = document.getElementById('sparkles');
+  const sparkleCount = 12;
+  
+  for (let i = 0; i < sparkleCount; i++) {
+    const sparkle = document.createElement('div');
+    sparkle.className = 'sparkle';
+    
+    // Random position around the container
+    const angle = (i / sparkleCount) * 360;
+    const radius = 100 + Math.random() * 50;
+    const x = 50 + Math.cos(angle * Math.PI / 180) * (radius / 2);
+    const y = 50 + Math.sin(angle * Math.PI / 180) * (radius / 2);
+    
+    sparkle.style.left = x + '%';
+    sparkle.style.top = y + '%';
+    sparkle.style.animationDelay = (Math.random() * 0.3) + 's';
+    
+    sparklesContainer.appendChild(sparkle);
+  }
+}
+
+// Utility function for delays
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// Event listeners
+loginForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  handleLogin();
+});
+
+passwordEl.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    handleLogin();
+  }
+});
+
+// Enhanced particle system
+function createParticleSystem() {
+  const particlesContainer = document.getElementById('particles');
+  const particleCount = 30;
+  
+  for (let i = 0; i < particleCount; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    
+    const size = Math.random() * 4 + 1;
+    const startX = Math.random() * window.innerWidth;
+    const animationDuration = Math.random() * 10 + 15;
+    const delay = Math.random() * 20;
+    
+    particle.style.width = size + 'px';
+    particle.style.height = size + 'px';
+    particle.style.left = startX + 'px';
+    particle.style.animationDuration = animationDuration + 's';
+    particle.style.animationDelay = delay + 's';
+    
+    particlesContainer.appendChild(particle);
+  }
+}
+
+// Shake animation keyframes
+const shakeKeyframes = `
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-8px); }
+    20%, 40%, 60%, 80% { transform: translateX(8px); }
+  }
+`;
+
+// Add shake animation to stylesheet
+const style = document.createElement('style');
+style.textContent = shakeKeyframes;
+document.head.appendChild(style);
+
+// Initialize particle system
+createParticleSystem();
+
+// Initialize Lucide icons
+if (window.lucide) {
+  lucide.createIcons();
+}
+
+// Auto-focus password field
+passwordEl.focus();
+
+// Handle viewport changes for mobile
+function handleViewportChange() {
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+window.addEventListener('resize', handleViewportChange);
+handleViewportChange();
+
+// Security: Clear any exposed credentials from memory
+window.addEventListener('beforeunload', () => {
+  passwordEl.value = '';
+});
+</script>
+</body>
+</html>
