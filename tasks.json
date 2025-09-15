@@ -42,16 +42,5 @@
     "created_at": "2025-09-13T21:00:15.162Z",
     "modified_at": "2025-09-13T21:00:15.162Z",
     "completed_at": null
-  },
-  {
-    "id": 1757919985713.8564,
-    "title": "Dummy",
-    "project": "Delaware-Payless-Power",
-    "priority": "High",
-    "assigned_to": "Karthik",
-    "done": true,
-    "created_at": "2025-09-15T07:06:25.712Z",
-    "modified_at": "2025-09-15T07:06:50.025Z",
-    "completed_at": "2025-09-15T07:06:50.025Z"
   }
 ]
