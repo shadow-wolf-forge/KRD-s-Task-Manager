@@ -238,12 +238,11 @@ body::before {
 
 .filters-row {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
   gap: 16px;
   margin-bottom: 24px;
   align-items: center;
 }
-
 .add-task-row {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr auto;
@@ -1069,27 +1068,30 @@ body::before {
       </h2>
       
       <div class="filters-row">
-        <input 
-          id="filterTitle" 
-          class="form-input" 
-          placeholder="🔍 Search tasks..." 
-          type="search"
-        />
-        <select id="filterProject" class="form-select">
-          <option value="">All Projects</option>
-        </select>
-        <select id="filterPriority" class="form-select">
-          <option value="">All Priorities</option>
-          <option value="High">High Priority</option>
-          <option value="Medium">Medium Priority</option>
-          <option value="Low">Low Priority</option>
-        </select>
-        <select id="filterStatus" class="form-select">
-          <option value="">All Status</option>
-          <option value="completed">Completed</option>
-          <option value="not_completed">In Progress</option>
-        </select>
-      </div>
+  <input 
+    id="filterTitle" 
+    class="form-input" 
+    placeholder="🔍 Search tasks..." 
+    type="search"
+  />
+  <select id="filterProject" class="form-select">
+    <option value="">All Projects</option>
+  </select>
+  <select id="filterPriority" class="form-select">
+    <option value="">All Priorities</option>
+    <option value="High">High Priority</option>
+    <option value="Medium">Medium Priority</option>
+    <option value="Low">Low Priority</option>
+  </select>
+  <select id="filterAssignedTo" class="form-select">
+    <option value="">All Assignees</option>
+  </select>
+  <select id="filterStatus" class="form-select">
+    <option value="">All Status</option>
+    <option value="completed">Completed</option>
+    <option value="not_completed">In Progress</option>
+  </select>
+</div>
 
       <h3 class="section-title">
         <i data-lucide="plus-circle"></i>
@@ -1398,22 +1400,50 @@ function updatePeopleDropdown() {
   select.innerHTML = people.map(p => 
     `<option value="${p.name}">${p.name}</option>`
   ).join('');
+  
+    const assigneeFilter = document.getElementById('filterAssignedTo');
+  assigneeFilter.innerHTML = '<option value="">All Assignees</option>' +
+    people
+      .map(p => `<option value="${p.name}">${p.name}</option>`)
+      .join('');
+}
+
+function updateAssignedToFilter() {
+  const assigneeFilter = document.getElementById('filterAssignedTo');
+  const fromTasks = [...new Set(tasks.map(t => (t.assigned_to || '').trim()).filter(Boolean))];
+  const fromPeople = people.map(p => (p.name || '').trim()).filter(Boolean);
+  const assignees = [...new Set([...fromPeople, ...fromTasks])]
+    .sort((a, b) => a.localeCompare(b));
+
+  const current = assigneeFilter.value; // preserve selection
+  assigneeFilter.innerHTML = '<option value="">All Assignees</option>' +
+    assignees.map(name => `<option value="${name}">${name}</option>`).join('');
+  // restore selection if still present
+  if (assignees.map(n => n.toLowerCase()).includes(current.trim().toLowerCase())) {
+    assigneeFilter.value = assignees.find(n => n.toLowerCase() === current.trim().toLowerCase());
+  } else {
+    // leave as is or clear; optional
+  }
 }
 
 function renderTasks() {
+  updateAssignedToFilter(); // Add this line
   if (currentView === 'table') {
     renderTable();
   } else {
     renderCards();
   }
 }
-
 // Rendering functions
 function renderTable() {
   const titleFilter = document.getElementById('filterTitle').value.toLowerCase();
   const projectFilter = document.getElementById('filterProject').value;
   const priorityFilter = document.getElementById('filterPriority').value;
   const statusFilter = document.getElementById('filterStatus').value;
+const assigneeFilter = document.getElementById('filterAssignedTo').value.trim().toLowerCase();
+// ...
+
+
   
   const priorityWeight = { 'High': 3, 'Medium': 2, 'Low': 1 };
   
@@ -1422,7 +1452,8 @@ function renderTable() {
       task.title.toLowerCase().includes(titleFilter) &&
       (!projectFilter || task.project.toLowerCase() === projectFilter) &&
       (!priorityFilter || task.priority === priorityFilter) &&
-      (!statusFilter || (statusFilter === 'completed' ? !!task.done : !task.done))
+      (!statusFilter || (statusFilter === 'completed' ? !!task.done : !task.done)) &&
+	(!assigneeFilter || (task.assigned_to || '').trim().toLowerCase() === assigneeFilter)
     )
     .sort((a, b) => {
       // Sort by completion status first, then by priority
@@ -1770,16 +1801,20 @@ function renderCards() {
   const projectFilter = document.getElementById('filterProject').value;
   const priorityFilter = document.getElementById('filterPriority').value;
   const statusFilter = document.getElementById('filterStatus').value;
-  
+const assigneeFilter = document.getElementById('filterAssignedTo').value.trim().toLowerCase();
+
+
+
   const priorityWeight = { 'High': 3, 'Medium': 2, 'Low': 1 };
   
   const filteredTasks = tasks
-    .filter(task => 
-      task.title.toLowerCase().includes(titleFilter) &&
-      (!projectFilter || task.project.toLowerCase() === projectFilter) &&
-      (!priorityFilter || task.priority === priorityFilter) &&
-      (!statusFilter || (statusFilter === 'completed' ? !!task.done : !task.done))
-    )
+   .filter(task => 
+  task.title.toLowerCase().includes(titleFilter) &&
+  (!projectFilter || task.project.toLowerCase() === projectFilter) &&
+  (!priorityFilter || task.priority === priorityFilter) &&
+  (!statusFilter || (statusFilter === 'completed' ? !!task.done : !task.done)) &&
+  (!assigneeFilter || (task.assigned_to || '').trim().toLowerCase() === assigneeFilter)
+)
     .sort((a, b) => {
       if (a.done !== b.done) return a.done ? 1 : -1;
       return (priorityWeight[b.priority] || 0) - (priorityWeight[a.priority] || 0);
@@ -1971,6 +2006,7 @@ document.getElementById('filterTitle').oninput = renderTasks;
 document.getElementById('filterProject').onchange = renderTasks;
 document.getElementById('filterPriority').onchange = renderTasks;
 document.getElementById('filterStatus').onchange = renderTasks;
+document.getElementById('filterAssignedTo').onchange = renderTasks;
 
 // Logout functionality
 document.getElementById('logoutBtn').onclick = () => {
@@ -2018,13 +2054,15 @@ document.addEventListener('keydown', (e) => {
   }
   
   // Escape to clear filters
-  if (e.key === 'Escape') {
-    document.getElementById('filterTitle').value = '';
-    document.getElementById('filterProject').selectedIndex = 0;
-    document.getElementById('filterPriority').selectedIndex = 0;
-    document.getElementById('filterStatus').selectedIndex = 0;
-    renderTasks();
-  }
+// Escape to clear filters
+if (e.key === 'Escape') {
+  document.getElementById('filterTitle').value = '';
+  document.getElementById('filterProject').selectedIndex = 0;
+  document.getElementById('filterPriority').selectedIndex = 0;
+  document.getElementById('filterAssignedTo').selectedIndex = 0;
+  document.getElementById('filterStatus').selectedIndex = 0;
+  renderTasks();
+}
 });
 
 // Enhanced starfield
