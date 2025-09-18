@@ -166,13 +166,13 @@
   },
   {
     "id": 1758112590974.4858,
-    "title": "Need to check 867_02 Hold Reason",
+    "title": "Create 867_02 Mapping & I-Flow",
     "project": "Delaware-Payless-Power",
     "priority": "Medium",
-    "assigned_to": "Karthik",
+    "assigned_to": "Chandru",
     "done": false,
     "created_at": "2025-09-17T12:36:30.974Z",
-    "modified_at": "2025-09-17T12:36:30.974Z",
+    "modified_at": "2025-09-18T07:43:44.826Z",
     "completed_at": null
   },
   {
