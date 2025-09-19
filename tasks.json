@@ -331,13 +331,13 @@
   },
   {
     "id": 1758298621690.7854,
-    "title": "Create a Value Mapping for SNRPRT & apply it for all Inbound I Flows",
-    "project": "Beam Suntory",
+    "title": "Apply created Value Mapping in All IFlows",
+    "project": "Delaware-Payless-Power",
     "priority": "High",
     "assigned_to": "Chandru",
     "done": false,
     "created_at": "2025-09-19T16:17:01.690Z",
-    "modified_at": "2025-09-19T16:17:01.690Z",
+    "modified_at": "2025-09-19T16:55:19.643Z",
     "completed_at": null
   }
 ]
