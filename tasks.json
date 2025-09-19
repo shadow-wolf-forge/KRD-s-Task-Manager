@@ -330,17 +330,6 @@
     "completed_at": "2025-09-19T16:54:57.082Z"
   },
   {
-    "id": 1758287131711.9128,
-    "title": "Create Report of Transport Completion and Send it to Puru",
-    "project": "Wipro-CHS",
-    "priority": "High",
-    "assigned_to": "Karthik",
-    "done": false,
-    "created_at": "2025-09-19T13:05:31.711Z",
-    "modified_at": "2025-09-19T13:05:31.711Z",
-    "completed_at": null
-  },
-  {
     "id": 1758298621690.7854,
     "title": "Create a Value Mapping for SNRPRT & apply it for all Inbound I Flows",
     "project": "Beam Suntory",
