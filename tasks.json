@@ -335,10 +335,10 @@
     "project": "Delaware-Payless-Power",
     "priority": "High",
     "assigned_to": "Chandru",
-    "done": false,
+    "done": true,
     "created_at": "2025-09-19T16:17:01.690Z",
-    "modified_at": "2025-09-19T16:55:19.643Z",
-    "completed_at": null
+    "modified_at": "2025-09-22T16:17:53.979Z",
+    "completed_at": "2025-09-22T16:17:53.979Z"
   },
   {
     "id": 1758300951525.735,
