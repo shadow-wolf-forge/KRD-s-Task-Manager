@@ -341,17 +341,6 @@
     "completed_at": "2025-09-22T16:17:53.979Z"
   },
   {
-    "id": 1758300951525.735,
-    "title": "Complete Testing of QX1 I-Flows",
-    "project": "Wipro-CHS",
-    "priority": "Low",
-    "assigned_to": "Prasanna",
-    "done": false,
-    "created_at": "2025-09-19T16:55:51.525Z",
-    "modified_at": "2025-09-23T11:34:06.527Z",
-    "completed_at": null
-  },
-  {
     "id": 1758565075027.838,
     "title": "867_03 Periodic or Final Read",
     "project": "Delaware-Payless-Power",
