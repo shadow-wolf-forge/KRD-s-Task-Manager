@@ -401,9 +401,9 @@
     "project": "Beam Suntory",
     "priority": "High",
     "assigned_to": "Karthik",
-    "done": false,
+    "done": true,
     "created_at": "2025-09-25T13:41:01.230Z",
-    "modified_at": "2025-09-25T13:41:01.230Z",
-    "completed_at": null
+    "modified_at": "2025-09-25T13:58:48.515Z",
+    "completed_at": "2025-09-25T13:58:48.515Z"
   }
 ]
