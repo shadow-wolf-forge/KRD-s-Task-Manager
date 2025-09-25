@@ -394,5 +394,16 @@
     "created_at": "2025-09-24T09:28:29.138Z",
     "modified_at": "2025-09-24T09:28:29.138Z",
     "completed_at": null
+  },
+  {
+    "id": 1758807661230.7166,
+    "title": "Handle EL Paygrade Logic in User-Role",
+    "project": "Beam Suntory",
+    "priority": "High",
+    "assigned_to": "Karthik",
+    "done": false,
+    "created_at": "2025-09-25T13:41:01.230Z",
+    "modified_at": "2025-09-25T13:41:01.230Z",
+    "completed_at": null
   }
 ]
