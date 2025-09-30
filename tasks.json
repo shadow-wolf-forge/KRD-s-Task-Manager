@@ -311,11 +311,11 @@
     "id": 1758281891410.541,
     "title": "Complete SAPSHIP Express Transport",
     "project": "Wipro-CHS",
-    "priority": "Medium",
-    "assigned_to": "Karthik",
+    "priority": "High",
+    "assigned_to": "Prasanna",
     "done": false,
     "created_at": "2025-09-19T11:38:11.410Z",
-    "modified_at": "2025-09-24T11:32:00.855Z",
+    "modified_at": "2025-09-30T10:05:24.971Z",
     "completed_at": null
   },
   {
