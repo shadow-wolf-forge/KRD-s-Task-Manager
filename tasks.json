@@ -595,13 +595,13 @@
   },
   {
     "id": 1760433491313.853,
-    "title": "Update RCVPOR Login in Inbound Mappings",
+    "title": "Update RCVPOR in Inbound Mappings & Configure QUA",
     "project": "Delaware-Payless-Power",
     "priority": "High",
-    "assigned_to": "Karthik",
+    "assigned_to": "Chandru",
     "done": false,
     "created_at": "2025-10-14T09:18:11.313Z",
-    "modified_at": "2025-10-14T09:18:11.313Z",
+    "modified_at": "2025-10-14T13:06:41.890Z",
     "completed_at": null
   }
 ]
