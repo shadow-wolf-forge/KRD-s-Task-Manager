@@ -561,17 +561,6 @@
     "completed_at": null
   },
   {
-    "id": 1760116425498.0793,
-    "title": "Configure Flows for QS4 and Test it",
-    "project": "Delaware-Payless-Power",
-    "priority": "High",
-    "assigned_to": "Chandru",
-    "done": false,
-    "created_at": "2025-10-10T17:13:45.498Z",
-    "modified_at": "2025-10-10T17:13:45.498Z",
-    "completed_at": null
-  },
-  {
     "id": 1760116455555.0447,
     "title": "Change DFS Folder Paths as Puru mentioned",
     "project": "Wipro-CHS",
