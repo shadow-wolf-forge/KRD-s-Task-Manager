@@ -694,13 +694,13 @@
   },
   {
     "id": 1761068831761.6978,
-    "title": "2. 867_03 - Check PTD Nodes",
+    "title": "867_03 - Check PTD Nodes",
     "project": "Delaware-Payless-Power",
     "priority": "High",
     "assigned_to": "Karthik",
     "done": false,
     "created_at": "2025-10-21T17:47:11.761Z",
-    "modified_at": "2025-10-21T17:47:46.943Z",
+    "modified_at": "2025-10-21T17:48:04.144Z",
     "completed_at": null
   }
 ]
