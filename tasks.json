@@ -653,10 +653,10 @@
     "title": "Test the Inbound Flows with Multiple Transactions",
     "project": "Delaware-Payless-Power",
     "priority": "High",
-    "assigned_to": "Prasanna",
+    "assigned_to": "Chandru",
     "done": false,
     "created_at": "2025-10-16T17:31:43.343Z",
-    "modified_at": "2025-10-21T17:42:18.993Z",
+    "modified_at": "2025-10-22T08:39:40.823Z",
     "completed_at": null
   },
   {
