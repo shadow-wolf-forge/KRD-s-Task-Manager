@@ -740,11 +740,11 @@
     "id": 1761200358088.4302,
     "title": "Fix Gaurav defect",
     "project": "Delaware-Payless-Power",
-    "priority": "High",
+    "priority": "Medium",
     "assigned_to": "Karthik",
     "done": false,
     "created_at": "2025-10-23T06:19:18.088Z",
-    "modified_at": "2025-10-23T08:14:16.789Z",
+    "modified_at": "2025-10-23T15:29:01.414Z",
     "completed_at": null
   }
 ]
