@@ -720,10 +720,10 @@
     "project": "Delaware-Payless-Power",
     "priority": "Medium",
     "assigned_to": "Chandru",
-    "done": false,
+    "done": true,
     "created_at": "2025-10-22T15:37:11.880Z",
-    "modified_at": "2025-10-22T15:37:11.880Z",
-    "completed_at": null
+    "modified_at": "2025-10-23T19:19:39.694Z",
+    "completed_at": "2025-10-23T19:19:39.694Z"
   },
   {
     "id": 1761200338339.1487,
