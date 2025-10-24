@@ -757,5 +757,16 @@
     "created_at": "2025-10-23T19:20:04.150Z",
     "modified_at": "2025-10-24T09:12:14.728Z",
     "completed_at": null
+  },
+  {
+    "id": 1761315640705.729,
+    "title": "Cancel Adobe List (task given by Puru)",
+    "project": "Wipro-CHS",
+    "priority": "High",
+    "assigned_to": "Prasanna",
+    "done": false,
+    "created_at": "2025-10-24T14:20:40.705Z",
+    "modified_at": "2025-10-24T14:20:40.705Z",
+    "completed_at": null
   }
 ]
