@@ -749,13 +749,13 @@
   },
   {
     "id": 1761247204150.796,
-    "title": "Check Delete Permission issue for eSign Iflo",
+    "title": "Check Delete Permission issue for eSign Iflow",
     "project": "Wipro-CHS",
     "priority": "Medium",
     "assigned_to": "Prasanna",
     "done": false,
     "created_at": "2025-10-23T19:20:04.150Z",
-    "modified_at": "2025-10-23T19:20:04.150Z",
+    "modified_at": "2025-10-24T09:12:14.728Z",
     "completed_at": null
   }
 ]
