@@ -759,17 +759,6 @@
     "completed_at": "2025-10-24T15:52:09.889Z"
   },
   {
-    "id": 1761321125765.1592,
-    "title": "Move 867_02, 810_02 & 650_02 to QUA Package",
-    "project": "Delaware-Payless-Power",
-    "priority": "Low",
-    "assigned_to": "Chandru",
-    "done": false,
-    "created_at": "2025-10-24T15:52:05.765Z",
-    "modified_at": "2025-10-24T15:52:05.765Z",
-    "completed_at": null
-  },
-  {
     "id": 1761322170052.3875,
     "title": "Complete Pending FS Documents",
     "project": "Delaware-Payless-Power",
