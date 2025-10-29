@@ -773,11 +773,11 @@
     "id": 1761643028479.487,
     "title": "814_01 Defect in QS4",
     "project": "Delaware-Payless-Power",
-    "priority": "High",
+    "priority": "Medium",
     "assigned_to": "Karthik",
     "done": false,
     "created_at": "2025-10-28T09:17:08.478Z",
-    "modified_at": "2025-10-28T09:17:08.478Z",
+    "modified_at": "2025-10-29T09:22:01.242Z",
     "completed_at": null
   },
   {
