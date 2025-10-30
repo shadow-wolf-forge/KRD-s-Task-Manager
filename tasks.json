@@ -819,10 +819,10 @@
     "project": "Wipro-CHS",
     "priority": "High",
     "assigned_to": "Karthik",
-    "done": false,
+    "done": true,
     "created_at": "2025-10-29T11:14:16.925Z",
-    "modified_at": "2025-10-29T18:14:41.179Z",
-    "completed_at": null
+    "modified_at": "2025-10-30T10:20:44.760Z",
+    "completed_at": "2025-10-30T10:20:44.760Z"
   },
   {
     "id": 1761815998955.6514,
