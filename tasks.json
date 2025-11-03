@@ -900,5 +900,16 @@
     "created_at": "2025-10-31T18:06:07.589Z",
     "modified_at": "2025-11-03T12:07:17.150Z",
     "completed_at": "2025-11-03T12:07:17.150Z"
+  },
+  {
+    "id": 1762176453761.542,
+    "title": "CBCI Flow Skeleton Completion",
+    "project": "Delaware-Payless-Power",
+    "priority": "High",
+    "assigned_to": "Chandru",
+    "done": false,
+    "created_at": "2025-11-03T13:27:33.761Z",
+    "modified_at": "2025-11-03T13:27:33.761Z",
+    "completed_at": null
   }
 ]
