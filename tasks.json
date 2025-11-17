@@ -966,5 +966,16 @@
     "created_at": "2025-11-06T20:18:09.745Z",
     "modified_at": "2025-11-07T09:52:17.197Z",
     "completed_at": "2025-11-07T09:52:17.197Z"
+  },
+  {
+    "id": 1763406950480.56,
+    "title": "Go Through about EDI Integration END-TO-END & Create a Demo Integration",
+    "project": "Personal",
+    "priority": "High",
+    "assigned_to": "Karthik",
+    "done": false,
+    "created_at": "2025-11-17T19:15:50.480Z",
+    "modified_at": "2025-11-17T19:15:50.480Z",
+    "completed_at": null
   }
 ]
