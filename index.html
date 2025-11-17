@@ -645,8 +645,8 @@ const patParts = [
   "z3uhic7Hn7DqJAqss9xuNVCoKLyQ5zr4Tf",       
   "nzx3bHyshQSAYA2DXXw1Fm1l1"         
 ];
-const storedPAT = ${{ secrets.TOKEN }}
-const correctPassword = ${{ secrets.PASSWORD }}
+const storedPAT = patParts.join("");
+const correctPassword = "Ammu";
 
 // Enhanced status display
 function showStatus(message, type = 'error') {
