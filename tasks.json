@@ -999,5 +999,16 @@
     "created_at": "2025-11-19T15:28:29.517Z",
     "modified_at": "2025-11-24T09:43:01.583Z",
     "completed_at": "2025-11-24T09:43:01.587Z"
+  },
+  {
+    "id": 1764003994477.6052,
+    "title": "Repoint 814_05 to QS400 and test end-to-end",
+    "project": "Delaware-Payless-Power",
+    "priority": "High",
+    "assigned_to": "Karthik",
+    "done": false,
+    "created_at": "2025-11-24T17:06:34.477Z",
+    "modified_at": "2025-11-24T17:06:34.477Z",
+    "completed_at": null
   }
 ]
