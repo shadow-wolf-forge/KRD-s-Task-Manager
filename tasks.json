@@ -973,10 +973,10 @@
     "project": "Personal",
     "priority": "High",
     "assigned_to": "Karthik",
-    "done": false,
+    "done": true,
     "created_at": "2025-11-17T19:15:50.480Z",
-    "modified_at": "2025-11-17T19:15:50.480Z",
-    "completed_at": null
+    "modified_at": "2025-11-24T17:06:57.493Z",
+    "completed_at": "2025-11-24T17:06:57.493Z"
   },
   {
     "id": 1763406991370.5442,
