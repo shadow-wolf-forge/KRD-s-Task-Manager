@@ -1241,5 +1241,16 @@
     "created_at": "2025-12-11T15:52:31.035Z",
     "modified_at": "2025-12-11T15:52:31.035Z",
     "completed_at": null
+  },
+  {
+    "id": 1765468363997.2659,
+    "title": "Snowflake Test Scenario",
+    "project": "Personal",
+    "priority": "Low",
+    "assigned_to": "Karthik",
+    "done": false,
+    "created_at": "2025-12-11T15:52:43.997Z",
+    "modified_at": "2025-12-11T15:52:43.997Z",
+    "completed_at": null
   }
 ]
