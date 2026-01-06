@@ -1340,5 +1340,16 @@
     "created_at": "2026-01-06T10:00:33.997Z",
     "modified_at": "2026-01-06T16:23:07.546Z",
     "completed_at": "2026-01-06T16:23:07.546Z"
+  },
+  {
+    "id": 1767716625175.9512,
+    "title": "Complete B2B Course",
+    "project": "Personal",
+    "priority": "Medium",
+    "assigned_to": "Karthik",
+    "done": false,
+    "created_at": "2026-01-06T16:23:45.175Z",
+    "modified_at": "2026-01-06T16:23:45.175Z",
+    "completed_at": null
   }
 ]
