@@ -1406,5 +1406,16 @@
     "created_at": "2026-01-09T10:35:16.924Z",
     "modified_at": "2026-01-09T10:35:16.924Z",
     "completed_at": null
+  },
+  {
+    "id": 1767954937446.9941,
+    "title": "Verify Finalization",
+    "project": "Delaware-Payless-Power",
+    "priority": "High",
+    "assigned_to": "Karthik",
+    "done": false,
+    "created_at": "2026-01-09T10:35:37.446Z",
+    "modified_at": "2026-01-09T10:35:37.446Z",
+    "completed_at": null
   }
 ]
