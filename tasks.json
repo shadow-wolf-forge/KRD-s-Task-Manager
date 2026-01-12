@@ -1435,10 +1435,10 @@
     "project": "Delaware-Payless-Power",
     "priority": "High",
     "assigned_to": "Karthik",
-    "done": false,
+    "done": true,
     "created_at": "2026-01-09T10:36:29.455Z",
-    "modified_at": "2026-01-09T10:36:29.455Z",
-    "completed_at": null
+    "modified_at": "2026-01-12T03:28:11.193Z",
+    "completed_at": "2026-01-12T03:28:11.193Z"
   },
   {
     "id": 1767955005656.758,
