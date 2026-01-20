@@ -1505,5 +1505,16 @@
     "created_at": "2026-01-20T16:50:45.689Z",
     "modified_at": "2026-01-20T16:50:45.689Z",
     "completed_at": null
+  },
+  {
+    "id": 1768927857553.8076,
+    "title": "Learn about SAP Commerce Cloud",
+    "project": "Personal",
+    "priority": "High",
+    "assigned_to": "Karthik",
+    "done": false,
+    "created_at": "2026-01-20T16:50:57.553Z",
+    "modified_at": "2026-01-20T16:50:57.553Z",
+    "completed_at": null
   }
 ]
