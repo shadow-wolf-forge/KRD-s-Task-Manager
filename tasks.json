@@ -1523,9 +1523,9 @@
     "project": "Personal",
     "priority": "High",
     "assigned_to": "Karthik",
-    "done": false,
+    "done": true,
     "created_at": "2026-01-20T16:51:09.583Z",
-    "modified_at": "2026-01-20T16:51:09.583Z",
-    "completed_at": null
+    "modified_at": "2026-01-21T06:43:16.552Z",
+    "completed_at": "2026-01-21T06:43:16.552Z"
   }
 ]
