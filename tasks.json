@@ -1512,10 +1512,10 @@
     "project": "Personal",
     "priority": "High",
     "assigned_to": "Karthik",
-    "done": false,
+    "done": true,
     "created_at": "2026-01-20T16:50:57.553Z",
-    "modified_at": "2026-01-20T16:50:57.553Z",
-    "completed_at": null
+    "modified_at": "2026-01-21T06:43:12.773Z",
+    "completed_at": "2026-01-21T06:43:12.776Z"
   },
   {
     "id": 1768927869583.301,
