@@ -1527,5 +1527,16 @@
     "created_at": "2026-01-20T16:51:09.583Z",
     "modified_at": "2026-01-21T06:43:16.552Z",
     "completed_at": "2026-01-21T06:43:16.552Z"
+  },
+  {
+    "id": 1768979657468.3953,
+    "title": "Update For life Power BI TS",
+    "project": "Delaware-Payless-Power",
+    "priority": "Medium",
+    "assigned_to": "Karthik",
+    "done": false,
+    "created_at": "2026-01-21T07:14:17.468Z",
+    "modified_at": "2026-01-21T07:14:17.468Z",
+    "completed_at": null
   }
 ]
