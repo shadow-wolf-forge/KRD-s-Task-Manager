@@ -1501,10 +1501,10 @@
     "project": "Knack Systems",
     "priority": "High",
     "assigned_to": "Vivek",
-    "done": false,
+    "done": true,
     "created_at": "2026-01-20T16:50:45.689Z",
-    "modified_at": "2026-01-20T16:50:45.689Z",
-    "completed_at": null
+    "modified_at": "2026-01-23T03:42:32.504Z",
+    "completed_at": "2026-01-23T03:42:32.507Z"
   },
   {
     "id": 1768927857553.8076,
