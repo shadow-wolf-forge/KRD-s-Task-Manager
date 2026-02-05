@@ -1622,10 +1622,10 @@
     "project": "Knack Systems",
     "priority": "High",
     "assigned_to": "Karthik",
-    "done": false,
+    "done": true,
     "created_at": "2026-02-03T09:08:04.505Z",
-    "modified_at": "2026-02-03T09:08:04.505Z",
-    "completed_at": null
+    "modified_at": "2026-02-05T23:02:04.689Z",
+    "completed_at": "2026-02-05T23:02:04.689Z"
   },
   {
     "id": 1770109711818.6113,
