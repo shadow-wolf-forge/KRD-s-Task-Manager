@@ -1600,10 +1600,10 @@
     "project": "Personal",
     "priority": "Low",
     "assigned_to": "Karthik",
-    "done": false,
+    "done": true,
     "created_at": "2026-02-03T08:49:12.423Z",
-    "modified_at": "2026-02-03T08:49:12.423Z",
-    "completed_at": null
+    "modified_at": "2026-02-05T23:02:07.583Z",
+    "completed_at": "2026-02-05T23:02:07.583Z"
   },
   {
     "id": 1770108575966.243,
