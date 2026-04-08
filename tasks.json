@@ -1,16 +1,5 @@
 [
   {
-    "id": 1774937072762.0264,
-    "title": "User Role Logic Fix",
-    "project": "Beam Suntory",
-    "priority": "Medium",
-    "assigned_to": "Karthik",
-    "done": true,
-    "created_at": "2026-03-31T06:04:32.762Z",
-    "modified_at": "2026-04-02T13:57:51.268Z",
-    "completed_at": "2026-04-02T13:57:51.268Z"
-  },
-  {
     "id": 1774937165616.5774,
     "title": "Ceridian 2 User Test",
     "project": "Beam Suntory",
