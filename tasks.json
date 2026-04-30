@@ -1,1 +1,13 @@
-[]
+[
+  {
+    "id": 1777555975598.9158,
+    "title": "Follow up Aravo Supplier Jira Bugs",
+    "project": "AWC-McKinsey",
+    "priority": "Medium",
+    "assigned_to": "Karthik",
+    "done": false,
+    "created_at": "2026-04-30T13:32:55.598Z",
+    "modified_at": "2026-04-30T13:32:55.598Z",
+    "completed_at": null
+  }
+]
