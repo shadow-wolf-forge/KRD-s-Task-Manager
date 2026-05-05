@@ -56,13 +56,13 @@
   },
   {
     "id": 1777986398566.4883,
-    "title": "Get TL Approval for Jira and Start to work on CM",
+    "title": "Get TL Approval for Jira and Start to work on CM Approval",
     "project": "AWC-McKinsey",
     "priority": "High",
     "assigned_to": "Karthik",
     "done": false,
     "created_at": "2026-05-05T13:06:38.566Z",
-    "modified_at": "2026-05-05T13:06:38.566Z",
+    "modified_at": "2026-05-05T13:06:48.856Z",
     "completed_at": null
   }
 ]
