@@ -1,12 +1,19 @@
 const fs = require('fs');
-const { execSync } = require('child_process');
 const nodemailer = require('nodemailer');
 
-const current = JSON.parse(fs.readFileSync('tasks.json', 'utf8'));
+const tasks = JSON.parse(fs.readFileSync('tasks.json', 'utf8'));
 
-const previousRaw = execSync('git show HEAD~1:tasks.json').toString();
+const pending = tasks.filter(task => !task.done);
 
-const previous = JSON.parse(previousRaw);
+const grouped = {};
+
+pending.forEach(task => {
+  if (!grouped[task.assigned_to]) {
+    grouped[task.assigned_to] = [];
+  }
+
+  grouped[task.assigned_to].push(task);
+});
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -16,44 +23,28 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-const oldMap = {};
-
-previous.forEach(t => {
-  oldMap[t.id] = t;
-});
-
-const emailMap = {
-  Rahul: 'karthikramadurai.cpi@gmail.com',
-  Karthik: 'karthikramadurai.ci@gmail.com'
-};
-
-async function notify(task) {
-  await transporter.sendMail({
-    from: process.env.SMTP_USER,
-    to: emailMap[task.assigned_to],
-    subject: 'New Task Assigned',
-    text:
-`Task: ${task.title}
-
+async function sendEmails() {
+  for (const person in grouped) {
+    const taskList = grouped[person]
+      .map((task, index) => {
+        return `${index + 1}. ${task.title}
 Project: ${task.project}
+Priority: ${task.priority}`;
+      })
+      .join('\n\n');
 
-Priority: ${task.priority}`
-  });
-}
+    await transporter.sendMail({
+      from: process.env.SMTP_USER,
+      to: 'karthikramadurai.cpi@gmail.com',
+      subject: `Pending Tasks Reminder - ${person}`,
+      text:
+`Pending Tasks for ${person}
 
-async function processTasks() {
-  for (const task of current) {
-    const old = oldMap[task.id];
+${taskList}`
+    });
 
-    if (!old) {
-      await notify(task);
-      continue;
-    }
-
-    if (old.assigned_to !== task.assigned_to) {
-      await notify(task);
-    }
+    console.log(`Reminder mail sent for ${person}`);
   }
 }
 
-processTasks();
+sendEmails();
