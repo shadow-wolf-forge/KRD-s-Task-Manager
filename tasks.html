@@ -1112,6 +1112,26 @@ body::before {
           <option value="Low">Low Priority</option>
         </select>
         <select id="newAssignedTo" class="form-select"></select>
+		  <div style="display:flex; gap:16px; align-items:center; margin-top:16px;">
+
+  <label style="
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:var(--text-secondary);
+    font-size:14px;
+  ">
+    <input type="checkbox" id="newReminderEnabled">
+    Enable Reminder
+  </label>
+
+  <select id="newReminderInterval" class="form-select" style="max-width:180px;">
+    <option value="30">30 Minutes</option>
+    <option value="60">1 Hour</option>
+    <option value="120">2 Hours</option>
+  </select>
+
+</div>
         <button class="btn-primary" id="addTaskBtn">
           <i data-lucide="plus"></i>
           Add Task
@@ -1646,6 +1666,17 @@ function createTaskCard(task) {
     </div>
     
     <div class="card-meta">
+	${task.reminder_enabled ? `
+  <div class="card-meta-row">
+    <i data-lucide="bell" class="card-meta-icon"></i>
+    <span style="
+      color:#f59e0b;
+      font-weight:600;
+    ">
+      Every ${task.reminder_interval_minutes} mins
+    </span>
+  </div>
+` : ''}
       <div class="card-meta-row">
         <i data-lucide="folder" class="card-meta-icon"></i>
         <div class="card-project">
@@ -1986,6 +2017,15 @@ document.getElementById('addTaskBtn').onclick = async () => {
     priority,
     assigned_to: assignedTo,
     done: false,
+	  reminder_enabled:
+  document.getElementById('newReminderEnabled').checked,
+
+reminder_interval_minutes:
+  parseInt(
+    document.getElementById('newReminderInterval').value
+  ),
+
+last_reminder_sent_at: null,
     created_at: now,
     modified_at: now,
     completed_at: null
@@ -1995,6 +2035,9 @@ document.getElementById('addTaskBtn').onclick = async () => {
   
   // Clear form
   document.getElementById('newTitle').value = '';
+	document.getElementById('newReminderEnabled').checked = false;
+
+document.getElementById('newReminderInterval').value = '30';
   document.getElementById('newProject').selectedIndex = 0;
   document.getElementById('newPriority').selectedIndex = 1; // Default to Medium
   document.getElementById('newAssignedTo').selectedIndex = 0;
