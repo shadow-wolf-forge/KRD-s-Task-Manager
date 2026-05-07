@@ -1,0 +1,36 @@
+name: Reminder Notifier
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/5 * * * *'
+
+jobs:
+  send-reminders:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run Reminder Notifier
+        run: node scripts/reminder-notifier.js
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+
+      - name: Commit Updated tasks.json
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+
+          git add tasks.json
+
+          git diff --cached --quiet || git commit -m "Updated reminder timestamps"
+
+          git push
