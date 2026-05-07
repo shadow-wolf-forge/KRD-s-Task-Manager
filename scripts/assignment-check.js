@@ -36,21 +36,28 @@ function getPriorityColor(priority) {
   switch (priority) {
     case 'High':
       return '#ff6b6b';
+
     case 'Medium':
       return '#f7b731';
+
     case 'Low':
       return '#2ecc71';
+
     default:
       return '#6c5ce7';
   }
 }
 
-async function sendNotification(task, type) {
-  const currentTime = new Date().toLocaleString('en-IN', {
+function formatDateTime() {
+  return new Date().toLocaleString('en-IN', {
     timeZone: 'Asia/Kolkata',
     dateStyle: 'medium',
     timeStyle: 'short'
   });
+}
+
+async function sendNotification(task, type) {
+  const currentTime = formatDateTime();
 
   const html = `
     <div style="
@@ -138,7 +145,7 @@ async function sendNotification(task, type) {
                 font-size:13px;
                 font-weight:600;
               ">
-                ${task.priority}
+                ⚡ ${task.priority}
               </div>
 
             </div>
@@ -154,19 +161,17 @@ async function sendNotification(task, type) {
 
   await transporter.sendMail({
     from: process.env.SMTP_USER,
+
     to: 'karthikramadurai.cpi@gmail.com',
 
     subject:
-`🚀 ${type} Task • ${task.title}`,
+`🚀 ${type} Task • ${task.title} • ${currentTime}`,
 
     text:
-`${type} Task
-
-${task.title}
-
-Assigned To: ${task.assigned_to}
-Project: ${task.project}
-Priority: ${task.priority}`,
+`🚀 ${task.title}
+👤 ${task.assigned_to}
+📁 ${task.project}
+⚡ ${task.priority}`,
 
     html
   });
