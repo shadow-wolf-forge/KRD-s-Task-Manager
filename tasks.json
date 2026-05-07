@@ -108,16 +108,5 @@
     "created_at": "2026-05-06T17:55:52.503Z",
     "modified_at": "2026-05-07T07:38:51.579Z",
     "completed_at": "2026-05-07T07:38:51.579Z"
-  },
-  {
-    "id": 1778177694177.4536,
-    "title": "TVK",
-    "project": "Carrier",
-    "priority": "High",
-    "assigned_to": "Karthik",
-    "done": false,
-    "created_at": "2026-05-07T18:14:54.177Z",
-    "modified_at": "2026-05-07T18:14:54.177Z",
-    "completed_at": null
   }
 ]
