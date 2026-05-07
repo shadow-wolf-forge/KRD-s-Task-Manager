@@ -1,28 +1,50 @@
-name: Task Reminder
+const fs = require('fs');
+const nodemailer = require('nodemailer');
 
-on:
-  workflow_dispatch:
-  schedule:
-    - cron: '30 2,4,6,8,10,12,14,16 * * *'
+const tasks = JSON.parse(fs.readFileSync('tasks.json', 'utf8'));
 
-jobs:
-  send-reminder:
-    runs-on: ubuntu-latest
+const pending = tasks.filter(task => !task.done);
 
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
+const grouped = {};
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
+pending.forEach(task => {
+  if (!grouped[task.assigned_to]) {
+    grouped[task.assigned_to] = [];
+  }
 
-      - name: Install Dependencies
-        run: npm install
+  grouped[task.assigned_to].push(task);
+});
 
-      - name: Run Reminder Script
-        run: node scripts/reminder.js
-        env:
-          SMTP_USER: ${{ secrets.SMTP_USER }}
-          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS
+  }
+});
+
+async function sendEmails() {
+  for (const person in grouped) {
+    const taskList = grouped[person]
+      .map((task, index) => {
+        return `${index + 1}. ${task.title}
+Project: ${task.project}
+Priority: ${task.priority}`;
+      })
+      .join('\n\n');
+
+    await transporter.sendMail({
+      from: process.env.SMTP_USER,
+      to: 'karthikramadurai.cpi@gmail.com',
+      subject: `Pending Tasks Reminder - ${person}`,
+      text:
+`Pending Tasks for ${person}
+
+${taskList}`
+    });
+
+    console.log(`Reminder mail sent for ${person}`);
+  }
+}
+
+sendEmails();
