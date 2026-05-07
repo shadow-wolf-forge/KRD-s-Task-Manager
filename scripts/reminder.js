@@ -13,62 +13,149 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-function generateTableRows(tasks) {
-  return tasks.map((task, index) => {
+function formatDateTime() {
+  return new Date().toLocaleString('en-IN', {
+    timeZone: 'Asia/Kolkata',
+    dateStyle: 'medium',
+    timeStyle: 'short'
+  });
+}
+
+function getPriorityColor(priority) {
+  switch (priority) {
+    case 'High':
+      return '#ff6b6b';
+    case 'Medium':
+      return '#f7b731';
+    case 'Low':
+      return '#2ecc71';
+    default:
+      return '#6c5ce7';
+  }
+}
+
+function generateTaskCards(tasks) {
+  return tasks.map(task => {
     return `
-      <tr>
-        <td style="padding:8px;border:1px solid #ccc;">${index + 1}</td>
-        <td style="padding:8px;border:1px solid #ccc;">${task.title}</td>
-        <td style="padding:8px;border:1px solid #ccc;">${task.project}</td>
-        <td style="padding:8px;border:1px solid #ccc;">${task.priority}</td>
-        <td style="padding:8px;border:1px solid #ccc;">${task.assigned_to}</td>
-        <td style="padding:8px;border:1px solid #ccc;">${new Date(task.created_at).toLocaleString('en-IN', {
-          timeZone: 'Asia/Kolkata'
-        })}</td>
-      </tr>
+      <div style="
+        background:#ffffff;
+        border-radius:18px;
+        padding:18px;
+        margin-bottom:16px;
+        box-shadow:0 4px 14px rgba(0,0,0,0.08);
+        border-left:6px solid ${getPriorityColor(task.priority)};
+      ">
+        <div style="
+          font-size:17px;
+          font-weight:700;
+          color:#2d3436;
+          margin-bottom:12px;
+        ">
+          ${task.title}
+        </div>
+
+        <div style="
+          display:inline-block;
+          background:#f1f2f6;
+          padding:6px 12px;
+          border-radius:999px;
+          font-size:13px;
+          margin-right:8px;
+          color:#2f3542;
+        ">
+          📁 ${task.project}
+        </div>
+
+        <div style="
+          display:inline-block;
+          background:#f1f2f6;
+          padding:6px 12px;
+          border-radius:999px;
+          font-size:13px;
+          margin-right:8px;
+          color:#2f3542;
+        ">
+          👤 ${task.assigned_to}
+        </div>
+
+        <div style="
+          display:inline-block;
+          background:${getPriorityColor(task.priority)};
+          color:white;
+          padding:6px 12px;
+          border-radius:999px;
+          font-size:13px;
+          font-weight:600;
+        ">
+          ${task.priority}
+        </div>
+      </div>
     `;
   }).join('');
 }
 
 async function sendMail() {
   if (pendingTasks.length === 0) {
-    console.log('No pending tasks found');
+    console.log('No pending tasks');
     return;
   }
 
+  const currentTime = formatDateTime();
+
   const htmlContent = `
-    <div style="font-family:Arial,sans-serif;">
-      <h2>Pending Tasks Reminder</h2>
+    <div style="
+      background:#f5f6fa;
+      padding:30px;
+      font-family:Arial,sans-serif;
+    ">
 
-      <table style="border-collapse:collapse;width:100%;">
-        <thead>
-          <tr style="background-color:#f2f2f2;">
-            <th style="padding:10px;border:1px solid #ccc;">#</th>
-            <th style="padding:10px;border:1px solid #ccc;">Task</th>
-            <th style="padding:10px;border:1px solid #ccc;">Project</th>
-            <th style="padding:10px;border:1px solid #ccc;">Priority</th>
-            <th style="padding:10px;border:1px solid #ccc;">Assigned To</th>
-            <th style="padding:10px;border:1px solid #ccc;">Created At</th>
-          </tr>
-        </thead>
+      <div style="
+        max-width:750px;
+        margin:auto;
+      ">
 
-        <tbody>
-          ${generateTableRows(pendingTasks)}
-        </tbody>
-      </table>
+        <div style="
+          text-align:center;
+          margin-bottom:28px;
+        ">
+          <div style="
+            font-size:30px;
+            font-weight:800;
+            color:#2d3436;
+            margin-bottom:10px;
+          ">
+            Pending Tasks ✨
+          </div>
 
-      <br>
+          <div style="
+            color:#636e72;
+            font-size:14px;
+          ">
+            ${currentTime}
+          </div>
+        </div>
 
-      <div>
-        Total Pending Tasks: <b>${pendingTasks.length}</b>
+        ${generateTaskCards(pendingTasks)}
+
+        <div style="
+          text-align:center;
+          margin-top:25px;
+          color:#636e72;
+          font-size:14px;
+        ">
+          Total Pending Tasks: 
+          <b>${pendingTasks.length}</b>
+        </div>
+
       </div>
+
     </div>
   `;
 
   await transporter.sendMail({
     from: process.env.SMTP_USER,
     to: 'karthikramadurai.cpi@gmail.com',
-    subject: `Pending Tasks Reminder (${pendingTasks.length})`,
+    subject: `Pending Tasks Reminder • ${currentTime}`,
     html: htmlContent
   });
 
