@@ -176,7 +176,7 @@
     "done": false,
     "reminder_enabled": true,
     "reminder_interval_minutes": 30,
-    "last_reminder_sent_at": "2026-05-08T20:40:45.285Z",
+    "last_reminder_sent_at": "2026-05-08T21:39:10.918Z",
     "created_at": "2026-05-07T18:46:21.571Z",
     "modified_at": "2026-05-07T18:46:21.571Z",
     "completed_at": null
@@ -190,7 +190,7 @@
     "done": false,
     "reminder_enabled": true,
     "reminder_interval_minutes": 30,
-    "last_reminder_sent_at": "2026-05-08T20:40:45.941Z",
+    "last_reminder_sent_at": "2026-05-08T21:39:11.424Z",
     "created_at": "2026-05-07T18:46:41.570Z",
     "modified_at": "2026-05-07T18:46:41.570Z",
     "completed_at": null
