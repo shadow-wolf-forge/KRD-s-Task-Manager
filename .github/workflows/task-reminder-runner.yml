@@ -1,4 +1,5 @@
-name: Remind the Tasks
+name: Task Reminder Runner
+
 on:
   workflow_dispatch:
 
@@ -17,8 +18,6 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-        with:
-          persist-credentials: true
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -32,7 +31,7 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: node scripts/task-reminder-runner.js
+        run: node scripts/reminder-notifier.js
 
       - name: Commit Updated Task Data
         run: |
