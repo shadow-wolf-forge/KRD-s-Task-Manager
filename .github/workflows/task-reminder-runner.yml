@@ -16,11 +16,16 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
+
+      - name: Install Dependencies
+        run: npm install
 
       - name: Execute Reminder Script
         env:
@@ -28,13 +33,16 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: node scripts/reminder-notifier.js
 
-      - name: Save Updated Task Data
+      - name: Commit Updated Task Data
         run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           git add tasks.json
 
-          git diff --cached --quiet || git commit -m "Task reminder update"
-
-          git push
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Task reminder update"
+            git push
+          fi
