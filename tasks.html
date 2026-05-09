@@ -9,31 +9,31 @@
 <script src="https://unpkg.com/lucide@latest"></script>
 <style>
 :root{
-  --bg-primary: #040f1a;
-  --bg-secondary: #061525;
-  --bg-tertiary: #0a1f2e;
-  --surface: rgba(0,200,150,0.04);
-  --surface-hover: rgba(0,200,150,0.08);
-  --surface-elevated: rgba(0,180,255,0.06);
-  --border: rgba(0,200,180,0.12);
-  --border-hover: rgba(0,220,200,0.25);
-  --text-primary: #e8f8f5;
-  --text-secondary: #a8d8cf;
-  --text-muted: #4a8a80;
-  --accent-blue: #00b4ff;
-  --accent-blue-dark: #0077cc;
-  --accent-green: #00e5a0;
-  --accent-green-dark: #00b87a;
+  --bg-primary: #0a0e27;
+  --bg-secondary: #0f1629;
+  --bg-tertiary: #1a1f3a;
+  --surface: rgba(255,255,255,0.03);
+  --surface-hover: rgba(255,255,255,0.06);
+  --surface-elevated: rgba(255,255,255,0.08);
+  --border: rgba(255,255,255,0.08);
+  --border-hover: rgba(255,255,255,0.15);
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #64748b;
+  --accent-blue: #3b82f6;
+  --accent-blue-dark: #1e40af;
+  --accent-green: #10b981;
+  --accent-green-dark: #059669;
   --accent-orange: #f59e0b;
   --accent-orange-dark: #d97706;
   --accent-red: #ef4444;
   --accent-red-dark: #dc2626;
-  --accent-purple: #6ee7ff;
-  --accent-purple-dark: #00b4ff;
-  --shadow-sm: 0 2px 8px rgba(0,180,255,0.08);
-  --shadow-md: 0 8px 25px rgba(0,180,255,0.12);
-  --shadow-lg: 0 16px 40px rgba(0,0,0,0.3);
-  --shadow-xl: 0 25px 60px rgba(0,0,0,0.35);
+  --accent-purple: #8b5cf6;
+  --accent-purple-dark: #7c3aed;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.1);
+  --shadow-md: 0 8px 25px rgba(0,0,0,0.15);
+  --shadow-lg: 0 16px 40px rgba(0,0,0,0.2);
+  --shadow-xl: 0 25px 60px rgba(0,0,0,0.25);
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
@@ -45,7 +45,7 @@ html, body { height: 100%; }
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: linear-gradient(135deg, #020d14 0%, #041624 40%, #061e18 70%, #030f10 100%);
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-tertiary) 100%);
   color: var(--text-primary);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -61,10 +61,9 @@ body::before {
   inset: 0;
   z-index: -2;
   background: 
-    radial-gradient(ellipse at 15% 85%, rgba(0,180,255,0.13) 0%, transparent 50%),
-    radial-gradient(ellipse at 85% 15%, rgba(0,229,160,0.10) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 50%, rgba(0,140,200,0.06) 0%, transparent 60%),
-    radial-gradient(ellipse at 30% 20%, rgba(0,200,150,0.07) 0%, transparent 40%);
+    radial-gradient(circle at 20% 80%, rgba(59,130,246,0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(139,92,246,0.06) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(16,185,129,0.04) 0%, transparent 50%);
   animation: gradientShift 20s ease-in-out infinite alternate;
 }
 
@@ -108,14 +107,13 @@ body::before {
 
 /* Header */
 .header {
-  background: linear-gradient(135deg, rgba(0,180,255,0.07) 0%, rgba(0,229,160,0.05) 100%);
-  backdrop-filter: blur(24px);
-  border: 1px solid rgba(0,220,200,0.18);
-  border-top: 1px solid rgba(0,229,160,0.3);
+  background: var(--surface);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 24px 32px;
   margin-bottom: 32px;
-  box-shadow: 0 8px 32px rgba(0,180,255,0.10), inset 0 1px 0 rgba(0,229,160,0.15);
+  box-shadow: var(--shadow-md);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -138,19 +136,19 @@ body::before {
 .logo-icon {
   width: 48px;
   height: 48px;
-  background: linear-gradient(135deg, var(--accent-blue), var(--accent-green));
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  box-shadow: 0 4px 16px rgba(0,180,255,0.3);
+  box-shadow: var(--shadow-sm);
 }
 
 .app-title {
   font-size: 28px;
   font-weight: 700;
-  background: linear-gradient(135deg, var(--accent-blue), var(--accent-green));
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -220,13 +218,12 @@ body::before {
 
 /* Controls section */
 .controls-section {
-  background: linear-gradient(135deg, rgba(0,180,255,0.05) 0%, rgba(0,229,160,0.04) 100%);
-  backdrop-filter: blur(24px);
-  border: 1px solid rgba(0,220,200,0.15);
-  border-top: 1px solid rgba(0,229,160,0.22);
+  background: var(--surface);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 24px;
-  box-shadow: 0 8px 32px rgba(0,180,255,0.08), inset 0 1px 0 rgba(0,229,160,0.12);
+  box-shadow: var(--shadow-md);
 }
 
 .section-title {
@@ -248,7 +245,7 @@ body::before {
 }
 .add-task-row {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr 1fr auto;
+  grid-template-columns: 2fr 1fr 1fr 1fr auto;
   gap: 16px;
   align-items: center;
 }
@@ -301,13 +298,12 @@ body::before {
 
 /* Tasks section */
 .tasks-section {
-  background: linear-gradient(135deg, rgba(0,180,255,0.05) 0%, rgba(0,229,160,0.04) 100%);
-  backdrop-filter: blur(24px);
-  border: 1px solid rgba(0,220,200,0.15);
-  border-top: 1px solid rgba(0,229,160,0.22);
+  background: var(--surface);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 24px;
-  box-shadow: 0 8px 32px rgba(0,180,255,0.08), inset 0 1px 0 rgba(0,229,160,0.12);
+  box-shadow: var(--shadow-md);
   flex: 1;
 }
 
@@ -1022,6 +1018,325 @@ body::before {
     font-size: 15px;
   }
 }
+
+/* Reminder badge */
+.reminder-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  background: linear-gradient(135deg, rgba(139,92,246,0.2), rgba(139,92,246,0.1));
+  color: var(--accent-purple);
+  border: 1px solid rgba(139,92,246,0.3);
+  white-space: nowrap;
+}
+
+.reminder-badge svg {
+  width: 11px;
+  height: 11px;
+}
+
+/* Reminder row in form */
+.reminder-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+}
+
+.reminder-row:focus-within {
+  border-color: var(--accent-purple);
+  box-shadow: 0 0 0 3px rgba(139,92,246,0.1);
+}
+
+.reminder-toggle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.reminder-toggle input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-track {
+  width: 36px;
+  height: 20px;
+  background: var(--border);
+  border-radius: 999px;
+  position: relative;
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+
+.toggle-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  background: white;
+  border-radius: 50%;
+  transition: var(--transition);
+}
+
+.reminder-toggle input:checked ~ .toggle-track {
+  background: var(--accent-purple);
+}
+
+.reminder-toggle input:checked ~ .toggle-track .toggle-thumb {
+  transform: translateX(16px);
+}
+
+.reminder-interval-select {
+  flex: 1;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface-elevated);
+  color: var(--text-primary);
+  font-size: 13px;
+  font-family: inherit;
+  transition: var(--transition);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.reminder-interval-select.active {
+  opacity: 1;
+  pointer-events: all;
+  border-color: rgba(139,92,246,0.4);
+}
+
+.reminder-interval-select:focus {
+  outline: none;
+  border-color: var(--accent-purple);
+}
+
+/* Notes button & popup */
+.action-btn.notes {
+  color: var(--accent-orange);
+  border-color: rgba(245,158,11,0.3);
+  position: relative;
+}
+
+.action-btn.notes:hover,
+.action-btn.notes.has-notes {
+  background: rgba(245,158,11,0.1);
+}
+
+.action-btn.notes.has-notes::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 6px;
+  height: 6px;
+  background: var(--accent-orange);
+  border-radius: 50%;
+}
+
+.card-action-btn.notes {
+  color: var(--accent-orange);
+  border-color: rgba(245,158,11,0.3);
+  position: relative;
+}
+
+.card-action-btn.notes:hover,
+.card-action-btn.notes.has-notes {
+  background: rgba(245,158,11,0.1);
+}
+
+.card-action-btn.notes.has-notes::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 5px;
+  height: 5px;
+  background: var(--accent-orange);
+  border-radius: 50%;
+}
+
+.notes-popup {
+  display: none;
+  position: absolute;
+  z-index: 1000;
+  min-width: 260px;
+  max-width: 340px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-hover);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xl);
+  padding: 14px;
+  backdrop-filter: blur(20px);
+}
+
+.notes-popup.open {
+  display: block;
+  animation: fadeInUp 0.15s ease-out;
+}
+
+.notes-popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.notes-popup-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  border-radius: 4px;
+  transition: var(--transition);
+}
+
+.notes-popup-close:hover { color: var(--text-primary); }
+
+.notes-textarea {
+  width: 100%;
+  min-height: 90px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 13px;
+  font-family: inherit;
+  resize: vertical;
+  padding: 10px;
+  transition: var(--transition);
+  line-height: 1.5;
+}
+
+.notes-textarea:focus {
+  outline: none;
+  border-color: var(--accent-orange);
+  box-shadow: 0 0 0 3px rgba(245,158,11,0.1);
+}
+
+.notes-save-btn {
+  margin-top: 10px;
+  width: 100%;
+  padding: 8px;
+  background: linear-gradient(135deg, var(--accent-orange), var(--accent-orange-dark));
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.notes-save-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Notes container for positioning */
+.notes-anchor {
+  position: relative;
+  display: inline-flex;
+}
+
+/* Responsive table for mobile: hide less important columns */
+@media (max-width: 768px) {
+  .tasks-table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+
+  .tasks-table thead,
+  .tasks-table tbody,
+  .tasks-table tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  .tasks-table thead { width: calc(100% - 0px); }
+
+  /* Switch table to block scrollable layout */
+  .table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: var(--radius-md);
+  }
+
+  .tasks-table {
+    min-width: 640px;
+    display: table;
+  }
+
+  .tasks-table th:nth-child(4),
+  .tasks-table td:nth-child(4) {
+    display: none; /* hide Assigned To on mobile */
+  }
+}
+
+/* Add task row reminder option */
+.add-task-reminder {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  grid-column: 1 / -1;
+  padding: 10px 14px;
+  background: rgba(139,92,246,0.05);
+  border: 1px solid rgba(139,92,246,0.15);
+  border-radius: var(--radius-sm);
+}
+
+/* Card reminder row */
+.card-reminder {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* small form elements inside card edit */
+.card-reminder-row {
+  padding: 8px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+}
 </style>
 </head>
 <body>
@@ -1116,20 +1431,27 @@ body::before {
           <option value="Low">Low Priority</option>
         </select>
         <select id="newAssignedTo" class="form-select"></select>
-        <select id="newReminderInterval" class="form-select">
-          <option value="0">No Reminder</option>
-          <option value="15">15 Minutes</option>
-          <option value="30">30 Minutes</option>
-          <option value="45">45 Minutes</option>
-          <option value="60">1 Hour</option>
-          <option value="120">2 Hours</option>
-          <option value="180">3 Hours</option>
-          <option value="300">5 Hours</option>
-        </select>
         <button class="btn-primary" id="addTaskBtn">
           <i data-lucide="plus"></i>
-          Add
+          Add Task
         </button>
+      </div>
+      <!-- Reminder row for new task -->
+      <div class="add-task-reminder" style="margin-top:12px;">
+        <i data-lucide="bell" style="width:15px;height:15px;color:var(--accent-purple);flex-shrink:0;"></i>
+        <label class="reminder-toggle" id="newReminderToggleLabel" title="Enable reminder for this task">
+          <input type="checkbox" id="newReminderEnabled">
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+          <span>Reminder</span>
+        </label>
+        <select id="newReminderInterval" class="reminder-interval-select">
+          <option value="15">Every 15 min</option>
+          <option value="30" selected>Every 30 min</option>
+          <option value="60">Every 1 hr</option>
+          <option value="120">Every 2 hr</option>
+          <option value="180">Every 3 hr</option>
+          <option value="300">Every 5 hr</option>
+        </select>
       </div>
     </section>
 
@@ -1161,7 +1483,6 @@ body::before {
               <th>Project</th>
               <th>Priority</th>
               <th>Assigned To</th>
-			  <th>Reminder</th>
               <th>Status</th>
               <th>Actions</th>
             </tr>
@@ -1206,9 +1527,7 @@ if (!token) {
 // Project logos configuration
 const projectLogos = {
   "Beam Suntory": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTH-JifEp7Ot2Pjtm0jTuogXJT8d7hSrJW2aw&s",
-"AWC-McKinsey" : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAnFBMVEUFHCz///8AAAAAABMAABkAGioAGCkAAA0AABwAABUAABgAABIDGysAFygAAA4AEiUACyEAAAhvd36mqa3p7OwAAB4ADSWdo6gAECTj5ueYnaLx8/O+wsTc3d3T1tkABh6ytropNUGChoxJVV60ubwgLzxFUFoxP0qQlZpcZm46RlB4gIXFycxudn1mbnUYKTdUXWYhMDwAFiwLJDS+fh2OAAAJKUlEQVR4nO2a/XuiuhLHM4GE8CawQAUDKPiGStWt////didouz273d1z7z17tM8znx/ESKD5kslkZihjBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQfxhl27YSf2lGb63CNsyZvB0ZE8Edxvh/oWaLNE0vrxJdbCx2rxKLgzm5mKl2ZY79nMUiFz+71YNS7CoA+BK/trDR7cPbyXA5w3a1K9YHPKa7KD7oIf5sEiNeA9T82vAbgIMTvp0M+QLPFUzwHnZOxKwBYC3vNNL/maROAdrRMMN9VsJz/O6kl0LtMBbv4WxjM9o0ffzxbR4Yp1yiBbrmq7voy5vFBnI0RntUWKzh6I2dI1+9XhfIm9ORr1+YkA/ph5xyvwAdSTNUHWejQmHn25MzD64KQ6YP1tjXT5JJEDlJIkXuXuwcfxL+qfU8Hy079MNWKWkniM8Kx3w+BE652V99zbwb+KhQFmk56OwQB0Zh4pX9daxWk5XN/Fxm2cntNeiDYuIylE22GFoZncy3KV9kZZk1fJfh52NIRCtNamjQ1/DsPCoUTpb6jtTwXBiFfIDldfFJOYXsSbYl7KrmGf3ruXCrFU8uDbRoyZ2DF6XWFN3vi5RbaC6P4ZRQoYuD3UfRubRGhdai5IJNqloJVNgscLYuV/8anVChcGegdzxOelh4CfRchFa25XXFpXSmkPMGZha63+wS/eZP/0ugwshBX+NZQzdPUOH8AjN0nPZqH5l1CCsFOMWjDwlbo1DNYDoxRm0UZtAFVn48bWCXn9rtAp3uGfSTiA+VdW9pN4xC3BSAr2ESmDm0l9AZH2KiN1RYJuoZYDYxfd8UmkdgFLqqA9CLluOxbJDVdB/yEg5zq9w+yBSOCsMtwHG68JiZQ/cI3fx2cvQ0jK8Admab+KZQ3RQy6znDeGeFJnvmlmV5KmTxM5T83CT3VPUeo5A5DTQZRmvJdQ5XVyc4D6/7oQgz0OvwI4VBNFdHjIRmB5hdt0wlhJXBvjoW91T1nlFhfMS1hg99XIcnjHHygAmnX/q3mGZ5XYo/KpwPiYj5WZdoBQo1SZ6eRN5B0/iPsvsLXm5iIfIMMKVABwjPylqBPnPud5k9MbsFRjcOLtSUh8aXeiH60pmL0cABFomLcawMkmmJHrTccD5PB5eJWL8F83dHXr5As2aBPc3QvC7oN8qvDCMb0CVud3KjMRjA3ErY2FytL7jXHS64H5ZbJr42oPeWhi7y82bmttgVw1oIcBO0e108Sgpir8q6LM+RWM/yIB7KGltf1AVdCzSbpC/NDyvbxNzYr25Ms6nNJcvteDgPfaMznSoRnUweVo0xvJtOvXsre8N2HGeCo5JoVYHrmFbBpMufEsyW5o6TOI7JKlhkzvim6U/GS0LfdI4s5TsvExtnLLS4zS0TGsgTqEeZwp/z34zwre/Nubjpyv2Hh/NYSAbb8PfdHofgQ7cvxE9nWaWD8+eG848zt2LXVe53cgprLmNfReqjyMzXy0cJ2H5P4HeY9FVd9ZdESPJjgwlH059nuw+0CPEYWdPfwloNuePhLnh5N4mhxPyoddemEHf4aGN/fD/6RrjVvmTSObxXKPIa9m4oQn/zE4WfiOKoTZ0xSMrTN4U2pofXyNw7fn6FZ9ibREq2gZRCjstLKFMQGE8HTt2NCmVkKllMSONgRRiaxyFDOZbsJMbwYRSODjkIrx3N3cbLpLlImhYuXnkH6xZPWu9NSBNeLvg5TmR8AP1a2lczo1BY6+Xy5GJYa7yMYvutksI77ddewE5GqtouWxvFxPn2vMGOAbsY7e5689U2FzF2keYPXO4g0aTwM27CV9Baly84E94CMv76BE4oOiwqTJb0KnZTrVe8NyGtnJjIdpZsS62Pa4zHYXClOpZNVUNqF7tM66/+YLrwyty5Sg5aQ3WHYBYzKDOKgFmXEiqTR7EJpklv6TtapWS6diYTv9H5ZAlZX21fBkiH6WWbwTnmK5hmBz9PYZhsYMU93sFUFZMajvV0i6nLzjySnrP5C0z5L0byh5gfavNao8dsdn6Ga8Etqd8pZGZDgT2mvlELC4+bwYbxGYyz9aeYKMfPADtXSEwfN3xIbRPSZQnzZlC22KXHGU0a6PH3S2b/+0YqXDjmRTkaavhVP40jmAzfrJSNjmf0t0JlcOGmysai81h+VT1M7fjL+B0zRph5bacKe+xvT6F3xzJB6sU7yFzppb36eBR/EnQqbRjGtcnvi3M9lttMcUpb30JVlFOPU+rXOEsAGM8Yhc43hWNVEW+1ciN+ek6HV4X5rSDJeAlf5lJbd/AzKAaThFHigs9uz9i8Y/yWOsTucZSDc1vD+RcKn2HlrAe9eF7/oBDV17xb3CNnRoUd/t0wbjB5b27LJOAa+tfRqEO3hXKMCiyMdH6u0Ngj17pw4/wHhcLLoK3vknCZre8Um+y9AijFLXwxzuN0/V5Ivca1l5sXV5HOYlQor+sQLTp/vw6tFM5nWExY0f5VYYoPK++grO7yFkf4GrKto+aW8ah6445BTeDjjrhxlFJOmx1yFHJwpPSP0NmosAjZfImqZICOcjpBhbCcROpFZzauWJ60DSoMk6lx0IGFChMT82jY3CfhivYa7bPvF7rDrR/69hq3WZhVNH3fD9BN0DxX0F0Y2htfp7hg1xGKgO4kzphgnY2VlunuUMKmmGicKr0FmLY7c06wJd5+h6mIN6utO5VXi3iKUUmZnpTNZqth9XQNL92v6e1nI9g51lo3xySfDlU1pKoyh27dVHhozTpcZdmwneOGM2TVOkmrYcAeVbPdmi7NJgwmzf0q5MK2X54sZRZa7lre64MOPTeKXPvmHGKrePJxiMq1LEsJDz+tWJpPN0eFjuepsQYXujYex9OGMLweWLTUdwhn3gg+Lsjgz+/s6qdFm6svfSv1fGyKvHl7FfTpCNTzLZz9BdFGf7r/Q3olYGv0OpvfZEWTZmb/SwP6x5Hbum6a+vBLNyKestMnKl19Rzi+AfhNpUNMPq9AgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiCI7/kPe+++xiDfY7cAAAAASUVORK5CYII=",
-	"Personal" : "https://instagram.fmaa16-2.fna.fbcdn.net/v/t51.82787-19/624466507_18090227231046175_2656357038837126282_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.fmaa16-2.fna.fbcdn.net&_nc_cat=107&_nc_oc=Q6cZ2gGq1QsI95vBJcVuXQdhRxHXa7yuQFigIfYnXdmi7YywRNXlSOKUho14M30O_pOVIRKrQCcnV2YuXoFpCqseC-ny&_nc_ohc=1z-FeCYOFrkQ7kNvwGx1fZe&_nc_gid=hNV-7rmBJT_Hb793T1BBwg&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Af6vXxUUpTEZy3Ka7ldNnywZrKHBv50U8SWJl6_v06qp9g&oe=69FFEDBA&_nc_sid=8b3546", 
-	"Carrier" : "https://images.carriercms.com/image/upload/w_500,c_lfill,g_auto,q_auto,f_auto/v1664481444/carrier-corp/news/2022/PR-Announcement-Carrier-Logo-Blue-Background-1920x1080.jpg"
+"AWC-McKinsey" : "data:image/png;base64,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"
 };
 
 // Utility functions
@@ -1500,6 +1819,12 @@ const assigneeFilter = document.getElementById('filterAssignedTo').value.trim().
 }
 
 function createTaskRow(task) {
+  // Ensure new fields exist on old tasks
+  if (task.reminder_enabled === undefined) task.reminder_enabled = false;
+  if (task.reminder_interval_minutes === undefined) task.reminder_interval_minutes = 30;
+  if (task.last_reminder_sent_at === undefined) task.last_reminder_sent_at = null;
+  if (task.notes === undefined) task.notes = '';
+
   const row = document.createElement('tr');
   row.className = `task-row ${task.done ? 'completed' : ''}`;
   
@@ -1527,9 +1852,25 @@ function createTaskRow(task) {
       <span class="tooltip-label">Completed:</span>
       <span class="tooltip-value">${formatDateIST(task.completed_at)}</span>
     </div>
+    ${task.reminder_enabled ? `<div class="tooltip-item">
+      <span class="tooltip-label">Reminder:</span>
+      <span class="tooltip-value">Every ${task.reminder_interval_minutes >= 60 ? (task.reminder_interval_minutes/60)+'hr' : task.reminder_interval_minutes+'min'}</span>
+    </div>` : ''}
   `;
+
+  // Reminder badge inline with title
+  const titleLineWrap = document.createElement('div');
+  titleLineWrap.style.cssText = 'display:flex;flex-direction:column;gap:5px;';
+  titleLineWrap.appendChild(titleText);
+  if (task.reminder_enabled) {
+    const rb = document.createElement('span');
+    rb.className = 'reminder-badge';
+    const intervalLabel = task.reminder_interval_minutes >= 60 ? (task.reminder_interval_minutes/60)+'hr' : task.reminder_interval_minutes+'min';
+    rb.innerHTML = `<i data-lucide="bell" style="width:11px;height:11px;"></i> ${intervalLabel}`;
+    titleLineWrap.appendChild(rb);
+  }
   
-  titleWrap.appendChild(titleText);
+  titleWrap.appendChild(titleLineWrap);
   titleWrap.appendChild(tooltip);
   titleCell.appendChild(titleWrap);
   row.appendChild(titleCell);
@@ -1626,7 +1967,39 @@ function createTaskRow(task) {
   editBtn.title = 'Edit task';
   editBtn.innerHTML = '<i data-lucide="edit-3"></i>';
   editBtn.onclick = () => makeRowEditable(row, task);
-  
+
+  // Notes button with popup
+  const notesAnchor = document.createElement('div');
+  notesAnchor.className = 'notes-anchor';
+
+  const notesBtn = document.createElement('button');
+  notesBtn.className = `action-btn notes${task.notes ? ' has-notes' : ''}`;
+  notesBtn.title = 'Notes';
+  notesBtn.innerHTML = '<i data-lucide="sticky-note"></i>';
+
+  const notesPopup = document.createElement('div');
+  notesPopup.className = 'notes-popup';
+  notesPopup.style.cssText = 'right:0;top:calc(100% + 6px);left:auto;';
+  notesPopup.innerHTML = `
+    <div class="notes-popup-header">
+      <span>📝 Notes</span>
+      <button class="notes-popup-close"><i data-lucide="x" style="width:14px;height:14px;"></i></button>
+    </div>
+    <textarea class="notes-textarea" placeholder="Add notes here..."></textarea>
+    <button class="notes-save-btn"><i data-lucide="save" style="width:13px;height:13px;"></i> Save Notes</button>
+  `;
+
+  notesBtn.onclick = (e) => { e.stopPropagation(); openNotesPopup(notesAnchor, task); };
+  notesPopup.querySelector('.notes-popup-close').onclick = (e) => { e.stopPropagation(); notesPopup.classList.remove('open'); };
+  notesPopup.querySelector('.notes-save-btn').onclick = async (e) => {
+    e.stopPropagation();
+    await saveNotes(task, notesPopup.querySelector('.notes-textarea'), null, notesBtn);
+    notesPopup.classList.remove('open');
+  };
+
+  notesAnchor.appendChild(notesBtn);
+  notesAnchor.appendChild(notesPopup);
+
   const deleteBtn = document.createElement('button');
   deleteBtn.className = 'action-btn delete';
   deleteBtn.title = 'Delete task';
@@ -1639,6 +2012,7 @@ function createTaskRow(task) {
   };
   
   actionsGroup.appendChild(editBtn);
+  actionsGroup.appendChild(notesAnchor);
   actionsGroup.appendChild(deleteBtn);
   actionsCell.appendChild(actionsGroup);
   row.appendChild(actionsCell);
@@ -1646,9 +2020,19 @@ function createTaskRow(task) {
   return row;
 }
 function createTaskCard(task) {
+  // Ensure new fields exist on old tasks
+  if (task.reminder_enabled === undefined) task.reminder_enabled = false;
+  if (task.reminder_interval_minutes === undefined) task.reminder_interval_minutes = 30;
+  if (task.last_reminder_sent_at === undefined) task.last_reminder_sent_at = null;
+  if (task.notes === undefined) task.notes = '';
+
   const card = document.createElement('div');
   card.className = `task-card priority-${task.priority.toLowerCase()} ${task.done ? 'completed' : ''}`;
   
+  const intervalLabel = task.reminder_interval_minutes >= 60
+    ? (task.reminder_interval_minutes/60)+'hr'
+    : task.reminder_interval_minutes+'min';
+
   card.innerHTML = `
     <div class="card-header">
       <h3 class="card-title ${task.done ? 'completed' : ''}">${task.title}</h3>
@@ -1661,24 +2045,6 @@ function createTaskCard(task) {
     </div>
     
     <div class="card-meta">
-	${task.reminder_interval_minutes && task.reminder_interval_minutes > 0 ? `
-  <div class="card-meta-row">
-    <i data-lucide="bell" class="card-meta-icon"></i>
-    <span style="color:#f59e0b;font-weight:600;">
-      Every ${task.reminder_interval_minutes} mins
-    </span>
-  </div>
-` : ''}
-  <div class="card-meta-row">
-    <i data-lucide="bell" class="card-meta-icon"></i>
-    <span style="
-      color:#f59e0b;
-      font-weight:600;
-    ">
-      Every ${task.reminder_interval_minutes} mins
-    </span>
-  </div>
-` : ''}
       <div class="card-meta-row">
         <i data-lucide="folder" class="card-meta-icon"></i>
         <div class="card-project">
@@ -1700,6 +2066,13 @@ function createTaskCard(task) {
           </div>
         </div>
       ` : ''}
+
+      ${task.reminder_enabled ? `
+        <div class="card-meta-row">
+          <i data-lucide="bell" class="card-meta-icon" style="color:var(--accent-purple);"></i>
+          <span class="reminder-badge">${intervalLabel} reminder</span>
+        </div>
+      ` : ''}
     </div>
     
     <div class="card-footer">
@@ -1712,6 +2085,19 @@ function createTaskCard(task) {
         <button class="card-action-btn edit" title="Edit task">
           <i data-lucide="edit-3"></i>
         </button>
+        <div class="notes-anchor" style="position:relative;display:inline-flex;">
+          <button class="card-action-btn notes${task.notes ? ' has-notes' : ''}" title="Notes">
+            <i data-lucide="sticky-note"></i>
+          </button>
+          <div class="notes-popup" style="right:0;top:calc(100% + 6px);left:auto;">
+            <div class="notes-popup-header">
+              <span>📝 Notes</span>
+              <button class="notes-popup-close"><i data-lucide="x" style="width:14px;height:14px;"></i></button>
+            </div>
+            <textarea class="notes-textarea" placeholder="Add notes here..."></textarea>
+            <button class="notes-save-btn"><i data-lucide="save" style="width:13px;height:13px;"></i> Save Notes</button>
+          </div>
+        </div>
         <button class="card-action-btn delete" title="Delete task">
           <i data-lucide="trash-2"></i>
         </button>
@@ -1738,17 +2124,29 @@ function createTaskCard(task) {
   deleteBtn.onclick = async (e) => {
     e.stopPropagation();
     if (!confirm(`Are you sure you want to delete "${task.title}"?`)) return;
-    
     tasks = tasks.filter(t => t.id !== task.id);
     await saveTasks(`Delete task: ${task.title}`);
+  };
+
+  // Notes button in card
+  const notesAnchor = card.querySelector('.notes-anchor');
+  const notesBtn = card.querySelector('.card-action-btn.notes');
+  const notesPopup = card.querySelector('.notes-popup');
+  notesBtn.onclick = (e) => { e.stopPropagation(); openNotesPopup(notesAnchor, task); };
+  notesPopup.querySelector('.notes-popup-close').onclick = (e) => { e.stopPropagation(); notesPopup.classList.remove('open'); };
+  notesPopup.querySelector('.notes-save-btn').onclick = async (e) => {
+    e.stopPropagation();
+    await saveNotes(task, notesPopup.querySelector('.notes-textarea'), null, notesBtn);
+    notesPopup.classList.remove('open');
   };
   
   return card;
 }
 
 function makeCardEditable(card, task) {
-  const originalCard = card.cloneNode(true);
-  
+  if (task.reminder_enabled === undefined) task.reminder_enabled = false;
+  if (task.reminder_interval_minutes === undefined) task.reminder_interval_minutes = 30;
+
   card.innerHTML = `
     <div class="card-header">
       <input class="form-input" value="${task.title}" placeholder="Task title..." required style="margin-bottom: 16px;">
@@ -1766,100 +2164,82 @@ function makeCardEditable(card, task) {
       <select class="form-select">
         ${people.map(p => `<option value="${p.name}" ${p.name === task.assigned_to ? 'selected' : ''}>${p.name}</option>`).join('')}
       </select>
-      <select class="form-select">
-  <option value="0" ${(task.reminder_interval_minutes || 0) === 0 ? 'selected' : ''}>
-    No Reminder
-  </option>
+      
+      <div class="card-reminder-row">
+        <i data-lucide="bell" style="width:14px;height:14px;color:var(--accent-purple);flex-shrink:0;"></i>
+        <label class="reminder-toggle" style="font-size:13px;">
+          <input type="checkbox" class="edit-reminder-check" ${task.reminder_enabled ? 'checked' : ''}>
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+          <span>Reminder</span>
+        </label>
+        <select class="reminder-interval-select edit-reminder-interval ${task.reminder_enabled ? 'active' : ''}" style="flex:1;">
+          ${[['15','15 min'],['30','30 min'],['60','1 hr'],['120','2 hr'],['180','3 hr'],['300','5 hr']].map(([v,l]) =>
+            `<option value="${v}" ${parseInt(v) === task.reminder_interval_minutes ? 'selected' : ''}>Every ${l}</option>`
+          ).join('')}
+        </select>
+      </div>
 
-  <option value="15" ${task.reminder_interval_minutes === 15 ? 'selected' : ''}>
-    15 Minutes
-  </option>
-
-  <option value="30" ${task.reminder_interval_minutes === 30 ? 'selected' : ''}>
-    30 Minutes
-  </option>
-
-  <option value="45" ${task.reminder_interval_minutes === 45 ? 'selected' : ''}>
-    45 Minutes
-  </option>
-
-  <option value="60" ${task.reminder_interval_minutes === 60 ? 'selected' : ''}>
-    1 Hour
-  </option>
-
-  <option value="120" ${task.reminder_interval_minutes === 120 ? 'selected' : ''}>
-    2 Hours
-  </option>
-
-  <option value="180" ${task.reminder_interval_minutes === 180 ? 'selected' : ''}>
-    3 Hours
-  </option>
-
-  <option value="300" ${task.reminder_interval_minutes === 300 ? 'selected' : ''}>
-    5 Hours
-  </option>
-</select>
       <label style="display: flex; align-items: center; gap: 8px; color: var(--text-secondary);">
-        <input type="checkbox" ${task.done ? 'checked' : ''}>
+        <input type="checkbox" class="edit-done-check" ${task.done ? 'checked' : ''}>
         <span>Task completed</span>
       </label>
     </div>
     
     <div class="card-footer">
-      <button class="btn-primary" style="padding: 8px 16px; font-size: 14px;">
+      <button class="btn-primary card-save-btn" style="padding: 8px 16px; font-size: 14px;">
         <i data-lucide="check"></i>
         Save
       </button>
-      <button class="action-btn cancel" style="padding: 8px 16px;">
+      <button class="action-btn cancel card-cancel-btn" style="padding: 8px 16px;">
         <i data-lucide="x"></i>
         Cancel
       </button>
     </div>
   `;
   
-const titleInput = card.querySelector('.form-input');
-const selects = card.querySelectorAll('.form-select');
+  const titleInput = card.querySelector('.form-input');
+  const projectSelect = card.querySelectorAll('.form-select')[0];
+  const prioritySelect = card.querySelectorAll('.form-select')[1];
+  const assigneeSelect = card.querySelectorAll('.form-select')[2];
+  const reminderCheck = card.querySelector('.edit-reminder-check');
+  const reminderInterval = card.querySelector('.edit-reminder-interval');
+  const statusCheckbox = card.querySelector('.edit-done-check');
+  const saveBtn = card.querySelector('.card-save-btn');
+  const cancelBtn = card.querySelector('.card-cancel-btn');
 
-const projectSelect = card.querySelectorAll('.form-select')[0];
-const prioritySelect = card.querySelectorAll('.form-select')[1];
-const assigneeSelect = card.querySelectorAll('.form-select')[2];
-const reminderSelect = card.querySelectorAll('.form-select')[3];
-const statusCheckbox = card.querySelector('input[type="checkbox"]');
-
-const saveBtn = card.querySelector('.btn-primary');
-const cancelBtn = card.querySelector('.action-btn.cancel');
-
-saveBtn.onclick = async () => {
-  const newTitle = titleInput.value.trim();
-
-  if (!newTitle) {
-    showStatus('Task title is required', true);
-    return;
-  }
-
-  task.title = newTitle;
-  task.project = projectSelect.value;
-  task.priority = prioritySelect.value;
-  task.assigned_to = assigneeSelect.value;
-
-  task.reminder_interval_minutes = parseInt(reminderSelect.value);
-  task.reminder_enabled = task.reminder_interval_minutes > 0;
-
-  task.done = statusCheckbox.checked;
-  task.modified_at = new Date().toISOString();
-
-  if (task.done && !task.completed_at) {
-    task.completed_at = new Date().toISOString();
-  } else if (!task.done) {
-    task.completed_at = null;
-  }
-
-  await saveTasks(`Update task: ${task.title}`);
-};
-
-cancelBtn.onclick = () => {
-  renderTasks();
-};
+  reminderCheck.onchange = () => reminderInterval.classList.toggle('active', reminderCheck.checked);
+  
+  saveBtn.onclick = async () => {
+    const newTitle = titleInput.value.trim();
+    if (!newTitle) {
+      showStatus('Task title is required', true);
+      return;
+    }
+    
+    task.title = newTitle;
+    task.project = projectSelect.value;
+    task.priority = prioritySelect.value;
+    task.assigned_to = assigneeSelect.value;
+    task.done = statusCheckbox.checked;
+    task.reminder_enabled = reminderCheck.checked;
+    task.reminder_interval_minutes = parseInt(reminderInterval.value, 10);
+    task.modified_at = new Date().toISOString();
+    
+    if (task.done && !task.completed_at) {
+      task.completed_at = new Date().toISOString();
+    } else if (!task.done) {
+      task.completed_at = null;
+    }
+    
+    await saveTasks(`Update task: ${task.title}`);
+  };
+  
+  cancelBtn.onclick = () => {
+    renderTasks();
+  };
+  
+  titleInput.focus();
+  titleInput.select();
   
   // Re-initialize Lucide icons
   if (window.lucide) {
@@ -1923,7 +2303,34 @@ function makeRowEditable(row, task) {
   titleInput.className = 'form-input';
   titleInput.value = task.title;
   titleInput.required = true;
+  // Reminder sub-row inside title cell
+  const reminderDiv = document.createElement('div');
+  reminderDiv.style.cssText = 'margin-top:8px;display:flex;align-items:center;gap:8px;';
+  const reminderCheck = document.createElement('input');
+  reminderCheck.type = 'checkbox';
+  reminderCheck.id = `editReminder_${task.id}`;
+  reminderCheck.checked = !!task.reminder_enabled;
+  reminderCheck.style.accentColor = 'var(--accent-purple)';
+  const reminderLabel = document.createElement('label');
+  reminderLabel.htmlFor = `editReminder_${task.id}`;
+  reminderLabel.style.cssText = 'font-size:12px;color:var(--text-muted);cursor:pointer;';
+  reminderLabel.textContent = 'Reminder';
+  const reminderSel = document.createElement('select');
+  reminderSel.className = 'reminder-interval-select';
+  reminderSel.classList.toggle('active', !!task.reminder_enabled);
+  reminderSel.style.cssText = 'flex:1;padding:4px 8px;font-size:12px;';
+  [['15','15 min'],['30','30 min'],['60','1 hr'],['120','2 hr'],['180','3 hr'],['300','5 hr']].forEach(([v,l]) => {
+    const o = document.createElement('option');
+    o.value = v; o.textContent = 'Every ' + l;
+    o.selected = parseInt(v) === task.reminder_interval_minutes;
+    reminderSel.appendChild(o);
+  });
+  reminderCheck.onchange = () => reminderSel.classList.toggle('active', reminderCheck.checked);
+  reminderDiv.appendChild(reminderCheck);
+  reminderDiv.appendChild(reminderLabel);
+  reminderDiv.appendChild(reminderSel);
   titleCell.appendChild(titleInput);
+  titleCell.appendChild(reminderDiv);
   row.appendChild(titleCell);
   
   // Project select
@@ -1968,21 +2375,6 @@ function makeRowEditable(row, task) {
   assigneeCell.appendChild(assigneeSelect);
   row.appendChild(assigneeCell);
   
-  // Reminder column
-const reminderCell = document.createElement('td');
-
-const reminderSelect = document.createElement('select');
-reminderSelect.className = 'form-select';
-[['0','No Reminder'],['15','15 Minutes'],['30','30 Minutes'],['45','45 Minutes'],['60','1 Hour'],['120','2 Hours'],['180','3 Hours'],['300','5 Hours']].forEach(([val, label]) => {
-  const opt = document.createElement('option');
-  opt.value = val;
-  opt.textContent = label;
-  opt.selected = parseInt(val) === (task.reminder_interval_minutes || 0);
-  reminderSelect.appendChild(opt);
-});
-reminderCell.appendChild(reminderSelect);
-row.appendChild(reminderCell);
-  
   // Status checkbox
   const statusCell = document.createElement('td');
   const statusCheckbox = document.createElement('input');
@@ -2002,39 +2394,30 @@ row.appendChild(reminderCell);
   saveBtn.className = 'action-btn save';
   saveBtn.title = 'Save changes';
   saveBtn.innerHTML = '<i data-lucide="check"></i>';
-saveBtn.onclick = async () => {
-  try {
+  saveBtn.onclick = async () => {
     const newTitle = titleInput.value.trim();
-
     if (!newTitle) {
       showStatus('Task title is required', true);
       return;
     }
-
+    
     task.title = newTitle;
     task.project = projectSelect.value;
     task.priority = prioritySelect.value;
     task.assigned_to = assigneeSelect.value;
-
-    task.reminder_interval_minutes = parseInt(reminderSelect.value || 0);
-    task.reminder_enabled = task.reminder_interval_minutes > 0;
-
     task.done = statusCheckbox.checked;
+    task.reminder_enabled = reminderCheck.checked;
+    task.reminder_interval_minutes = parseInt(reminderSel.value, 10);
     task.modified_at = new Date().toISOString();
-
+    
     if (task.done && !task.completed_at) {
       task.completed_at = new Date().toISOString();
     } else if (!task.done) {
       task.completed_at = null;
     }
-
+    
     await saveTasks(`Update task: ${task.title}`);
-
-  } catch (err) {
-    console.error(err);
-    showStatus('Save failed', true);
-  }
-};
+  };
   
   const cancelBtn = document.createElement('button');
   cancelBtn.className = 'action-btn cancel';
@@ -2063,6 +2446,8 @@ document.getElementById('addTaskBtn').onclick = async () => {
   const project = document.getElementById('newProject').value;
   const priority = document.getElementById('newPriority').value;
   const assignedTo = document.getElementById('newAssignedTo').value;
+  const reminderEnabled = document.getElementById('newReminderEnabled').checked;
+  const reminderInterval = parseInt(document.getElementById('newReminderInterval').value, 10);
   
   if (!title) {
     showStatus('Task title is required', true);
@@ -2077,22 +2462,16 @@ document.getElementById('addTaskBtn').onclick = async () => {
   
   const now = new Date().toISOString();
   const newTask = {
-    id: Date.now() + Math.random(), // More unique ID
+    id: Date.now() + Math.random(),
     title,
     project,
     priority,
     assigned_to: assignedTo,
     done: false,
-reminder_interval_minutes:
-  parseInt(
-    document.getElementById('newReminderInterval').value
-  ),
-
-reminder_enabled:
-  parseInt(
-    document.getElementById('newReminderInterval').value
-  ) > 0,
-last_reminder_sent_at: null,
+    reminder_enabled: reminderEnabled,
+    reminder_interval_minutes: reminderInterval,
+    last_reminder_sent_at: null,
+    notes: '',
     created_at: now,
     modified_at: now,
     completed_at: null
@@ -2102,10 +2481,12 @@ last_reminder_sent_at: null,
   
   // Clear form
   document.getElementById('newTitle').value = '';
-	document.getElementById('newReminderInterval').value = '0';
   document.getElementById('newProject').selectedIndex = 0;
-  document.getElementById('newPriority').selectedIndex = 1; // Default to Medium
+  document.getElementById('newPriority').selectedIndex = 1;
   document.getElementById('newAssignedTo').selectedIndex = 0;
+  document.getElementById('newReminderEnabled').checked = false;
+  document.getElementById('newReminderInterval').selectedIndex = 1;
+  document.getElementById('newReminderInterval').classList.remove('active');
   
   await saveTasks(`Add new task: ${title}`);
 };
@@ -2196,6 +2577,38 @@ function createStarfield() {
     
     container.appendChild(star);
   }
+}
+
+// Reminder toggle interactivity (Add Task form)
+document.getElementById('newReminderEnabled').onchange = function() {
+  const sel = document.getElementById('newReminderInterval');
+  sel.classList.toggle('active', this.checked);
+};
+
+// Close all notes popups when clicking outside
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.notes-anchor')) {
+    document.querySelectorAll('.notes-popup.open').forEach(p => p.classList.remove('open'));
+  }
+});
+
+function openNotesPopup(anchor, task) {
+  // Close any other open popups first
+  document.querySelectorAll('.notes-popup.open').forEach(p => {
+    if (p !== anchor.querySelector('.notes-popup')) p.classList.remove('open');
+  });
+  const popup = anchor.querySelector('.notes-popup');
+  const textarea = popup.querySelector('.notes-textarea');
+  textarea.value = task.notes || '';
+  popup.classList.toggle('open');
+}
+
+async function saveNotes(task, textarea, btn, notesBtn) {
+  task.notes = textarea.value.trim();
+  task.modified_at = new Date().toISOString();
+  // Update has-notes indicator
+  if (notesBtn) notesBtn.classList.toggle('has-notes', !!task.notes);
+  await saveTasks(`Notes: ${task.title}`);
 }
 
 // Initialize application
