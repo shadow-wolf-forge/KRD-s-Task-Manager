@@ -7,14 +7,12 @@
     "assigned_to": "Karthik",
     "done": false,
     "reminder_enabled": true,
-    "reminder_interval_minutes": 15,
-    "last_reminder_sent_at": "2026-05-09T11:30:46.053Z",
+    "remind_at": null,
+    "reminder_sent": false,
+    "notes": "",
     "created_at": "2026-04-30T13:32:55.598Z",
     "modified_at": "2026-05-09T11:32:31.637Z",
-    "completed_at": null,
-    "notes": "",
-    "remind_at": null,
-    "reminder_sent": false
+    "completed_at": null
   },
   {
     "id": 1777911961241.7227,
@@ -24,14 +22,12 @@
     "assigned_to": "Karthik",
     "done": true,
     "reminder_enabled": false,
-    "reminder_interval_minutes": 30,
-    "last_reminder_sent_at": null,
+    "remind_at": null,
+    "reminder_sent": false,
+    "notes": "",
     "created_at": "2026-05-04T16:26:01.234Z",
     "modified_at": "2026-05-05T11:52:48.246Z",
-    "completed_at": "2026-05-05T11:52:48.247Z",
-    "notes": "",
-    "remind_at": null,
-    "reminder_sent": false
+    "completed_at": "2026-05-05T11:52:48.247Z"
   },
   {
     "id": 1777911975130.3313,
@@ -41,14 +37,12 @@
     "assigned_to": "Karthik",
     "done": false,
     "reminder_enabled": true,
-    "reminder_interval_minutes": 30,
-    "last_reminder_sent_at": "2026-05-09T11:30:46.600Z",
+    "remind_at": null,
+    "reminder_sent": false,
+    "notes": "",
     "created_at": "2026-05-04T16:26:15.130Z",
     "modified_at": "2026-05-09T11:27:10.232Z",
-    "completed_at": null,
-    "notes": "",
-    "remind_at": null,
-    "reminder_sent": false
+    "completed_at": null
   },
   {
     "id": 1777966795622.4475,
@@ -58,14 +52,12 @@
     "assigned_to": "Karthik",
     "done": true,
     "reminder_enabled": false,
-    "reminder_interval_minutes": 30,
-    "last_reminder_sent_at": null,
+    "remind_at": null,
+    "reminder_sent": false,
+    "notes": "",
     "created_at": "2026-05-05T07:39:55.621Z",
     "modified_at": "2026-05-05T11:55:11.804Z",
-    "completed_at": "2026-05-05T11:55:11.804Z",
-    "notes": "",
-    "remind_at": null,
-    "reminder_sent": false
+    "completed_at": "2026-05-05T11:55:11.804Z"
   },
   {
     "id": 1777967362630.3755,
@@ -75,14 +67,12 @@
     "assigned_to": "Karthik",
     "done": true,
     "reminder_enabled": false,
-    "reminder_interval_minutes": 30,
-    "last_reminder_sent_at": null,
+    "remind_at": null,
+    "reminder_sent": false,
+    "notes": "",
     "created_at": "2026-05-05T07:49:22.630Z",
     "modified_at": "2026-05-05T11:52:52.298Z",
-    "completed_at": "2026-05-05T11:52:52.298Z",
-    "notes": "",
-    "remind_at": null,
-    "reminder_sent": false
+    "completed_at": "2026-05-05T11:52:52.298Z"
   },
   {
     "id": 1777986398566.4883,
@@ -92,14 +82,12 @@
     "assigned_to": "Rahul",
     "done": true,
     "reminder_enabled": false,
-    "reminder_interval_minutes": 30,
-    "last_reminder_sent_at": null,
+    "remind_at": null,
+    "reminder_sent": false,
+    "notes": "",
     "created_at": "2026-05-05T13:06:38.566Z",
     "modified_at": "2026-05-06T16:04:49.625Z",
-    "completed_at": "2026-05-06T16:04:49.625Z",
-    "notes": "",
-    "remind_at": null,
-    "reminder_sent": false
+    "completed_at": "2026-05-06T16:04:49.625Z"
   },
   {
     "id": 1777987828159.733,
@@ -109,14 +97,12 @@
     "assigned_to": "Karthik",
     "done": false,
     "reminder_enabled": false,
-    "reminder_interval_minutes": 30,
-    "last_reminder_sent_at": null,
+    "remind_at": null,
+    "reminder_sent": false,
+    "notes": "To complete the transport and close the ticket, need to change the role name",
     "created_at": "2026-05-05T13:30:28.159Z",
     "modified_at": "2026-05-09T11:34:00.369Z",
-    "completed_at": null,
-    "notes": "To complete the transport and close the ticket, need to change the role name",
-    "remind_at": null,
-    "reminder_sent": false
+    "completed_at": null
   },
   {
     "id": 1778005392526.6748,
@@ -126,14 +112,12 @@
     "assigned_to": "Karthik",
     "done": false,
     "reminder_enabled": false,
-    "reminder_interval_minutes": 30,
-    "last_reminder_sent_at": null,
+    "remind_at": null,
+    "reminder_sent": false,
+    "notes": "",
     "created_at": "2026-05-05T18:23:12.526Z",
     "modified_at": "2026-05-05T18:23:12.526Z",
-    "completed_at": null,
-    "notes": "",
-    "remind_at": null,
-    "reminder_sent": false
+    "completed_at": null
   },
   {
     "id": 1778047170760.955,
@@ -143,14 +127,12 @@
     "assigned_to": "Karthik",
     "done": true,
     "reminder_enabled": false,
-    "reminder_interval_minutes": 30,
-    "last_reminder_sent_at": null,
+    "remind_at": null,
+    "reminder_sent": false,
+    "notes": "",
     "created_at": "2026-05-06T05:59:30.760Z",
     "modified_at": "2026-05-06T16:03:12.732Z",
-    "completed_at": "2026-05-06T16:03:12.732Z",
-    "notes": "",
-    "remind_at": null,
-    "reminder_sent": false
+    "completed_at": "2026-05-06T16:03:12.732Z"
   },
   {
     "id": 1778090152504.3518,
@@ -160,14 +142,12 @@
     "assigned_to": "Karthik",
     "done": true,
     "reminder_enabled": false,
-    "reminder_interval_minutes": 30,
-    "last_reminder_sent_at": null,
+    "remind_at": null,
+    "reminder_sent": false,
+    "notes": "",
     "created_at": "2026-05-06T17:55:52.503Z",
     "modified_at": "2026-05-07T07:38:51.579Z",
-    "completed_at": "2026-05-07T07:38:51.579Z",
-    "notes": "",
-    "remind_at": null,
-    "reminder_sent": false
+    "completed_at": "2026-05-07T07:38:51.579Z"
   },
   {
     "id": 1778326573815.756,
@@ -177,14 +157,12 @@
     "assigned_to": "Karthik",
     "done": false,
     "reminder_enabled": false,
-    "reminder_interval_minutes": 30,
-    "last_reminder_sent_at": null,
+    "remind_at": null,
+    "reminder_sent": false,
     "notes": "",
     "created_at": "2026-05-09T11:36:13.815Z",
     "modified_at": "2026-05-09T11:36:13.815Z",
-    "completed_at": null,
-    "remind_at": null,
-    "reminder_sent": false
+    "completed_at": null
   },
   {
     "id": 1778326587456.0632,
@@ -194,14 +172,12 @@
     "assigned_to": "Karthik",
     "done": false,
     "reminder_enabled": false,
-    "reminder_interval_minutes": 30,
-    "last_reminder_sent_at": null,
+    "remind_at": null,
+    "reminder_sent": false,
     "notes": "",
     "created_at": "2026-05-09T11:36:27.456Z",
     "modified_at": "2026-05-09T11:36:27.456Z",
-    "completed_at": null,
-    "remind_at": null,
-    "reminder_sent": false
+    "completed_at": null
   },
   {
     "id": 1778327639780.547,
