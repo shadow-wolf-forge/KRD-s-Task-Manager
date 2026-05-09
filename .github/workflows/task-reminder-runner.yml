@@ -3,6 +3,8 @@ name: Task Reminder Runner
 on:
   workflow_dispatch:
 
+  push:
+
   schedule:
     - cron: "*/5 * * * *"
 
