@@ -180,21 +180,6 @@
     "completed_at": null
   },
   {
-    "id": 1778327639780.547,
-    "title": "jjjjj",
-    "project": "Personal",
-    "priority": "High",
-    "assigned_to": "Karthik",
-    "done": false,
-    "reminder_enabled": true,
-    "remind_at": "2026-05-09T12:25:00.000Z",
-    "reminder_sent": true,
-    "notes": "",
-    "created_at": "2026-05-09T11:53:59.779Z",
-    "modified_at": "2026-05-09T12:26:30.981Z",
-    "completed_at": null
-  },
-  {
     "id": 1778329221478.1694,
     "title": "Hi makkele",
     "project": "AWC-McKinsey",
