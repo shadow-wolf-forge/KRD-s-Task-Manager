@@ -1105,7 +1105,7 @@ body::before {
   transform: translateX(16px);
 }
 
-.reminder-interval-select {
+.reminder-datetime-input {
   flex: 1;
   padding: 6px 10px;
   border: 1px solid var(--border);
@@ -1117,17 +1117,19 @@ body::before {
   transition: var(--transition);
   opacity: 0.4;
   pointer-events: none;
+  color-scheme: dark;
 }
 
-.reminder-interval-select.active {
+.reminder-datetime-input.active {
   opacity: 1;
   pointer-events: all;
   border-color: rgba(139,92,246,0.4);
 }
 
-.reminder-interval-select:focus {
+.reminder-datetime-input:focus {
   outline: none;
   border-color: var(--accent-purple);
+  box-shadow: 0 0 0 3px rgba(139,92,246,0.1);
 }
 
 /* Notes button & popup */
@@ -1442,16 +1444,9 @@ body::before {
         <label class="reminder-toggle" id="newReminderToggleLabel" title="Enable reminder for this task">
           <input type="checkbox" id="newReminderEnabled">
           <span class="toggle-track"><span class="toggle-thumb"></span></span>
-          <span>Reminder</span>
+          <span>Remind at</span>
         </label>
-        <select id="newReminderInterval" class="reminder-interval-select">
-          <option value="15">Every 15 min</option>
-          <option value="30" selected>Every 30 min</option>
-          <option value="60">Every 1 hr</option>
-          <option value="120">Every 2 hr</option>
-          <option value="180">Every 3 hr</option>
-          <option value="300">Every 5 hr</option>
-        </select>
+        <input type="datetime-local" id="newRemindAt" class="reminder-datetime-input" />
       </div>
     </section>
 
@@ -1480,6 +1475,7 @@ body::before {
           <thead>
             <tr>
               <th>Task Details</th>
+              <th style="width:44px;text-align:center;"></th>
               <th>Project</th>
               <th>Priority</th>
               <th>Assigned To</th>
@@ -1582,6 +1578,14 @@ function formatDateIST(dateStr) {
   parts.forEach(part => partsMap[part.type] = part.value);
   
   return `${partsMap.weekday}, ${partsMap.day}-${partsMap.month}-${partsMap.year} ${partsMap.hour}:${partsMap.minute} ${partsMap.dayPeriod.toLowerCase()}`;
+}
+
+// Convert ISO string to datetime-local input value (local time)
+function toLocalDatetimeInput(isoStr) {
+  if (!isoStr) return '';
+  const d = new Date(isoStr);
+  const pad = n => String(n).padStart(2, '0');
+  return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
 }
 
 function getInitials(name) {
@@ -1821,8 +1825,8 @@ const assigneeFilter = document.getElementById('filterAssignedTo').value.trim().
 function createTaskRow(task) {
   // Ensure new fields exist on old tasks
   if (task.reminder_enabled === undefined) task.reminder_enabled = false;
-  if (task.reminder_interval_minutes === undefined) task.reminder_interval_minutes = 30;
-  if (task.last_reminder_sent_at === undefined) task.last_reminder_sent_at = null;
+  if (task.remind_at === undefined) task.remind_at = null;
+  if (task.reminder_sent === undefined) task.reminder_sent = false;
   if (task.notes === undefined) task.notes = '';
 
   const row = document.createElement('tr');
@@ -1852,9 +1856,9 @@ function createTaskRow(task) {
       <span class="tooltip-label">Completed:</span>
       <span class="tooltip-value">${formatDateIST(task.completed_at)}</span>
     </div>
-    ${task.reminder_enabled ? `<div class="tooltip-item">
+    ${task.reminder_enabled && task.remind_at ? `<div class="tooltip-item">
       <span class="tooltip-label">Reminder:</span>
-      <span class="tooltip-value">Every ${task.reminder_interval_minutes >= 60 ? (task.reminder_interval_minutes/60)+'hr' : task.reminder_interval_minutes+'min'}</span>
+      <span class="tooltip-value">${formatDateIST(task.remind_at)}</span>
     </div>` : ''}
   `;
 
@@ -1862,11 +1866,10 @@ function createTaskRow(task) {
   const titleLineWrap = document.createElement('div');
   titleLineWrap.style.cssText = 'display:flex;flex-direction:column;gap:5px;';
   titleLineWrap.appendChild(titleText);
-  if (task.reminder_enabled) {
+  if (task.reminder_enabled && task.remind_at) {
     const rb = document.createElement('span');
     rb.className = 'reminder-badge';
-    const intervalLabel = task.reminder_interval_minutes >= 60 ? (task.reminder_interval_minutes/60)+'hr' : task.reminder_interval_minutes+'min';
-    rb.innerHTML = `<i data-lucide="bell" style="width:11px;height:11px;"></i> ${intervalLabel}`;
+    rb.innerHTML = `<i data-lucide="bell" style="width:11px;height:11px;"></i> ${formatDateIST(task.remind_at)}`;
     titleLineWrap.appendChild(rb);
   }
   
@@ -1874,6 +1877,42 @@ function createTaskRow(task) {
   titleWrap.appendChild(tooltip);
   titleCell.appendChild(titleWrap);
   row.appendChild(titleCell);
+
+  // Notes cell (between title and project)
+  const notesTd = document.createElement('td');
+  notesTd.style.cssText = 'text-align:center;vertical-align:middle;padding:8px 4px;';
+  const notesAnchor = document.createElement('div');
+  notesAnchor.className = 'notes-anchor';
+
+  const notesBtn = document.createElement('button');
+  notesBtn.className = `action-btn notes${task.notes ? ' has-notes' : ''}`;
+  notesBtn.title = task.notes ? 'View / edit notes' : 'Add notes';
+  notesBtn.innerHTML = '<i data-lucide="sticky-note"></i>';
+
+  const notesPopup = document.createElement('div');
+  notesPopup.className = 'notes-popup';
+  notesPopup.style.cssText = 'left:0;top:calc(100% + 6px);right:auto;';
+  notesPopup.innerHTML = `
+    <div class="notes-popup-header">
+      <span>📝 Notes</span>
+      <button class="notes-popup-close"><i data-lucide="x" style="width:14px;height:14px;"></i></button>
+    </div>
+    <textarea class="notes-textarea" placeholder="Add notes here..."></textarea>
+    <button class="notes-save-btn"><i data-lucide="save" style="width:13px;height:13px;"></i> Save Notes</button>
+  `;
+
+  notesBtn.onclick = (e) => { e.stopPropagation(); openNotesPopup(notesAnchor, task); };
+  notesPopup.querySelector('.notes-popup-close').onclick = (e) => { e.stopPropagation(); notesPopup.classList.remove('open'); };
+  notesPopup.querySelector('.notes-save-btn').onclick = async (e) => {
+    e.stopPropagation();
+    await saveNotes(task, notesPopup.querySelector('.notes-textarea'), null, notesBtn);
+    notesPopup.classList.remove('open');
+  };
+
+  notesAnchor.appendChild(notesBtn);
+  notesAnchor.appendChild(notesPopup);
+  notesTd.appendChild(notesAnchor);
+  row.appendChild(notesTd);
   
   // Project with logo
   const projectCell = document.createElement('td');
@@ -1968,38 +2007,6 @@ function createTaskRow(task) {
   editBtn.innerHTML = '<i data-lucide="edit-3"></i>';
   editBtn.onclick = () => makeRowEditable(row, task);
 
-  // Notes button with popup
-  const notesAnchor = document.createElement('div');
-  notesAnchor.className = 'notes-anchor';
-
-  const notesBtn = document.createElement('button');
-  notesBtn.className = `action-btn notes${task.notes ? ' has-notes' : ''}`;
-  notesBtn.title = 'Notes';
-  notesBtn.innerHTML = '<i data-lucide="sticky-note"></i>';
-
-  const notesPopup = document.createElement('div');
-  notesPopup.className = 'notes-popup';
-  notesPopup.style.cssText = 'right:0;top:calc(100% + 6px);left:auto;';
-  notesPopup.innerHTML = `
-    <div class="notes-popup-header">
-      <span>📝 Notes</span>
-      <button class="notes-popup-close"><i data-lucide="x" style="width:14px;height:14px;"></i></button>
-    </div>
-    <textarea class="notes-textarea" placeholder="Add notes here..."></textarea>
-    <button class="notes-save-btn"><i data-lucide="save" style="width:13px;height:13px;"></i> Save Notes</button>
-  `;
-
-  notesBtn.onclick = (e) => { e.stopPropagation(); openNotesPopup(notesAnchor, task); };
-  notesPopup.querySelector('.notes-popup-close').onclick = (e) => { e.stopPropagation(); notesPopup.classList.remove('open'); };
-  notesPopup.querySelector('.notes-save-btn').onclick = async (e) => {
-    e.stopPropagation();
-    await saveNotes(task, notesPopup.querySelector('.notes-textarea'), null, notesBtn);
-    notesPopup.classList.remove('open');
-  };
-
-  notesAnchor.appendChild(notesBtn);
-  notesAnchor.appendChild(notesPopup);
-
   const deleteBtn = document.createElement('button');
   deleteBtn.className = 'action-btn delete';
   deleteBtn.title = 'Delete task';
@@ -2012,7 +2019,6 @@ function createTaskRow(task) {
   };
   
   actionsGroup.appendChild(editBtn);
-  actionsGroup.appendChild(notesAnchor);
   actionsGroup.appendChild(deleteBtn);
   actionsCell.appendChild(actionsGroup);
   row.appendChild(actionsCell);
@@ -2022,16 +2028,14 @@ function createTaskRow(task) {
 function createTaskCard(task) {
   // Ensure new fields exist on old tasks
   if (task.reminder_enabled === undefined) task.reminder_enabled = false;
-  if (task.reminder_interval_minutes === undefined) task.reminder_interval_minutes = 30;
-  if (task.last_reminder_sent_at === undefined) task.last_reminder_sent_at = null;
+  if (task.remind_at === undefined) task.remind_at = null;
+  if (task.reminder_sent === undefined) task.reminder_sent = false;
   if (task.notes === undefined) task.notes = '';
 
   const card = document.createElement('div');
   card.className = `task-card priority-${task.priority.toLowerCase()} ${task.done ? 'completed' : ''}`;
   
-  const intervalLabel = task.reminder_interval_minutes >= 60
-    ? (task.reminder_interval_minutes/60)+'hr'
-    : task.reminder_interval_minutes+'min';
+  const reminderLabel = task.reminder_enabled && task.remind_at ? formatDateIST(task.remind_at) : '';
 
   card.innerHTML = `
     <div class="card-header">
@@ -2067,10 +2071,10 @@ function createTaskCard(task) {
         </div>
       ` : ''}
 
-      ${task.reminder_enabled ? `
+      ${task.reminder_enabled && task.remind_at ? `
         <div class="card-meta-row">
           <i data-lucide="bell" class="card-meta-icon" style="color:var(--accent-purple);"></i>
-          <span class="reminder-badge">${intervalLabel} reminder</span>
+          <span class="reminder-badge">${reminderLabel}</span>
         </div>
       ` : ''}
     </div>
@@ -2145,7 +2149,8 @@ function createTaskCard(task) {
 
 function makeCardEditable(card, task) {
   if (task.reminder_enabled === undefined) task.reminder_enabled = false;
-  if (task.reminder_interval_minutes === undefined) task.reminder_interval_minutes = 30;
+  if (task.remind_at === undefined) task.remind_at = null;
+  if (task.reminder_sent === undefined) task.reminder_sent = false;
 
   card.innerHTML = `
     <div class="card-header">
@@ -2170,13 +2175,10 @@ function makeCardEditable(card, task) {
         <label class="reminder-toggle" style="font-size:13px;">
           <input type="checkbox" class="edit-reminder-check" ${task.reminder_enabled ? 'checked' : ''}>
           <span class="toggle-track"><span class="toggle-thumb"></span></span>
-          <span>Reminder</span>
+          <span>Remind at</span>
         </label>
-        <select class="reminder-interval-select edit-reminder-interval ${task.reminder_enabled ? 'active' : ''}" style="flex:1;">
-          ${[['15','15 min'],['30','30 min'],['60','1 hr'],['120','2 hr'],['180','3 hr'],['300','5 hr']].map(([v,l]) =>
-            `<option value="${v}" ${parseInt(v) === task.reminder_interval_minutes ? 'selected' : ''}>Every ${l}</option>`
-          ).join('')}
-        </select>
+        <input type="datetime-local" class="reminder-datetime-input edit-reminder-dt ${task.reminder_enabled ? 'active' : ''}"
+          value="${task.remind_at ? toLocalDatetimeInput(task.remind_at) : ''}" style="flex:1;">
       </div>
 
       <label style="display: flex; align-items: center; gap: 8px; color: var(--text-secondary);">
@@ -2202,12 +2204,12 @@ function makeCardEditable(card, task) {
   const prioritySelect = card.querySelectorAll('.form-select')[1];
   const assigneeSelect = card.querySelectorAll('.form-select')[2];
   const reminderCheck = card.querySelector('.edit-reminder-check');
-  const reminderInterval = card.querySelector('.edit-reminder-interval');
+  const reminderDT = card.querySelector('.edit-reminder-dt');
   const statusCheckbox = card.querySelector('.edit-done-check');
   const saveBtn = card.querySelector('.card-save-btn');
   const cancelBtn = card.querySelector('.card-cancel-btn');
 
-  reminderCheck.onchange = () => reminderInterval.classList.toggle('active', reminderCheck.checked);
+  reminderCheck.onchange = () => reminderDT.classList.toggle('active', reminderCheck.checked);
   
   saveBtn.onclick = async () => {
     const newTitle = titleInput.value.trim();
@@ -2222,7 +2224,8 @@ function makeCardEditable(card, task) {
     task.assigned_to = assigneeSelect.value;
     task.done = statusCheckbox.checked;
     task.reminder_enabled = reminderCheck.checked;
-    task.reminder_interval_minutes = parseInt(reminderInterval.value, 10);
+    task.remind_at = reminderCheck.checked && reminderDT.value ? new Date(reminderDT.value).toISOString() : null;
+    task.reminder_sent = false;
     task.modified_at = new Date().toISOString();
     
     if (task.done && !task.completed_at) {
@@ -2313,25 +2316,25 @@ function makeRowEditable(row, task) {
   reminderCheck.style.accentColor = 'var(--accent-purple)';
   const reminderLabel = document.createElement('label');
   reminderLabel.htmlFor = `editReminder_${task.id}`;
-  reminderLabel.style.cssText = 'font-size:12px;color:var(--text-muted);cursor:pointer;';
-  reminderLabel.textContent = 'Reminder';
-  const reminderSel = document.createElement('select');
-  reminderSel.className = 'reminder-interval-select';
-  reminderSel.classList.toggle('active', !!task.reminder_enabled);
-  reminderSel.style.cssText = 'flex:1;padding:4px 8px;font-size:12px;';
-  [['15','15 min'],['30','30 min'],['60','1 hr'],['120','2 hr'],['180','3 hr'],['300','5 hr']].forEach(([v,l]) => {
-    const o = document.createElement('option');
-    o.value = v; o.textContent = 'Every ' + l;
-    o.selected = parseInt(v) === task.reminder_interval_minutes;
-    reminderSel.appendChild(o);
-  });
-  reminderCheck.onchange = () => reminderSel.classList.toggle('active', reminderCheck.checked);
+  reminderLabel.style.cssText = 'font-size:12px;color:var(--text-muted);cursor:pointer;white-space:nowrap;';
+  reminderLabel.textContent = 'Remind at';
+  const reminderDT = document.createElement('input');
+  reminderDT.type = 'datetime-local';
+  reminderDT.className = 'reminder-datetime-input';
+  reminderDT.style.cssText = 'flex:1;padding:4px 8px;font-size:12px;';
+  reminderDT.classList.toggle('active', !!task.reminder_enabled);
+  if (task.remind_at) reminderDT.value = toLocalDatetimeInput(task.remind_at);
+  reminderCheck.onchange = () => reminderDT.classList.toggle('active', reminderCheck.checked);
   reminderDiv.appendChild(reminderCheck);
   reminderDiv.appendChild(reminderLabel);
-  reminderDiv.appendChild(reminderSel);
+  reminderDiv.appendChild(reminderDT);
   titleCell.appendChild(titleInput);
   titleCell.appendChild(reminderDiv);
   row.appendChild(titleCell);
+
+  // Empty notes column cell (notes not editable inline — use the notes button)
+  const emptyNotesTd = document.createElement('td');
+  row.appendChild(emptyNotesTd);
   
   // Project select
   const projectCell = document.createElement('td');
@@ -2407,7 +2410,8 @@ function makeRowEditable(row, task) {
     task.assigned_to = assigneeSelect.value;
     task.done = statusCheckbox.checked;
     task.reminder_enabled = reminderCheck.checked;
-    task.reminder_interval_minutes = parseInt(reminderSel.value, 10);
+    task.remind_at = reminderCheck.checked && reminderDT.value ? new Date(reminderDT.value).toISOString() : null;
+    task.reminder_sent = false;
     task.modified_at = new Date().toISOString();
     
     if (task.done && !task.completed_at) {
@@ -2447,7 +2451,7 @@ document.getElementById('addTaskBtn').onclick = async () => {
   const priority = document.getElementById('newPriority').value;
   const assignedTo = document.getElementById('newAssignedTo').value;
   const reminderEnabled = document.getElementById('newReminderEnabled').checked;
-  const reminderInterval = parseInt(document.getElementById('newReminderInterval').value, 10);
+  const remindAtVal = document.getElementById('newRemindAt').value;
   
   if (!title) {
     showStatus('Task title is required', true);
@@ -2469,8 +2473,8 @@ document.getElementById('addTaskBtn').onclick = async () => {
     assigned_to: assignedTo,
     done: false,
     reminder_enabled: reminderEnabled,
-    reminder_interval_minutes: reminderInterval,
-    last_reminder_sent_at: null,
+    remind_at: reminderEnabled && remindAtVal ? new Date(remindAtVal).toISOString() : null,
+    reminder_sent: false,
     notes: '',
     created_at: now,
     modified_at: now,
@@ -2485,8 +2489,8 @@ document.getElementById('addTaskBtn').onclick = async () => {
   document.getElementById('newPriority').selectedIndex = 1;
   document.getElementById('newAssignedTo').selectedIndex = 0;
   document.getElementById('newReminderEnabled').checked = false;
-  document.getElementById('newReminderInterval').selectedIndex = 1;
-  document.getElementById('newReminderInterval').classList.remove('active');
+  document.getElementById('newRemindAt').value = '';
+  document.getElementById('newRemindAt').classList.remove('active');
   
   await saveTasks(`Add new task: ${title}`);
 };
@@ -2581,8 +2585,8 @@ function createStarfield() {
 
 // Reminder toggle interactivity (Add Task form)
 document.getElementById('newReminderEnabled').onchange = function() {
-  const sel = document.getElementById('newReminderInterval');
-  sel.classList.toggle('active', this.checked);
+  const dt = document.getElementById('newRemindAt');
+  dt.classList.toggle('active', this.checked);
 };
 
 // Close all notes popups when clicking outside
