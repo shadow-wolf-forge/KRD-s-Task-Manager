@@ -39,31 +39,67 @@ async function sendTelegramMessage(message) {
 
 async function processReminders() {
 
+  console.log('NOW:', now.toISOString());
+
   for (const task of tasks) {
 
-    if (!task.reminder_enabled) continue;
+    console.log('----------------');
 
-    if (task.reminder_sent) continue;
+    console.log('TASK:', task.title);
 
-    if (task.done) continue;
+    if (!task.reminder_enabled) {
 
-    if (!task.remind_at) continue;
+      console.log('SKIPPED: reminder disabled');
+
+      continue;
+    }
+
+    if (task.reminder_sent) {
+
+      console.log('SKIPPED: already sent');
+
+      continue;
+    }
+
+    if (task.done) {
+
+      console.log('SKIPPED: task completed');
+
+      continue;
+    }
+
+    if (!task.remind_at) {
+
+      console.log('SKIPPED: no remind_at');
+
+      continue;
+    }
 
     const remindTime = new Date(task.remind_at);
 
-    if (isNaN(remindTime.getTime())) continue;
+    if (isNaN(remindTime.getTime())) {
+
+      console.log('SKIPPED: invalid remind_at');
+
+      continue;
+    }
+
+    console.log('REMIND_AT:', remindTime.toISOString());
 
     if (now >= remindTime) {
+
+      console.log('REMINDER MATCHED');
 
       const message =
 `⏰ ${task.title}
 📁 ${task.project}
-🔥 ${task.priority}
-🕒 ${task.remind_at}`;
+🔥 ${task.priority}`;
 
       try {
 
         await sendTelegramMessage(message);
+
+        console.log('TELEGRAM SENT');
 
         task.reminder_sent = true;
 
@@ -71,16 +107,16 @@ async function processReminders() {
 
         updated = true;
 
-        console.log(`Reminder sent for task: ${task.title}`);
-
       } catch (err) {
 
-        console.error(
-          `Failed to send reminder for ${task.title}`
-        );
+        console.error('TELEGRAM FAILED');
 
         console.error(err.message);
       }
+
+    } else {
+
+      console.log('NOT YET TIME');
     }
   }
 
