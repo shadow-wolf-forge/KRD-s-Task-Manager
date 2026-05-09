@@ -1,13 +1,13 @@
 name: Reminder Notifier
 
-permissions:
-  contents: write
-
 on:
   workflow_dispatch:
 
   schedule:
-    - cron: '* * * * *'
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: write
 
 jobs:
   send-reminders:
@@ -23,18 +23,18 @@ jobs:
           node-version: 20
 
       - name: Run Reminder Script
-        run: node scripts/reminder-notifier.js
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: node scripts/reminder-notifier.js
 
       - name: Commit Updated tasks.json
         run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
 
           git add tasks.json
 
-          git diff --cached --quiet || git commit -m "Updated reminder status"
+          git diff --cached --quiet || git commit -m "Update reminders"
 
           git push
