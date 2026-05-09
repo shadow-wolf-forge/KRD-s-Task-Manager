@@ -5,6 +5,7 @@ permissions:
 
 on:
   workflow_dispatch:
+
   schedule:
     - cron: '*/5 * * * *'
 
@@ -34,6 +35,6 @@ jobs:
 
           git add tasks.json
 
-          git diff --cached --quiet || git commit -m "Updated reminder timestamps"
+          git diff --cached --quiet || git commit -m "Updated reminder status"
 
           git push
