@@ -178,20 +178,5 @@
     "modified_at": "2026-05-07T18:46:12.292Z",
     "completed_at": null,
     "notes": ""
-  },
-  {
-    "id": 1778179601570.361,
-    "title": "important task",
-    "project": "AWC-McKinsey",
-    "priority": "High",
-    "assigned_to": "Karthik",
-    "done": false,
-    "reminder_enabled": true,
-    "reminder_interval_minutes": 30,
-    "last_reminder_sent_at": "2026-05-09T10:39:15.662Z",
-    "created_at": "2026-05-07T18:46:41.570Z",
-    "modified_at": "2026-05-07T18:46:41.570Z",
-    "completed_at": null,
-    "notes": ""
   }
 ]
