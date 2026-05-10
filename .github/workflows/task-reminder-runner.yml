@@ -21,7 +21,7 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: node scripts/reminder-notifier.js
+        run: node scripts/task-reminder-runner.js
 
       - name: Commit Updated Task Data
         run: |
