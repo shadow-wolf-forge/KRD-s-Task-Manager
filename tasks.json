@@ -2,7 +2,7 @@
   {
     "id": 1777555975598.9158,
     "title": "Follow up Aravo Supplier Jira Bugs",
-    "project": "AWC-McKinsey",
+    "project": "McKinsey",
     "priority": "Medium",
     "assigned_to": "Karthik",
     "done": false,
@@ -17,7 +17,7 @@
   {
     "id": 1777911961241.7227,
     "title": "Get TL Approval",
-    "project": "AWC-McKinsey",
+    "project": "McKinsey",
     "priority": "High",
     "assigned_to": "Karthik",
     "done": true,
@@ -77,7 +77,7 @@
   {
     "id": 1777986398566.4883,
     "title": "Get TL Approval for Jira and Start to work on CM Approval",
-    "project": "AWC-McKinsey",
+    "project": "McKinsey",
     "priority": "High",
     "assigned_to": "Rahul",
     "done": true,
@@ -92,7 +92,7 @@
   {
     "id": 1777987828159.733,
     "title": "Check with Shweta about Role Name changes",
-    "project": "AWC-McKinsey",
+    "project": "McKinsey",
     "priority": "High",
     "assigned_to": "Karthik",
     "done": false,
