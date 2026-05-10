@@ -2,133 +2,85 @@ const fs = require('fs');
 
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
-
 const TASKS_FILE = 'tasks.json';
 
-const tasks = JSON.parse(
-  fs.readFileSync(TASKS_FILE, 'utf8')
-);
-
-const now = new Date();
-
-let updated = false;
-
 async function sendTelegramMessage(message) {
-
   const response = await fetch(
     `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
     {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         chat_id: TELEGRAM_CHAT_ID,
-        text: message
+        text: message,
+        parse_mode: 'HTML'
       })
     }
   );
-
   if (!response.ok) {
-
     const errorText = await response.text();
-
     throw new Error(errorText);
   }
 }
 
 async function processReminders() {
+  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
+    console.error('Missing TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID');
+    process.exit(1);
+  }
+
+  let tasks;
+  try {
+    tasks = JSON.parse(fs.readFileSync(TASKS_FILE, 'utf8'));
+  } catch (err) {
+    console.error('Failed to read tasks.json:', err.message);
+    process.exit(1);
+  }
+
+  const now = new Date();
+  let updated = false;
 
   console.log('NOW:', now.toISOString());
 
   for (const task of tasks) {
-
     console.log('----------------');
-
     console.log('TASK:', task.title);
 
-    if (!task.reminder_enabled) {
-
-      console.log('SKIPPED: reminder disabled');
-
-      continue;
-    }
-
-    if (task.reminder_sent) {
-
-      console.log('SKIPPED: already sent');
-
-      continue;
-    }
-
-    if (task.done) {
-
-      console.log('SKIPPED: task completed');
-
-      continue;
-    }
-
-    if (!task.remind_at) {
-
-      console.log('SKIPPED: no remind_at');
-
-      continue;
-    }
+    if (!task.reminder_enabled) { console.log('SKIPPED: reminder disabled'); continue; }
+    if (task.reminder_sent)     { console.log('SKIPPED: already sent');      continue; }
+    if (task.done)              { console.log('SKIPPED: task completed');     continue; }
+    if (!task.remind_at)        { console.log('SKIPPED: no remind_at');       continue; }
 
     const remindTime = new Date(task.remind_at);
-
-    if (isNaN(remindTime.getTime())) {
-
-      console.log('SKIPPED: invalid remind_at');
-
-      continue;
-    }
+    if (isNaN(remindTime.getTime())) { console.log('SKIPPED: invalid remind_at'); continue; }
 
     console.log('REMIND_AT:', remindTime.toISOString());
 
     if (now >= remindTime) {
-
       console.log('REMINDER MATCHED');
-
-      const message =
-`⏰ ${task.title}
-📁 ${task.project}
-🔥 ${task.priority}`;
-
+      const message = `⏰ <b>${task.title}</b>\n📁 ${task.project}\n🔥 ${task.priority}`;
       try {
-
         await sendTelegramMessage(message);
-
         console.log('TELEGRAM SENT');
-
         task.reminder_sent = true;
-
         task.modified_at = new Date().toISOString();
-
         updated = true;
-
       } catch (err) {
-
-        console.error('TELEGRAM FAILED');
-
-        console.error(err.message);
+        console.error('TELEGRAM FAILED:', err.message);
       }
-
     } else {
-
       console.log('NOT YET TIME');
     }
   }
 
   if (updated) {
-
-    fs.writeFileSync(
-      TASKS_FILE,
-      JSON.stringify(tasks, null, 2)
-    );
-
+    fs.writeFileSync(TASKS_FILE, JSON.stringify(tasks, null, 2));
     console.log('tasks.json updated');
   }
 }
 
-processReminders();
+// Properly awaited — script won't exit before async work finishes
+processReminders().catch(err => {
+  console.error('Fatal error:', err);
+  process.exit(1);
+});
