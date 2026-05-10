@@ -1,8 +1,6 @@
 name: Task Reminder Runner
 on:
-  workflow_dispatch:
-  schedule:
-    - cron: "*/15 * * * *"
+  workflow_dispatch:        # Cloudflare triggers this
 permissions:
   contents: write
 jobs:
