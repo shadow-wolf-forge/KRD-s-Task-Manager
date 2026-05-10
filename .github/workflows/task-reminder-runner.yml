@@ -1,4 +1,4 @@
-name: Task Reminder Runner
+name: Task Reminder Cloudflare Runner
 on:
   workflow_dispatch:        # Cloudflare triggers this
 permissions:
