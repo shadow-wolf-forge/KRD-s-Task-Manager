@@ -1,20 +1,13 @@
-name: Task Reminder Runner-Flow
-
+name: Task Reminder Runner
 on:
   workflow_dispatch:
-
-  push:
-
   schedule:
     - cron: "*/5 * * * *"
-
 permissions:
   contents: write
-
 jobs:
   task-reminder-job:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -23,9 +16,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-
-      - name: Install Dependencies
-        run: npm install
 
       - name: Execute Reminder Script
         env:
@@ -37,12 +27,10 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
           git add tasks.json
-
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "Task reminder update"
+            git commit -m "chore: task reminder update [skip ci]"
             git push
           fi
