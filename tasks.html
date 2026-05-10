@@ -1678,42 +1678,59 @@ async function fetchTasks() {
   }
 }
 
+async function fetchSha() {
+  const url = `https://api.github.com/repos/${owner}/${repo}/contents/tasks.json`;
+  try {
+    const res = await fetch(url, { headers: getHeaders() });
+    if (!res.ok) return null;
+    const data = await res.json();
+    sha = data.sha;
+    return sha;
+  } catch (e) {
+    return null;
+  }
+}
+
 async function saveTasks(commitMessage = 'Update tasks') {
   const url = `https://api.github.com/repos/${owner}/${repo}/contents/tasks.json`;
-  
-  if (!sha) await fetchTasks();
-  
-  const body = {
-    message: commitMessage,
-    content: encodeContent(JSON.stringify(tasks, null, 2))
-  };
-  
-  if (sha) body.sha = sha;
-  
+
   try {
     setLoading(true);
-    
+
+    // If we don't have a sha yet, fetch it first before attempting the PUT
+    if (!sha) {
+      await fetchSha();
+    }
+
+    const body = {
+      message: commitMessage,
+      content: encodeContent(JSON.stringify(tasks, null, 2))
+    };
+
+    if (sha) body.sha = sha;
+
     const res = await fetch(url, {
       method: 'PUT',
       headers: getHeaders(),
       body: JSON.stringify(body)
     });
-    
+
     const data = await res.json();
-    
+
     if (!res.ok) {
       if (res.status === 409 || res.status === 422) {
-        await fetchTasks();
+        // SHA is stale — re-fetch it and retry once
+        await fetchSha();
         return await saveTasks(commitMessage);
       }
       throw new Error(data.message || res.status);
     }
-    
+
     sha = data.content.sha;
     renderTasks();
     updateStats();
     showStatus('Changes saved successfully');
-    
+
   } catch (error) {
     console.error('Error saving tasks:', error);
     showStatus('Failed to save: ' + error.message, true);
