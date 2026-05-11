@@ -5,14 +5,14 @@
     "project": "McKinsey",
     "priority": "Medium",
     "assigned_to": "Karthik",
-    "done": false,
+    "done": true,
     "reminder_enabled": true,
     "remind_at": "2026-05-11T07:00:00.000Z",
     "reminder_sent": false,
     "notes": "Ping Ashutosh",
     "created_at": "2026-04-30T13:32:55.598Z",
-    "modified_at": "2026-05-10T19:11:24.761Z",
-    "completed_at": null
+    "modified_at": "2026-05-11T06:37:19.397Z",
+    "completed_at": "2026-05-11T06:37:19.397Z"
   },
   {
     "id": 1777911961241.7227,
