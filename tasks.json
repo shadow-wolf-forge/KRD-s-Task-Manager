@@ -294,9 +294,9 @@
     "reminder_enabled": true,
     "remind_at": "2026-05-17T04:33:00.000Z",
     "reminder_sent": false,
-    "notes": "",
+    "notes": "https://learning.sap.com/courses/manage-b2b-scenarios-effectively-with-sap-integration-suite/trading-partner-management-overview_LE_c61c6bd8-7ed8-4b82-ae38-2434f7dc6ba7",
     "created_at": "2026-05-11T19:34:36.726Z",
-    "modified_at": "2026-05-11T19:34:36.726Z",
+    "modified_at": "2026-05-11T19:34:46.257Z",
     "completed_at": null
   }
 ]
