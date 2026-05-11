@@ -168,15 +168,15 @@
     "id": 1778326587456.0632,
     "title": "Get KT from Sai",
     "project": "Carrier",
-    "priority": "Medium",
+    "priority": "High",
     "assigned_to": "Karthik",
     "done": false,
     "reminder_enabled": true,
     "remind_at": "2026-05-11T06:00:00.000Z",
-    "reminder_sent": true,
+    "reminder_sent": false,
     "notes": "Pinged and waiting for avilalblity",
     "created_at": "2026-05-09T11:36:27.456Z",
-    "modified_at": "2026-05-11T07:53:13.970Z",
+    "modified_at": "2026-05-11T11:10:06.520Z",
     "completed_at": null
   },
   {
