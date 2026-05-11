@@ -348,7 +348,7 @@ body::before {
   width: 100%;
   border-collapse: collapse;
   border-radius: var(--radius-md);
-  overflow: hidden;
+  overflow: visible;
   box-shadow: var(--shadow-sm);
   background: var(--surface-elevated);
 }
@@ -404,44 +404,65 @@ body::before {
   color: var(--text-muted);
 }
 
-.task-tooltip {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: var(--bg-tertiary);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 12px;
-  min-width: 280px;
-  box-shadow: var(--shadow-lg);
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-8px);
-  transition: var(--transition);
-  backdrop-filter: blur(20px);
+/* ── Timing drawer row (replaces hover tooltip) ── */
+.timing-drawer-row > td {
+  padding: 0 !important;
+  border-bottom: none !important;
 }
-
-.task-title-wrap:hover .task-tooltip {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
+.timing-drawer-inner {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.24s cubic-bezier(0.4,0,0.2,1);
 }
-
-.tooltip-item {
+.timing-drawer-row.open .timing-drawer-inner {
+  grid-template-rows: 1fr;
+}
+.timing-drawer-body { overflow: hidden; }
+.timing-drawer-content {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 6px;
-  font-size: 13px;
+  align-items: center;
+  gap: 0;
+  padding: 10px 24px 12px 24px;
+  background: linear-gradient(135deg,rgba(139,92,246,0.06),rgba(59,130,246,0.03));
+  border-top: 1px solid rgba(139,92,246,0.15);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+  gap: 0 32px;
 }
-
-.tooltip-label {
+.timing-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 0;
+  min-width: 200px;
+}
+.timing-icon {
+  width: 14px;
+  height: 14px;
+  color: var(--accent-purple);
+  flex-shrink: 0;
+}
+.timing-label {
+  font-size: 11px;
+  font-weight: 700;
   color: var(--text-muted);
-  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  min-width: 68px;
 }
-
-.tooltip-value {
+.timing-value {
+  font-size: 12px;
   color: var(--text-secondary);
+  font-family: 'JetBrains Mono', monospace;
+}
+.timing-value.empty { color: var(--text-muted); font-style: italic; font-family: inherit; }
+
+/* keep task-title-wrap non-positioned since tooltip is gone */
+.task-title-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 /* Project with logo */
@@ -799,10 +820,12 @@ body::before {
   padding: 20px;
   transition: var(--transition);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   cursor: pointer;
   animation: fadeInUp 0.3s ease-out;
 }
+
+/* Use pseudo-element for the top color bar so overflow:visible doesn't break it */
 
 .task-card:hover {
   transform: translateY(-4px);
@@ -1132,143 +1155,151 @@ body::before {
   box-shadow: 0 0 0 3px rgba(139,92,246,0.1);
 }
 
-/* Notes button & popup */
+/* ── Notes button ── */
 .action-btn.notes {
   color: var(--accent-orange);
   border-color: rgba(245,158,11,0.3);
   position: relative;
 }
-
 .action-btn.notes:hover,
-.action-btn.notes.has-notes {
-  background: rgba(245,158,11,0.1);
-}
-
+.action-btn.notes.has-notes { background: rgba(245,158,11,0.1); }
 .action-btn.notes.has-notes::after {
   content: '';
   position: absolute;
-  top: 4px;
-  right: 4px;
-  width: 6px;
-  height: 6px;
+  top: 4px; right: 4px;
+  width: 6px; height: 6px;
   background: var(--accent-orange);
   border-radius: 50%;
 }
-
 .card-action-btn.notes {
   color: var(--accent-orange);
   border-color: rgba(245,158,11,0.3);
   position: relative;
 }
-
 .card-action-btn.notes:hover,
-.card-action-btn.notes.has-notes {
-  background: rgba(245,158,11,0.1);
-}
-
+.card-action-btn.notes.has-notes { background: rgba(245,158,11,0.1); }
 .card-action-btn.notes.has-notes::after {
   content: '';
   position: absolute;
-  top: 3px;
-  right: 3px;
-  width: 5px;
-  height: 5px;
+  top: 3px; right: 3px;
+  width: 5px; height: 5px;
   background: var(--accent-orange);
   border-radius: 50%;
 }
 
-.notes-popup {
-  display: none;
-  position: absolute;
-  z-index: 1000;
-  min-width: 260px;
-  max-width: 340px;
-  background: var(--bg-tertiary);
-  border: 1px solid var(--border-hover);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-xl);
-  padding: 14px;
-  backdrop-filter: blur(20px);
+/* ── Notes slide-down drawer row (table view) ── */
+.notes-drawer-row > td {
+  padding: 0 !important;
+  border-bottom: none !important;
 }
-
-.notes-popup.open {
-  display: block;
-  animation: fadeInUp 0.15s ease-out;
+.notes-drawer-inner {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.28s cubic-bezier(0.4,0,0.2,1);
 }
-
-.notes-popup-header {
+.notes-drawer-row.open .notes-drawer-inner {
+  grid-template-rows: 1fr;
+}
+.notes-drawer-body { overflow: hidden; }
+.notes-drawer-content {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-secondary);
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 24px 18px 24px;
+  background: linear-gradient(135deg,rgba(245,158,11,0.07),rgba(245,158,11,0.02));
+  border-top: 1px solid rgba(245,158,11,0.2);
+  border-bottom: 1px solid var(--border);
 }
-
-.notes-popup-close {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--text-muted);
-  display: flex;
-  align-items: center;
-  padding: 2px;
-  border-radius: 4px;
-  transition: var(--transition);
+.notes-drawer-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent-orange);
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  white-space: nowrap;
+  padding-top: 11px;
 }
-
-.notes-popup-close:hover { color: var(--text-primary); }
-
 .notes-textarea {
-  width: 100%;
-  min-height: 90px;
-  background: var(--surface);
-  border: 1px solid var(--border);
+  flex: 1;
+  min-height: 72px;
+  max-height: 180px;
+  background: var(--surface-elevated);
+  border: 1px solid rgba(245,158,11,0.25);
   border-radius: var(--radius-sm);
   color: var(--text-primary);
   font-size: 13px;
   font-family: inherit;
   resize: vertical;
-  padding: 10px;
+  padding: 10px 12px;
   transition: var(--transition);
   line-height: 1.5;
 }
-
 .notes-textarea:focus {
   outline: none;
   border-color: var(--accent-orange);
   box-shadow: 0 0 0 3px rgba(245,158,11,0.1);
 }
-
+.notes-drawer-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 4px;
+}
 .notes-save-btn {
-  margin-top: 10px;
-  width: 100%;
-  padding: 8px;
+  padding: 8px 14px;
   background: linear-gradient(135deg, var(--accent-orange), var(--accent-orange-dark));
   color: white;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
   transition: var(--transition);
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 6px;
+  gap: 5px;
+  white-space: nowrap;
 }
+.notes-save-btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+.notes-close-btn {
+  padding: 6px 14px;
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+.notes-close-btn:hover { color: var(--text-primary); border-color: var(--border-hover); }
 
-.notes-save-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-sm);
+/* ── Notes drawer in card view ── */
+.card-notes-drawer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.28s cubic-bezier(0.4,0,0.2,1);
 }
-
-/* Notes container for positioning */
-.notes-anchor {
-  position: relative;
-  display: inline-flex;
+.card-notes-drawer.open { grid-template-rows: 1fr; }
+.card-notes-body { overflow: hidden; }
+.card-notes-content {
+  padding-top: 12px;
+  border-top: 1px solid rgba(245,158,11,0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
 }
+.card-notes-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent-orange);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+.card-notes-actions { display: flex; gap: 8px; }
+.notes-anchor { display: inline-flex; }
 
 /* Responsive table for mobile: hide less important columns */
 @media (max-width: 768px) {
@@ -1833,6 +1864,12 @@ const assigneeFilter = document.getElementById('filterAssignedTo').value.trim().
   filteredTasks.forEach(task => {
     const row = createTaskRow(task);
     tableBody.appendChild(row);
+    // Notes drawer — hidden slide-down, inserted right after the task row
+    const notesDrawer = createNotesDrawerRow(task, row);
+    tableBody.appendChild(notesDrawer);
+    // Timing drawer — hover-triggered, right after notes drawer
+    const timingDrawer = createTimingDrawerRow(task, row);
+    tableBody.appendChild(timingDrawer);
   });
   
   // Re-initialize Lucide icons
@@ -1860,27 +1897,6 @@ function createTaskRow(task) {
   titleText.className = `task-title ${task.done ? 'completed' : ''}`;
   titleText.textContent = task.title;
   
-  const tooltip = document.createElement('div');
-  tooltip.className = 'task-tooltip';
-  tooltip.innerHTML = `
-    <div class="tooltip-item">
-      <span class="tooltip-label">Created:</span>
-      <span class="tooltip-value">${formatDateIST(task.created_at)}</span>
-    </div>
-    <div class="tooltip-item">
-      <span class="tooltip-label">Modified:</span>
-      <span class="tooltip-value">${formatDateIST(task.modified_at)}</span>
-    </div>
-    <div class="tooltip-item">
-      <span class="tooltip-label">Completed:</span>
-      <span class="tooltip-value">${formatDateIST(task.completed_at)}</span>
-    </div>
-    ${task.reminder_enabled && task.remind_at ? `<div class="tooltip-item">
-      <span class="tooltip-label">Reminder:</span>
-      <span class="tooltip-value">${formatDateIST(task.remind_at)}</span>
-    </div>` : ''}
-  `;
-
   // Reminder badge inline with title
   const titleLineWrap = document.createElement('div');
   titleLineWrap.style.cssText = 'display:flex;flex-direction:column;gap:5px;';
@@ -1891,46 +1907,34 @@ function createTaskRow(task) {
     rb.innerHTML = `<i data-lucide="bell" style="width:11px;height:11px;"></i> ${formatDateIST(task.remind_at)}`;
     titleLineWrap.appendChild(rb);
   }
-  
+
   titleWrap.appendChild(titleLineWrap);
-  titleWrap.appendChild(tooltip);
   titleCell.appendChild(titleWrap);
   row.appendChild(titleCell);
 
-  // Notes cell (between title and project)
+  // Hover on the row opens the timing drawer
+  let hoverTimer = null;
+  row.addEventListener('mouseenter', () => {
+    hoverTimer = setTimeout(() => openTimingDrawer(row, task), 180);
+  });
+  row.addEventListener('mouseleave', (e) => {
+    clearTimeout(hoverTimer);
+    // Keep open if moving into the timing drawer row itself
+    const to = e.relatedTarget;
+    const timingDr = getTimingDrawer(row);
+    if (timingDr && timingDr.contains(to)) return;
+    closeTimingDrawer(row);
+  });
+
+  // Notes cell — just a button; the drawer is a sibling <tr> below
   const notesTd = document.createElement('td');
   notesTd.style.cssText = 'text-align:center;vertical-align:middle;padding:8px 4px;';
-  const notesAnchor = document.createElement('div');
-  notesAnchor.className = 'notes-anchor';
-
   const notesBtn = document.createElement('button');
   notesBtn.className = `action-btn notes${task.notes ? ' has-notes' : ''}`;
   notesBtn.title = task.notes ? 'View / edit notes' : 'Add notes';
   notesBtn.innerHTML = '<i data-lucide="sticky-note"></i>';
-
-  const notesPopup = document.createElement('div');
-  notesPopup.className = 'notes-popup';
-  notesPopup.style.cssText = 'left:0;top:calc(100% + 6px);right:auto;';
-  notesPopup.innerHTML = `
-    <div class="notes-popup-header">
-      <span>📝 Notes</span>
-      <button class="notes-popup-close"><i data-lucide="x" style="width:14px;height:14px;"></i></button>
-    </div>
-    <textarea class="notes-textarea" placeholder="Add notes here..."></textarea>
-    <button class="notes-save-btn"><i data-lucide="save" style="width:13px;height:13px;"></i> Save Notes</button>
-  `;
-
-  notesBtn.onclick = (e) => { e.stopPropagation(); openNotesPopup(notesAnchor, task); };
-  notesPopup.querySelector('.notes-popup-close').onclick = (e) => { e.stopPropagation(); notesPopup.classList.remove('open'); };
-  notesPopup.querySelector('.notes-save-btn').onclick = async (e) => {
-    e.stopPropagation();
-    await saveNotes(task, notesPopup.querySelector('.notes-textarea'), null, notesBtn);
-    notesPopup.classList.remove('open');
-  };
-
-  notesAnchor.appendChild(notesBtn);
-  notesAnchor.appendChild(notesPopup);
-  notesTd.appendChild(notesAnchor);
+  notesBtn.onclick = (e) => { e.stopPropagation(); toggleNotesDrawer(row, task, notesBtn); };
+  notesTd.appendChild(notesBtn);
   row.appendChild(notesTd);
   
   // Project with logo
@@ -2108,19 +2112,9 @@ function createTaskCard(task) {
         <button class="card-action-btn edit" title="Edit task">
           <i data-lucide="edit-3"></i>
         </button>
-        <div class="notes-anchor" style="position:relative;display:inline-flex;">
-          <button class="card-action-btn notes${task.notes ? ' has-notes' : ''}" title="Notes">
+        <button class="card-action-btn notes${task.notes ? ' has-notes' : ''}" title="Notes">
             <i data-lucide="sticky-note"></i>
           </button>
-          <div class="notes-popup" style="right:0;top:calc(100% + 6px);left:auto;">
-            <div class="notes-popup-header">
-              <span>📝 Notes</span>
-              <button class="notes-popup-close"><i data-lucide="x" style="width:14px;height:14px;"></i></button>
-            </div>
-            <textarea class="notes-textarea" placeholder="Add notes here..."></textarea>
-            <button class="notes-save-btn"><i data-lucide="save" style="width:13px;height:13px;"></i> Save Notes</button>
-          </div>
-        </div>
         <button class="card-action-btn delete" title="Delete task">
           <i data-lucide="trash-2"></i>
         </button>
@@ -2151,17 +2145,9 @@ function createTaskCard(task) {
     await saveTasks(`Delete task: ${task.title}`);
   };
 
-  // Notes button in card
-  const notesAnchor = card.querySelector('.notes-anchor');
+  // Notes button in card — toggle inline drawer
   const notesBtn = card.querySelector('.card-action-btn.notes');
-  const notesPopup = card.querySelector('.notes-popup');
-  notesBtn.onclick = (e) => { e.stopPropagation(); openNotesPopup(notesAnchor, task); };
-  notesPopup.querySelector('.notes-popup-close').onclick = (e) => { e.stopPropagation(); notesPopup.classList.remove('open'); };
-  notesPopup.querySelector('.notes-save-btn').onclick = async (e) => {
-    e.stopPropagation();
-    await saveNotes(task, notesPopup.querySelector('.notes-textarea'), null, notesBtn);
-    notesPopup.classList.remove('open');
-  };
+  notesBtn.onclick = (e) => { e.stopPropagation(); toggleCardNotesDrawer(card, task, notesBtn); };
   
   return card;
 }
@@ -2608,30 +2594,267 @@ document.getElementById('newReminderEnabled').onchange = function() {
   dt.classList.toggle('active', this.checked);
 };
 
-// Close all notes popups when clicking outside
-document.addEventListener('click', (e) => {
-  if (!e.target.closest('.notes-anchor')) {
-    document.querySelectorAll('.notes-popup.open').forEach(p => p.classList.remove('open'));
-  }
-});
+// ── Notes drawer helpers ────────────────────────────────────────────────────
 
-function openNotesPopup(anchor, task) {
-  // Close any other open popups first
-  document.querySelectorAll('.notes-popup.open').forEach(p => {
-    if (p !== anchor.querySelector('.notes-popup')) p.classList.remove('open');
-  });
-  const popup = anchor.querySelector('.notes-popup');
-  const textarea = popup.querySelector('.notes-textarea');
+/** Table view: create the hidden drawer <tr> that slides down below a task row */
+function createNotesDrawerRow(task, taskRow) {
+  const colCount = taskRow.querySelectorAll('td').length;
+  const dr = document.createElement('tr');
+  dr.className = 'notes-drawer-row';
+  dr.dataset.taskId = task.id;
+
+  const td = document.createElement('td');
+  td.colSpan = colCount;
+
+  const inner = document.createElement('div');
+  inner.className = 'notes-drawer-inner';
+
+  const body = document.createElement('div');
+  body.className = 'notes-drawer-body';
+
+  const content = document.createElement('div');
+  content.className = 'notes-drawer-content';
+
+  const label = document.createElement('span');
+  label.className = 'notes-drawer-label';
+  label.textContent = '📝 Notes';
+
+  const textarea = document.createElement('textarea');
+  textarea.className = 'notes-textarea';
+  textarea.placeholder = 'Add notes here…';
   textarea.value = task.notes || '';
-  popup.classList.toggle('open');
+
+  const actions = document.createElement('div');
+  actions.className = 'notes-drawer-actions';
+
+  const saveBtn = document.createElement('button');
+  saveBtn.className = 'notes-save-btn';
+  saveBtn.innerHTML = '<i data-lucide="save" style="width:13px;height:13px;"></i> Save';
+  saveBtn.onclick = async (e) => {
+    e.stopPropagation();
+    task.notes = textarea.value.trim();
+    task.modified_at = new Date().toISOString();
+    // update button dot indicator
+    const notesBtn = taskRow.querySelector('.action-btn.notes');
+    if (notesBtn) notesBtn.classList.toggle('has-notes', !!task.notes);
+    await saveTasks(`Notes: ${task.title}`);
+    dr.classList.remove('open');
+    if (window.lucide) lucide.createIcons();
+  };
+
+  const closeBtn = document.createElement('button');
+  closeBtn.className = 'notes-close-btn';
+  closeBtn.textContent = 'Close';
+  closeBtn.onclick = (e) => { e.stopPropagation(); dr.classList.remove('open'); };
+
+  actions.appendChild(saveBtn);
+  actions.appendChild(closeBtn);
+  content.appendChild(label);
+  content.appendChild(textarea);
+  content.appendChild(actions);
+  body.appendChild(content);
+  inner.appendChild(body);
+  td.appendChild(inner);
+  dr.appendChild(td);
+  return dr;
+}
+
+/** Table view: toggle the drawer row open/closed */
+function toggleNotesDrawer(taskRow, task, notesBtn) {
+  // Find the drawer row that immediately follows this task row
+  let dr = taskRow.nextElementSibling;
+  if (!dr || !dr.classList.contains('notes-drawer-row')) return;
+
+  const isOpen = dr.classList.contains('open');
+  // Close all other open drawers first
+  document.querySelectorAll('.notes-drawer-row.open').forEach(r => r.classList.remove('open'));
+
+  if (!isOpen) {
+    // Refresh textarea in case task.notes changed
+    dr.querySelector('.notes-textarea').value = task.notes || '';
+    dr.classList.add('open');
+    dr.querySelector('.notes-textarea').focus();
+    if (window.lucide) lucide.createIcons();
+  }
+}
+
+/** Card view: toggle the inline notes drawer inside a card */
+function toggleCardNotesDrawer(card, task, notesBtn) {
+  let drawer = card.querySelector('.card-notes-drawer');
+  if (!drawer) {
+    // Create it the first time
+    drawer = document.createElement('div');
+    drawer.className = 'card-notes-drawer';
+
+    const body = document.createElement('div');
+    body.className = 'card-notes-body';
+
+    const content = document.createElement('div');
+    content.className = 'card-notes-content';
+
+    const label = document.createElement('div');
+    label.className = 'card-notes-label';
+    label.textContent = '📝 Notes';
+
+    const textarea = document.createElement('textarea');
+    textarea.className = 'notes-textarea';
+    textarea.placeholder = 'Add notes here…';
+    textarea.value = task.notes || '';
+    textarea.style.width = '100%';
+
+    const actionsRow = document.createElement('div');
+    actionsRow.className = 'card-notes-actions';
+
+    const saveBtn = document.createElement('button');
+    saveBtn.className = 'notes-save-btn';
+    saveBtn.style.flex = '1';
+    saveBtn.innerHTML = '<i data-lucide="save" style="width:12px;height:12px;"></i> Save';
+    saveBtn.onclick = async (e) => {
+      e.stopPropagation();
+      task.notes = textarea.value.trim();
+      task.modified_at = new Date().toISOString();
+      notesBtn.classList.toggle('has-notes', !!task.notes);
+      await saveTasks(`Notes: ${task.title}`);
+      drawer.classList.remove('open');
+      if (window.lucide) lucide.createIcons();
+    };
+
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'notes-close-btn';
+    closeBtn.textContent = 'Close';
+    closeBtn.onclick = (e) => { e.stopPropagation(); drawer.classList.remove('open'); };
+
+    actionsRow.appendChild(saveBtn);
+    actionsRow.appendChild(closeBtn);
+    content.appendChild(label);
+    content.appendChild(textarea);
+    content.appendChild(actionsRow);
+    body.appendChild(content);
+    drawer.appendChild(body);
+    card.appendChild(drawer);
+    if (window.lucide) lucide.createIcons();
+  }
+
+  const isOpen = drawer.classList.contains('open');
+  // Close all other card drawers
+  document.querySelectorAll('.card-notes-drawer.open').forEach(d => d.classList.remove('open'));
+  if (!isOpen) {
+    drawer.querySelector('.notes-textarea').value = task.notes || '';
+    drawer.classList.add('open');
+    drawer.querySelector('.notes-textarea').focus();
+  }
 }
 
 async function saveNotes(task, textarea, btn, notesBtn) {
-  task.notes = textarea.value.trim();
+  task.notes = (textarea ? textarea.value : '').trim();
   task.modified_at = new Date().toISOString();
-  // Update has-notes indicator
   if (notesBtn) notesBtn.classList.toggle('has-notes', !!task.notes);
   await saveTasks(`Notes: ${task.title}`);
+}
+
+// ── Timing drawer helpers ────────────────────────────────────────────────────
+
+/** Get the timing drawer row for a given task row (it's 2 siblings after: notes drawer is in between) */
+function getTimingDrawer(taskRow) {
+  // structure: taskRow → notesDrawerRow → timingDrawerRow
+  const next = taskRow.nextElementSibling;
+  if (!next) return null;
+  if (next.classList.contains('timing-drawer-row')) return next;
+  const after = next.nextElementSibling;
+  if (after && after.classList.contains('timing-drawer-row')) return after;
+  return null;
+}
+
+/** Build the timing drawer <tr> for a task */
+function createTimingDrawerRow(task, taskRow) {
+  const colCount = taskRow.querySelectorAll('td').length;
+  const dr = document.createElement('tr');
+  dr.className = 'timing-drawer-row';
+  dr.dataset.taskId = task.id;
+
+  // Keep drawer open while mouse is inside it
+  dr.addEventListener('mouseenter', () => {
+    // cancel any pending close on the task row
+    dr._staying = true;
+  });
+  dr.addEventListener('mouseleave', (e) => {
+    dr._staying = false;
+    // Close unless moving back onto the task row
+    const to = e.relatedTarget;
+    if (taskRow.contains(to)) return;
+    dr.classList.remove('open');
+  });
+
+  const td = document.createElement('td');
+  td.colSpan = colCount;
+
+  const inner = document.createElement('div');
+  inner.className = 'timing-drawer-inner';
+
+  const body = document.createElement('div');
+  body.className = 'timing-drawer-body';
+
+  const content = document.createElement('div');
+  content.className = 'timing-drawer-content';
+  content.dataset.taskId = task.id; // so we can refresh it
+
+  // helper to build one timing item
+  function makeItem(iconName, label, value) {
+    const item = document.createElement('div');
+    item.className = 'timing-item';
+    item.innerHTML = `
+      <i data-lucide="${iconName}" class="timing-icon"></i>
+      <span class="timing-label">${label}</span>
+      <span class="timing-value${value ? '' : ' empty'}">${value || '—'}</span>
+    `;
+    return item;
+  }
+
+  content.appendChild(makeItem('calendar-plus', 'Created', formatDateIST(task.created_at)));
+  content.appendChild(makeItem('pencil', 'Modified', formatDateIST(task.modified_at)));
+  content.appendChild(makeItem('circle-check', 'Completed', formatDateIST(task.completed_at)));
+  if (task.reminder_enabled && task.remind_at) {
+    content.appendChild(makeItem('bell', 'Reminder', formatDateIST(task.remind_at)));
+  }
+
+  body.appendChild(content);
+  inner.appendChild(body);
+  td.appendChild(inner);
+  dr.appendChild(td);
+  return dr;
+}
+
+function openTimingDrawer(taskRow, task) {
+  // Close all other timing drawers
+  document.querySelectorAll('.timing-drawer-row.open').forEach(r => {
+    if (r.dataset.taskId !== String(task.id)) r.classList.remove('open');
+  });
+  const dr = getTimingDrawer(taskRow);
+  if (!dr) return;
+  // Refresh values (task may have been edited)
+  const content = dr.querySelector('.timing-drawer-content');
+  if (content) {
+    content.innerHTML = '';
+    function makeItem(iconName, label, value) {
+      const item = document.createElement('div');
+      item.className = 'timing-item';
+      item.innerHTML = `<i data-lucide="${iconName}" class="timing-icon"></i><span class="timing-label">${label}</span><span class="timing-value${value ? '' : ' empty'}">${value || '—'}</span>`;
+      return item;
+    }
+    content.appendChild(makeItem('calendar-plus', 'Created', formatDateIST(task.created_at)));
+    content.appendChild(makeItem('pencil', 'Modified', formatDateIST(task.modified_at)));
+    content.appendChild(makeItem('circle-check', 'Completed', formatDateIST(task.completed_at)));
+    if (task.reminder_enabled && task.remind_at) {
+      content.appendChild(makeItem('bell', 'Reminder', formatDateIST(task.remind_at)));
+    }
+  }
+  dr.classList.add('open');
+  if (window.lucide) lucide.createIcons();
+}
+
+function closeTimingDrawer(taskRow) {
+  const dr = getTimingDrawer(taskRow);
+  if (dr && !dr._staying) dr.classList.remove('open');
 }
 
 // Initialize application
