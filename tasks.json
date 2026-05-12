@@ -275,14 +275,14 @@
     "project": "Personal",
     "priority": "High",
     "assigned_to": "Karthik",
-    "done": false,
+    "done": true,
     "reminder_enabled": true,
     "remind_at": "2026-05-11T06:15:00.000Z",
     "reminder_sent": true,
     "notes": "",
     "created_at": "2026-05-11T17:02:05.092Z",
-    "modified_at": "2026-05-11T17:03:17.868Z",
-    "completed_at": null
+    "modified_at": "2026-05-12T08:13:35.873Z",
+    "completed_at": "2026-05-12T08:13:35.873Z"
   },
   {
     "id": 1778528076726.606,
