@@ -234,9 +234,9 @@
     "reminder_enabled": true,
     "remind_at": "2026-05-12T17:30:00.000Z",
     "reminder_sent": false,
-    "notes": "Analyzin the issue\n\n1. Ping ashutosh to get his insights,\n2. Check with Shweta about her insights.",
+    "notes": "Waiting for Shweta to give her insights",
     "created_at": "2026-05-11T11:11:26.973Z",
-    "modified_at": "2026-05-11T11:28:50.888Z",
+    "modified_at": "2026-05-12T08:12:54.982Z",
     "completed_at": null
   },
   {
