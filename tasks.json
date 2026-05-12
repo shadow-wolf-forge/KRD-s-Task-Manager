@@ -219,9 +219,9 @@
     "reminder_enabled": true,
     "remind_at": "2026-05-12T09:00:00.000Z",
     "reminder_sent": false,
-    "notes": "Status : Pinged and sent mail to Vipin for approval",
+    "notes": "Status : Pinged and sent mail to Vipin for approval - Need Shweta clarification",
     "created_at": "2026-05-11T09:40:07.769Z",
-    "modified_at": "2026-05-12T06:03:11.227Z",
+    "modified_at": "2026-05-12T06:03:32.516Z",
     "completed_at": null
   },
   {
