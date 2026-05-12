@@ -219,9 +219,9 @@
     "reminder_enabled": false,
     "remind_at": null,
     "reminder_sent": false,
-    "notes": "Status : Waiting for Saurabh to modify the roles and collections in QA and Prod",
+    "notes": "changes completed in DEV, QA, PRD\n\nNeed to check how to configure the new roles in IF.",
     "created_at": "2026-05-11T09:40:07.769Z",
-    "modified_at": "2026-05-12T10:31:35.283Z",
+    "modified_at": "2026-05-12T10:32:13.700Z",
     "completed_at": null
   },
   {
