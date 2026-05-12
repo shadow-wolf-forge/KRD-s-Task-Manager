@@ -226,7 +226,7 @@
   },
   {
     "id": 1778497886973.133,
-    "title": "Check and close aravo bugs",
+    "title": "Check and close Aravo bugs",
     "project": "McKinsey",
     "priority": "Medium",
     "assigned_to": "Karthik",
@@ -236,7 +236,7 @@
     "reminder_sent": false,
     "notes": "Waiting for Shweta to give her insights\nNeed to check who can help with S4HANA",
     "created_at": "2026-05-11T11:11:26.973Z",
-    "modified_at": "2026-05-12T09:50:02.200Z",
+    "modified_at": "2026-05-12T10:34:24.534Z",
     "completed_at": null
   },
   {
