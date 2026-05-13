@@ -9,7 +9,9 @@ async function sendTelegramMessage(message) {
     `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
     {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({
         chat_id: TELEGRAM_CHAT_ID,
         text: message,
@@ -82,13 +84,11 @@ async function processReminders() {
 
       const notes =
         task.notes && task.notes.trim()
-          ? `\n\n📝 <i>${task.notes.trim()}</i>`
+          ? `\n\n📝 ${task.notes.trim()}`
           : '';
 
       const message =
-`⏰ <b>TASK REMINDER</b>
-
-📌 <b>${task.title}</b>${notes}`;
+`📌 <b>${task.title}</b> - ${task.project}${notes}`;
 
       try {
         await sendTelegramMessage(message);
