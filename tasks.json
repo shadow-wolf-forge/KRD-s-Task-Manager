@@ -350,13 +350,13 @@
     "project": "Beam Suntory",
     "priority": "Medium",
     "assigned_to": "Karthik",
-    "done": false,
+    "done": true,
     "reminder_enabled": false,
     "remind_at": null,
     "reminder_sent": false,
     "notes": "",
     "created_at": "2026-05-13T07:26:07.512Z",
-    "modified_at": "2026-05-13T07:26:07.512Z",
-    "completed_at": null
+    "modified_at": "2026-05-13T11:29:53.869Z",
+    "completed_at": "2026-05-13T11:29:53.869Z"
   }
 ]
