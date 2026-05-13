@@ -17,6 +17,7 @@ async function sendTelegramMessage(message) {
       })
     }
   );
+
   if (!response.ok) {
     const errorText = await response.text();
     throw new Error(errorText);
@@ -30,6 +31,7 @@ async function processReminders() {
   }
 
   let tasks;
+
   try {
     tasks = JSON.parse(fs.readFileSync(TASKS_FILE, 'utf8'));
   } catch (err) {
@@ -46,24 +48,56 @@ async function processReminders() {
     console.log('----------------');
     console.log('TASK:', task.title);
 
-    if (!task.reminder_enabled) { console.log('SKIPPED: reminder disabled'); continue; }
-    if (task.reminder_sent)     { console.log('SKIPPED: already sent');      continue; }
-    if (task.done)              { console.log('SKIPPED: task completed');     continue; }
-    if (!task.remind_at)        { console.log('SKIPPED: no remind_at');       continue; }
+    if (!task.reminder_enabled) {
+      console.log('SKIPPED: reminder disabled');
+      continue;
+    }
+
+    if (task.reminder_sent) {
+      console.log('SKIPPED: already sent');
+      continue;
+    }
+
+    if (task.done) {
+      console.log('SKIPPED: task completed');
+      continue;
+    }
+
+    if (!task.remind_at) {
+      console.log('SKIPPED: no remind_at');
+      continue;
+    }
 
     const remindTime = new Date(task.remind_at);
-    if (isNaN(remindTime.getTime())) { console.log('SKIPPED: invalid remind_at'); continue; }
+
+    if (isNaN(remindTime.getTime())) {
+      console.log('SKIPPED: invalid remind_at');
+      continue;
+    }
 
     console.log('REMIND_AT:', remindTime.toISOString());
 
     if (now >= remindTime) {
       console.log('REMINDER MATCHED');
-      const message = `⏰ <b>${task.title}</b>\n📁 ${task.project}\n🔥 ${task.priority}`;
+
+      const notes =
+        task.notes && task.notes.trim()
+          ? `\n\n📝 <i>${task.notes.trim()}</i>`
+          : '';
+
+      const message =
+`⏰ <b>TASK REMINDER</b>
+
+📌 <b>${task.title}</b>${notes}`;
+
       try {
         await sendTelegramMessage(message);
+
         console.log('TELEGRAM SENT');
+
         task.reminder_sent = true;
         task.modified_at = new Date().toISOString();
+
         updated = true;
       } catch (err) {
         console.error('TELEGRAM FAILED:', err.message);
@@ -79,7 +113,6 @@ async function processReminders() {
   }
 }
 
-// Properly awaited — script won't exit before async work finishes
 processReminders().catch(err => {
   console.error('Fatal error:', err);
   process.exit(1);
