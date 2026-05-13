@@ -383,10 +383,10 @@
     "done": false,
     "reminder_enabled": true,
     "remind_at": "2026-05-13T15:41:00.000Z",
-    "reminder_sent": false,
+    "reminder_sent": true,
     "notes": "",
     "created_at": "2026-05-13T15:33:18.052Z",
-    "modified_at": "2026-05-13T15:40:32.388Z",
+    "modified_at": "2026-05-13T15:41:11.967Z",
     "completed_at": null
   }
 ]
