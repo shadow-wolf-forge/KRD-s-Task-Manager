@@ -232,11 +232,11 @@
     "assigned_to": "Karthik",
     "done": false,
     "reminder_enabled": true,
-    "remind_at": "2026-05-13T05:30:00.000Z",
-    "reminder_sent": true,
+    "remind_at": "2026-05-14T05:40:00.000Z",
+    "reminder_sent": false,
     "notes": "Need to check the address id table, Since Ashutosh doesn't have access he's checking with someone who have the access.\n\nPing with Akash once",
     "created_at": "2026-05-11T11:11:26.973Z",
-    "modified_at": "2026-05-13T14:42:33.993Z",
+    "modified_at": "2026-05-13T14:43:59.254Z",
     "completed_at": null
   },
   {
