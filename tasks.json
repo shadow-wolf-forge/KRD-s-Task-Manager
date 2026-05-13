@@ -305,14 +305,14 @@
     "project": "McKinsey",
     "priority": "Medium",
     "assigned_to": "Karthik",
-    "done": false,
+    "done": true,
     "reminder_enabled": true,
     "remind_at": "2026-05-13T05:40:00.000Z",
     "reminder_sent": true,
     "notes": "",
     "created_at": "2026-05-12T14:53:35.282Z",
-    "modified_at": "2026-05-13T05:40:50.797Z",
-    "completed_at": null
+    "modified_at": "2026-05-13T09:20:10.978Z",
+    "completed_at": "2026-05-13T09:20:10.981Z"
   },
   {
     "id": 1778606870689.011,
