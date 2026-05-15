@@ -360,21 +360,6 @@
     "completed_at": "2026-05-13T11:29:53.869Z"
   },
   {
-    "id": 1778683413747.2854,
-    "title": "Check MyJournals CEF Issue",
-    "project": "McKinsey",
-    "priority": "Medium",
-    "assigned_to": "Karthik",
-    "done": false,
-    "reminder_enabled": true,
-    "remind_at": "2026-05-15T05:30:00.000Z",
-    "reminder_sent": true,
-    "notes": "Ping Ravi Karan to get Id for dev env",
-    "created_at": "2026-05-13T14:43:33.746Z",
-    "modified_at": "2026-05-15T05:30:21.506Z",
-    "completed_at": null
-  },
-  {
     "id": 1778686398052.9387,
     "title": "Complete FANASA Call",
     "project": "Carrier",
