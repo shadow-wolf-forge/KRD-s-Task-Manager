@@ -378,7 +378,7 @@
     "id": 1778831826349.3582,
     "title": "Get IF QA&PRD access",
     "project": "McKinsey",
-    "priority": "High",
+    "priority": "Low",
     "assigned_to": "Karthik",
     "done": false,
     "reminder_enabled": false,
@@ -386,7 +386,7 @@
     "reminder_sent": false,
     "notes": "Raised a ticket and pinged Saurabh",
     "created_at": "2026-05-15T07:57:06.348Z",
-    "modified_at": "2026-05-15T15:28:26.600Z",
+    "modified_at": "2026-05-17T17:17:14.219Z",
     "completed_at": null
   }
 ]
