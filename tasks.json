@@ -399,9 +399,9 @@
     "reminder_enabled": false,
     "remind_at": null,
     "reminder_sent": false,
-    "notes": "Ping Deparban or Maitree to get the connectivity and details",
+    "notes": "Sent request mail to the team and waiting for response",
     "created_at": "2026-05-17T17:20:17.532Z",
-    "modified_at": "2026-05-17T17:22:00.541Z",
+    "modified_at": "2026-05-18T11:13:10.669Z",
     "completed_at": null
   }
 ]
