@@ -428,10 +428,10 @@
     "done": false,
     "reminder_enabled": true,
     "remind_at": "2026-05-18T19:02:00.000Z",
-    "reminder_sent": false,
+    "reminder_sent": true,
     "notes": "https://www.sprintegrate.com/cpi/b2b-on-sap-integration-suite-cloud-integration-cpi-using-trading-partner-management-part-11-handling-parameters/",
     "created_at": "2026-05-18T19:00:55.121Z",
-    "modified_at": "2026-05-18T19:01:15.814Z",
+    "modified_at": "2026-05-18T19:02:29.314Z",
     "completed_at": null
   }
 ]
