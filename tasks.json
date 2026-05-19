@@ -410,14 +410,14 @@
     "project": "Carrier",
     "priority": "High",
     "assigned_to": "Karthik",
-    "done": false,
+    "done": true,
     "reminder_enabled": true,
     "remind_at": "2026-05-19T04:30:00.000Z",
     "reminder_sent": true,
     "notes": "",
     "created_at": "2026-05-18T12:40:20.980Z",
-    "modified_at": "2026-05-19T04:30:12.641Z",
-    "completed_at": null
+    "modified_at": "2026-05-19T15:37:10.284Z",
+    "completed_at": "2026-05-19T15:37:10.284Z"
   },
   {
     "id": 1779130855121.5908,
