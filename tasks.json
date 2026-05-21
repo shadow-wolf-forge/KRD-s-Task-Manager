@@ -380,14 +380,14 @@
     "project": "McKinsey",
     "priority": "Low",
     "assigned_to": "Karthik",
-    "done": false,
+    "done": true,
     "reminder_enabled": true,
     "remind_at": "2026-05-20T16:11:00.000Z",
     "reminder_sent": true,
     "notes": "Raised a ticket and pinged Saurabh",
     "created_at": "2026-05-15T07:57:06.348Z",
-    "modified_at": "2026-05-20T16:12:27.695Z",
-    "completed_at": null
+    "modified_at": "2026-05-21T07:46:37.110Z",
+    "completed_at": "2026-05-21T07:46:37.110Z"
   },
   {
     "id": 1779038417532.3506,
