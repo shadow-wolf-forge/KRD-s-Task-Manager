@@ -579,9 +579,9 @@
     "reminder_enabled": true,
     "remind_at": "2026-05-27T08:00:00.000Z",
     "reminder_sent": true,
-    "notes": "",
+    "notes": "Asked Group Chat",
     "created_at": "2026-05-27T07:02:09.437Z",
-    "modified_at": "2026-05-27T08:00:05.088Z",
+    "modified_at": "2026-05-27T09:41:25.090Z",
     "completed_at": null
   }
 ]
