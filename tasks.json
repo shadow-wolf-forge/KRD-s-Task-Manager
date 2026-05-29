@@ -558,7 +558,7 @@
     "id": 1779818912645.7517,
     "title": "Create Connectivity from ECC to CPI",
     "project": "Carrier",
-    "priority": "Low",
+    "priority": "High",
     "assigned_to": "Karthik",
     "done": false,
     "reminder_enabled": true,
@@ -566,7 +566,7 @@
     "reminder_sent": false,
     "notes": "Waiting for ECC Access",
     "created_at": "2026-05-26T18:08:32.645Z",
-    "modified_at": "2026-05-29T11:54:39.193Z",
+    "modified_at": "2026-05-29T12:04:27.100Z",
     "completed_at": null
   },
   {
