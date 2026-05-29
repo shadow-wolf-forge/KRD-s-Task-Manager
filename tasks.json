@@ -609,9 +609,9 @@
     "reminder_enabled": false,
     "remind_at": null,
     "reminder_sent": false,
-    "notes": "",
+    "notes": "Need to Ping Gaurav Goel",
     "created_at": "2026-05-29T11:53:46.901Z",
-    "modified_at": "2026-05-29T11:53:46.901Z",
+    "modified_at": "2026-05-29T11:54:17.804Z",
     "completed_at": null
   }
 ]
