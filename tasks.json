@@ -588,7 +588,7 @@
     "id": 1780055429203.472,
     "title": "CHG0271890 - FDM Aravo Flow Ashutosh Access",
     "project": "McKinsey",
-    "priority": "Medium",
+    "priority": "Low",
     "assigned_to": "Karthik",
     "done": false,
     "reminder_enabled": false,
@@ -596,7 +596,7 @@
     "reminder_sent": false,
     "notes": "Pinged Saurabh to look into it",
     "created_at": "2026-05-29T11:50:29.203Z",
-    "modified_at": "2026-05-29T11:50:46.304Z",
+    "modified_at": "2026-05-29T12:04:17.062Z",
     "completed_at": null
   },
   {
