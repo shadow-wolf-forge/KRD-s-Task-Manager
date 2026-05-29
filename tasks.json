@@ -624,9 +624,9 @@
     "reminder_enabled": false,
     "remind_at": null,
     "reminder_sent": false,
-    "notes": "",
+    "notes": "Pinged Amr to Provide Details",
     "created_at": "2026-05-29T11:58:21.101Z",
-    "modified_at": "2026-05-29T12:03:34.520Z",
+    "modified_at": "2026-05-29T12:03:51.253Z",
     "completed_at": null
   }
 ]
