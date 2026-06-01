@@ -528,7 +528,7 @@
     "id": 1779818702439.5886,
     "title": "INC8836067 - ADDR_VALIDITY_ERROR",
     "project": "McKinsey",
-    "priority": "Medium",
+    "priority": "High",
     "assigned_to": "Karthik",
     "done": false,
     "reminder_enabled": false,
@@ -536,7 +536,7 @@
     "reminder_sent": false,
     "notes": "Need to understand the current logic and discuss with Amr",
     "created_at": "2026-05-26T18:05:02.439Z",
-    "modified_at": "2026-06-01T04:30:12.742Z",
+    "modified_at": "2026-06-01T04:30:35.248Z",
     "completed_at": null
   },
   {
