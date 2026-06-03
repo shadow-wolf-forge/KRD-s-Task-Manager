@@ -665,13 +665,13 @@
     "project": "Carrier",
     "priority": "High",
     "assigned_to": "Karthik",
-    "done": false,
+    "done": true,
     "reminder_enabled": false,
     "remind_at": null,
     "reminder_sent": false,
     "notes": "",
     "created_at": "2026-06-03T04:56:34.928Z",
-    "modified_at": "2026-06-03T04:56:34.928Z",
-    "completed_at": null
+    "modified_at": "2026-06-03T10:15:57.281Z",
+    "completed_at": "2026-06-03T10:15:57.281Z"
   }
 ]
