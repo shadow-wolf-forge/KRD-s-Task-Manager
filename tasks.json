@@ -654,9 +654,9 @@
     "reminder_enabled": false,
     "remind_at": null,
     "reminder_sent": false,
-    "notes": "",
+    "notes": "Mapping Updated, waiting for them to test and confirm to transport",
     "created_at": "2026-06-01T08:07:20.324Z",
-    "modified_at": "2026-06-01T08:07:20.324Z",
+    "modified_at": "2026-06-03T04:55:27.153Z",
     "completed_at": null
   }
 ]
