@@ -594,9 +594,9 @@
     "reminder_enabled": false,
     "remind_at": null,
     "reminder_sent": false,
-    "notes": "Pinged Saurabh to look into it",
+    "notes": "Saurabh is working on it",
     "created_at": "2026-05-29T11:50:29.203Z",
-    "modified_at": "2026-05-29T12:04:17.062Z",
+    "modified_at": "2026-06-03T10:15:16.381Z",
     "completed_at": null
   },
   {
@@ -665,13 +665,13 @@
     "project": "Carrier",
     "priority": "High",
     "assigned_to": "Karthik",
-    "done": true,
+    "done": false,
     "reminder_enabled": false,
     "remind_at": null,
     "reminder_sent": false,
     "notes": "",
     "created_at": "2026-06-03T04:56:34.928Z",
-    "modified_at": "2026-06-03T07:48:27.528Z",
-    "completed_at": "2026-06-03T07:48:27.528Z"
+    "modified_at": "2026-06-03T04:56:34.928Z",
+    "completed_at": null
   }
 ]
