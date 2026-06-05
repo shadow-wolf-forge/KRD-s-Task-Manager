@@ -615,21 +615,6 @@
     "completed_at": "2026-06-03T04:55:02.056Z"
   },
   {
-    "id": 1780055901101.3606,
-    "title": "INC8280838,INC8343332,INC8309554,INC8579039",
-    "project": "McKinsey",
-    "priority": "Low",
-    "assigned_to": "Karthik",
-    "done": false,
-    "reminder_enabled": false,
-    "remind_at": null,
-    "reminder_sent": false,
-    "notes": "Amr asked to focus on ADDR Error for now.",
-    "created_at": "2026-05-29T11:58:21.101Z",
-    "modified_at": "2026-06-03T04:55:54.397Z",
-    "completed_at": null
-  },
-  {
     "id": 1780293806820.0305,
     "title": "CM creation for CO-Reposting",
     "project": "McKinsey",
