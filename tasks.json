@@ -698,10 +698,10 @@
     "done": false,
     "reminder_enabled": true,
     "remind_at": "2026-06-08T06:00:00.000Z",
-    "reminder_sent": false,
+    "reminder_sent": true,
     "notes": "",
     "created_at": "2026-06-05T16:08:27.120Z",
-    "modified_at": "2026-06-05T16:08:27.120Z",
+    "modified_at": "2026-06-08T06:00:31.494Z",
     "completed_at": null
   }
 ]
