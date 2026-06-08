@@ -590,14 +590,14 @@
     "project": "McKinsey",
     "priority": "Low",
     "assigned_to": "Karthik",
-    "done": false,
+    "done": true,
     "reminder_enabled": false,
     "remind_at": null,
     "reminder_sent": false,
     "notes": "Pinged Saurabh and waiting for response",
     "created_at": "2026-05-29T11:50:29.203Z",
-    "modified_at": "2026-06-05T11:58:39.337Z",
-    "completed_at": null
+    "modified_at": "2026-06-08T12:10:35.472Z",
+    "completed_at": "2026-06-08T12:10:35.472Z"
   },
   {
     "id": 1780055626901.5747,
