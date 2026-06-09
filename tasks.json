@@ -528,7 +528,7 @@
     "id": 1779818702439.5886,
     "title": "INC8836067 - ADDR_VALIDITY_ERROR",
     "project": "McKinsey",
-    "priority": "High",
+    "priority": "Low",
     "assigned_to": "Karthik",
     "done": false,
     "reminder_enabled": false,
@@ -536,7 +536,7 @@
     "reminder_sent": false,
     "notes": "Pinged Amr to raise a SAP Ticket - Individually\nPinged him to replicate the supplier with same error in dev in group chat with Phaniraj and Akash",
     "created_at": "2026-05-26T18:05:02.439Z",
-    "modified_at": "2026-06-08T12:10:45.429Z",
+    "modified_at": "2026-06-09T04:34:49.497Z",
     "completed_at": null
   },
   {
