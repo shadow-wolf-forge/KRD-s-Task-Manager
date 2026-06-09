@@ -703,5 +703,20 @@
     "created_at": "2026-06-05T16:08:27.120Z",
     "modified_at": "2026-06-08T12:09:12.828Z",
     "completed_at": "2026-06-08T12:09:12.828Z"
+  },
+  {
+    "id": 1780980232395.3875,
+    "title": "Need to send EDI SPEC to Copeland",
+    "project": "Carrier",
+    "priority": "High",
+    "assigned_to": "Karthik",
+    "done": false,
+    "reminder_enabled": false,
+    "remind_at": null,
+    "reminder_sent": false,
+    "notes": "",
+    "created_at": "2026-06-09T04:43:52.395Z",
+    "modified_at": "2026-06-09T04:43:52.395Z",
+    "completed_at": null
   }
 ]
