@@ -710,14 +710,14 @@
     "project": "Carrier",
     "priority": "High",
     "assigned_to": "Karthik",
-    "done": false,
+    "done": true,
     "reminder_enabled": false,
     "remind_at": null,
     "reminder_sent": false,
     "notes": "Waiting for Sesha & Sergio to Review",
     "created_at": "2026-06-09T04:43:52.395Z",
-    "modified_at": "2026-06-10T12:44:09.609Z",
-    "completed_at": null
+    "modified_at": "2026-06-12T07:03:22.583Z",
+    "completed_at": "2026-06-12T07:03:22.583Z"
   },
   {
     "id": 1780980250256.1594,
