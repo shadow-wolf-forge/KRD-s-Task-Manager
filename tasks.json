@@ -721,7 +721,7 @@
   },
   {
     "id": 1780980262394.649,
-    "title": "Setup Email alert",
+    "title": "Design email alerts to work for us",
     "project": "Carrier",
     "priority": "Medium",
     "assigned_to": "Karthik",
@@ -731,7 +731,7 @@
     "reminder_sent": false,
     "notes": "",
     "created_at": "2026-06-09T04:44:22.394Z",
-    "modified_at": "2026-06-09T04:44:22.394Z",
+    "modified_at": "2026-06-16T10:35:22.343Z",
     "completed_at": null
   },
   {
