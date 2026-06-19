@@ -783,7 +783,7 @@
     "id": 1781795013725.2927,
     "title": "Build FMNO Coupa Update Integration",
     "project": "McKinsey",
-    "priority": "High",
+    "priority": "Medium",
     "assigned_to": "Karthik",
     "done": false,
     "reminder_enabled": true,
@@ -791,7 +791,7 @@
     "reminder_sent": false,
     "notes": "Create a Separate Mapping LIP and change active status mapping",
     "created_at": "2026-06-18T15:03:33.725Z",
-    "modified_at": "2026-06-19T13:16:03.211Z",
+    "modified_at": "2026-06-19T13:16:11.652Z",
     "completed_at": null
   }
 ]
