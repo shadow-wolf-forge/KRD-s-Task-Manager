@@ -819,9 +819,9 @@
     "reminder_enabled": false,
     "remind_at": null,
     "reminder_sent": false,
-    "notes": "",
+    "notes": "No Access to Raise Ticket",
     "created_at": "2026-06-29T17:46:56.301Z",
-    "modified_at": "2026-06-29T17:46:56.301Z",
+    "modified_at": "2026-06-30T11:00:42.749Z",
     "completed_at": null
   },
   {
