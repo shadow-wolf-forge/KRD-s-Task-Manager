@@ -890,13 +890,13 @@
     "project": "McKinsey",
     "priority": "Medium",
     "assigned_to": "Karthik",
-    "done": false,
+    "done": true,
     "reminder_enabled": true,
     "remind_at": "2026-06-30T11:30:00.000Z",
     "reminder_sent": true,
     "notes": "",
     "created_at": "2026-06-30T06:53:23.594Z",
-    "modified_at": "2026-06-30T11:30:32.301Z",
-    "completed_at": null
+    "modified_at": "2026-07-06T14:19:52.229Z",
+    "completed_at": "2026-07-06T14:19:52.229Z"
   }
 ]
