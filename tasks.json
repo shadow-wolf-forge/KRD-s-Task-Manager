@@ -928,5 +928,20 @@
     "created_at": "2026-07-13T06:39:15.093Z",
     "modified_at": "2026-07-14T11:38:18.717Z",
     "completed_at": null
+  },
+  {
+    "id": 1784029115469.2932,
+    "title": "Move LAAS Updates to QA",
+    "project": "McKinsey",
+    "priority": "Medium",
+    "assigned_to": "Karthik",
+    "done": false,
+    "reminder_enabled": false,
+    "remind_at": null,
+    "reminder_sent": false,
+    "notes": "",
+    "created_at": "2026-07-14T11:38:35.469Z",
+    "modified_at": "2026-07-14T11:38:35.469Z",
+    "completed_at": null
   }
 ]
