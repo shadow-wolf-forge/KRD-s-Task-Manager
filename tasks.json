@@ -995,14 +995,14 @@
     "project": "McKinsey",
     "priority": "Medium",
     "assigned_to": "Karthik",
-    "done": false,
+    "done": true,
     "reminder_enabled": false,
     "remind_at": null,
     "reminder_sent": false,
     "notes": "Waiting for Jira approval by Vipin",
     "created_at": "2026-07-27T08:22:25.184Z",
-    "modified_at": "2026-08-05T08:48:39.823Z",
-    "completed_at": null
+    "modified_at": "2026-08-05T08:48:44.042Z",
+    "completed_at": "2026-08-05T08:48:44.042Z"
   },
   {
     "id": 1785257286783.2969,
