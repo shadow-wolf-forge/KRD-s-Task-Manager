@@ -1108,5 +1108,20 @@
     "created_at": "2026-08-11T05:51:30.042Z",
     "modified_at": "2026-08-11T05:51:30.042Z",
     "completed_at": null
+  },
+  {
+    "id": 1786427505487.583,
+    "title": "Design 997 in CPI for required directions",
+    "project": "Carrier",
+    "priority": "Medium",
+    "assigned_to": "Karthik",
+    "done": false,
+    "reminder_enabled": false,
+    "remind_at": null,
+    "reminder_sent": false,
+    "notes": "",
+    "created_at": "2026-08-11T05:51:45.487Z",
+    "modified_at": "2026-08-11T05:51:45.487Z",
+    "completed_at": null
   }
 ]
