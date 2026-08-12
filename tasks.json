@@ -1115,13 +1115,13 @@
     "project": "Carrier",
     "priority": "Medium",
     "assigned_to": "Karthik",
-    "done": false,
+    "done": true,
     "reminder_enabled": false,
     "remind_at": null,
     "reminder_sent": false,
     "notes": "",
     "created_at": "2026-08-11T05:51:45.487Z",
-    "modified_at": "2026-08-11T05:51:45.487Z",
-    "completed_at": null
+    "modified_at": "2026-08-12T11:09:48.270Z",
+    "completed_at": "2026-08-12T11:09:48.270Z"
   }
 ]
