@@ -1148,10 +1148,10 @@
     "done": false,
     "reminder_enabled": true,
     "remind_at": "2026-08-17T07:00:00.000Z",
-    "reminder_sent": false,
+    "reminder_sent": true,
     "notes": "",
     "created_at": "2026-08-17T05:51:08.651Z",
-    "modified_at": "2026-08-17T05:51:08.651Z",
+    "modified_at": "2026-08-17T07:00:48.069Z",
     "completed_at": null
   }
 ]
