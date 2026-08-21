@@ -1153,5 +1153,20 @@
     "created_at": "2026-08-17T05:51:08.651Z",
     "modified_at": "2026-08-18T07:00:43.996Z",
     "completed_at": null
+  },
+  {
+    "id": 1787298095207.4714,
+    "title": "New job",
+    "project": "Carrier",
+    "priority": "High",
+    "assigned_to": "Karthik",
+    "done": false,
+    "reminder_enabled": false,
+    "remind_at": null,
+    "reminder_sent": false,
+    "notes": "",
+    "created_at": "2026-08-21T07:41:35.207Z",
+    "modified_at": "2026-08-21T07:41:35.207Z",
+    "completed_at": null
   }
 ]
